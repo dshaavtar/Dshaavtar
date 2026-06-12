@@ -1,0 +1,5841 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type WorkServiceType = 
+ variant {
+   accounts;
+   cleaning;
+   electrician;
+   maintenance;
+   pestControl;
+   security;
+ };
+type WordDefinitionRow = 
+ record {
+   ancientTranslation: text;
+   id: text;
+   ipa: text;
+   language: text;
+   word: text;
+ };
+type WordDefinition = 
+ record {
+   ancientTranslation: text;
+   examples: vec text;
+   id: text;
+   ipa: text;
+   language: text;
+   translations: vec record {
+                       text;
+                       text;
+                     };
+   word: text;
+ };
+type WhatsAppConfig = 
+ record {
+   apiKey: text;
+   isConnected: bool;
+   isTestMode: bool;
+   phoneNumberId: text;
+   verifyToken: text;
+   webhookUrl: text;
+ };
+type VisitorCheckin = 
+ record {
+   approvalStatus: VisitorApprovalStatus;
+   checkInTime: int;
+   checkOutTime: opt int;
+   communityId: text;
+   communityMemberId: text;
+   date: text;
+   id: text;
+   purpose: text;
+   vehicleDetails: text;
+   visitorName: text;
+   visitorPhone: text;
+ };
+type VisitorApprovalStatus = 
+ variant {
+   approved;
+   denied;
+   pending;
+ };
+type VerificationStatus = 
+ variant {
+   pending;
+   rejected;
+   verified;
+ };
+type VehicleType = 
+ variant {
+   auto;
+   bike;
+   bus;
+   car;
+   scooter;
+   tempo;
+   truck;
+   van;
+ };
+type UtilityTransaction = 
+ record {
+   amount: float64;
+   billAmount: opt float64;
+   consumerNumber: text;
+   createdAt: nat;
+   customerId: text;
+   environment: PaySprintEnvironment;
+   id: text;
+   operatorCode: text;
+   operatorName: text;
+   receiptNumber: opt text;
+   referenceId: text;
+   serviceType: PaySprintServiceType;
+   status: TransactionStatus;
+   transactionId: opt text;
+   updatedAt: nat;
+ };
+type UserSubscription = 
+ record {
+   endDate: int;
+   id: text;
+   inquiriesUsed: nat;
+   isActive: bool;
+   ordersUsed: nat;
+   planId: text;
+   startDate: int;
+   userId: text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   customer;
+   deliveryPartner;
+   merchant;
+   sarthi;
+ };
+type UserEnrollment = 
+ record {
+   completionDate: int;
+   courseId: text;
+   enrollmentDate: int;
+   id: text;
+   isCompleted: bool;
+   lastViewedDate: int;
+   progressPercent: nat;
+   userId: text;
+ };
+type User = 
+ record {
+   address: opt text;
+   conversationState: ConversationState;
+   countryCode: text;
+   countryName: text;
+   currency: text;
+   gender: text;
+   id: text;
+   importBatchId: opt text;
+   importedByMerchant: opt text;
+   isActive: bool;
+   location: opt Location;
+   name: text;
+   otpCode: text;
+   otpExpiry: int;
+   otpVerified: bool;
+   passdigit: text;
+   passdigitAttempts: nat;
+   phone: text;
+   promotionalOptOut: bool;
+   registrationDate: int;
+   role: UserRole;
+   sessionLockExpiry: int;
+   sessionLocked: bool;
+   stateData: text;
+   subscriptionPlanId: opt text;
+ };
+type TransportStatus = 
+ variant {
+   accepted;
+   arrived;
+   arrivedDestination;
+   cancelled;
+   completed;
+   headingToPickup;
+   onTheWay;
+   paymentCollected;
+   pending;
+   rideStarted;
+ };
+type TransportBooking = 
+ record {
+   createdAt: int;
+   customerContactNo: text;
+   customerId: text;
+   destination: Location;
+   estimatedCharge: float64;
+   id: text;
+   origin: Location;
+   partnerContactNo: text;
+   sarthiPartnerId: opt text;
+   status: TransportStatus;
+   statusHistory: vec OrderStatusHistory;
+   updatedAt: int;
+   vehicleType: VehicleType;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type TransactionStatus = 
+ variant {
+   failed;
+   pending;
+   refunded;
+   success;
+ };
+type TrainBooking = 
+ record {
+   classType: text;
+   createdAt: nat;
+   customerId: text;
+   destination: text;
+   environment: PaySprintEnvironment;
+   fare: float64;
+   id: text;
+   journeyDate: text;
+   passengers: vec PassengerDetail;
+   paymentStatus: PaymentStatus__1;
+   pnr: opt text;
+   quota: text;
+   source: text;
+   status: BookingStatus;
+   trainName: text;
+   trainNumber: text;
+   transactionId: opt text;
+   updatedAt: nat;
+ };
+type TradeRecommendation = 
+ record {
+   accuracyPrediction: text;
+   action: text;
+   confidence: float64;
+   createdAt: int;
+   reasoning: text;
+   stopLossPrice: float64;
+   symbol: text;
+   targetDate: text;
+   targetPrice: float64;
+   updatedAt: int;
+ };
+type TourOperator = 
+ record {
+   city: text;
+   createdAt: int;
+   destinations: vec text;
+   duration: text;
+   id: text;
+   maxPassengers: nat;
+   name: text;
+   phone: text;
+   pricePerPerson: float64;
+   rating: float64;
+   tourTypes: vec text;
+   updatedAt: int;
+ };
+type TourBookingStatus = 
+ variant {
+   cancelled;
+   completed;
+   confirmed;
+   pending;
+ };
+type TourBooking = 
+ record {
+   createdAt: int;
+   customerPhone: text;
+   date: text;
+   destination: text;
+   id: text;
+   operatorId: text;
+   passengerCount: nat;
+   status: TourBookingStatus;
+   totalPrice: float64;
+   tourType: text;
+   updatedAt: int;
+ };
+type TopCustomer = 
+ record {
+   name: text;
+   orderCount: nat;
+   phone: text;
+   totalSpend: float64;
+   userId: text;
+ };
+type TipRecord = 
+ record {
+   amount: nat;
+   entityId: text;
+   entityType: text;
+   fromCustomerId: text;
+   id: text;
+   timestamp: int;
+   toPartnerId: text;
+ };
+type TelegramConfig = 
+ record {
+   alertChatId: text;
+   botToken: text;
+   botUsername: text;
+   isEnabled: bool;
+   webhookUrl: text;
+ };
+type SupportTicketStatus = 
+ variant {
+   assigned;
+   closed;
+   in_progress;
+   new;
+   resolved;
+ };
+type SupportTicketPriority = 
+ variant {
+   high;
+   low;
+   medium;
+ };
+type SupportTicketCategory = 
+ variant {
+   behaviour_complaint;
+   other;
+   payment_stuck;
+ };
+type SupportTicket = 
+ record {
+   adminNote: text;
+   category: SupportTicketCategory;
+   createdAt: int;
+   description: text;
+   fromPhone: text;
+   fromRole: UserRole;
+   orderId: opt text;
+   priority: SupportTicketPriority;
+   remarks: text;
+   resolutionDeadline: int;
+   resolvedAt: opt int;
+   status: SupportTicketStatus;
+   ticketId: text;
+   updatedAt: int;
+ };
+type SupplierOrderStatus = 
+ variant {
+   cancelled;
+   confirmed;
+   pending;
+   received;
+   shipped;
+ };
+type SupplierOrder = 
+ record {
+   createdAt: int;
+   id: text;
+   itemName: text;
+   merchantId: text;
+   notes: text;
+   quantity: text;
+   status: SupplierOrderStatus;
+   supplierContact: text;
+   updatedAt: int;
+ };
+type SubscriptionStatus = 
+ variant {
+   active: UserSubscription;
+   assignedFree: UserSubscription;
+   noSubscription;
+ };
+type SubscriptionQR = 
+ record {
+   amount: float64;
+   expiresAt: int;
+   planId: text;
+   qrData: text;
+   userId: text;
+ };
+type SubscriptionPlanType = 
+ variant {
+   category;
+   duration;
+   flat;
+   free;
+   monthly;
+   percentage;
+   weekly;
+ };
+type SubscriptionPlan = 
+ record {
+   applicableRoles: vec UserRole;
+   authLimit: nat;
+   categoryScope: opt text;
+   durationDays: nat;
+   features: vec text;
+   flatFee: opt float64;
+   id: text;
+   inquiryLimit: nat;
+   isActive: bool;
+   marketingLimit: nat;
+   maxTransactionAmount: opt float64;
+   messageType: text;
+   minTransactionAmount: opt float64;
+   name: text;
+   orderLimit: nat;
+   percentageFee: opt float64;
+   planType: SubscriptionPlanType;
+   priceFlat: float64;
+   pricePercentage: float64;
+   qrCodeData: text;
+   targetRole: UserRole;
+   utilityLimit: nat;
+ };
+type SubscriptionDashboardStats = 
+ record {
+   activeUsersCount: nat;
+   assignedUsersCount: nat;
+   daysUntilRenewal: int;
+   orderCap: nat;
+   planName: text;
+   topUser: opt record {
+                  ordersCount: nat;
+                  phone: text;
+                };
+   totalOrdersThisMonth: nat;
+   utilizationPercent: float64;
+ };
+type SubscriptionAssignmentStatus = 
+ variant {
+   active;
+   blocked;
+   expired;
+   paused;
+ };
+type SubscriptionAssignment = 
+ record {
+   assignedAt: int;
+   assignedUserId: text;
+   id: text;
+   lastOrderAt: opt int;
+   merchantId: text;
+   orderCap: nat;
+   ordersUsed: nat;
+   planId: text;
+   status: SubscriptionAssignmentStatus;
+ };
+type SubscriptionAccessResult = 
+ record {
+   dailyLimitRemaining: nat;
+   expiresAt: int;
+   hasActiveSubscription: bool;
+   planName: text;
+ };
+type StepResult = 
+ record {
+   createdEntityId: opt text;
+   input: text;
+   output: text;
+   passed: bool;
+   stepId: text;
+ };
+type StepDiagnostic = 
+ record {
+   diagnosticMessage: text;
+   executionMs: nat;
+   inputExpected: text;
+   inputReceived: text;
+   issueType: opt text;
+   nextNodeExpectedInput: text;
+   nodeName: text;
+   nodeType: text;
+   outputExpected: text;
+   outputProduced: text;
+   prevNodeOutput: text;
+   status: text;
+   stepIndex: nat;
+ };
+type SpendTrend = 
+ variant {
+   down;
+   flat;
+   up;
+ };
+type SpendAnalysis = 
+ record {
+   orderCount: nat;
+   period: text;
+   remainingBudget: float64;
+   topCategories: vec CategorySpend;
+   totalSpent: float64;
+   trend: SpendTrend;
+ };
+type ShuttleStop = 
+ record {
+   estimatedArrivalMinutes: nat;
+   fareDescription: text;
+   location: text;
+   stopName: text;
+ };
+type ShuttleRoute = 
+ record {
+   arrivalTime: text;
+   availableSeats: nat;
+   createdAt: int;
+   departureTime: text;
+   destination: text;
+   driverId: text;
+   fare: nat;
+   id: text;
+   isActive: bool;
+   operatorPhone: text;
+   pricePerKm: float64;
+   routeName: text;
+   serviceName: text;
+   source: text;
+   status: variant {
+             active;
+             inactive;
+           };
+   stopDetails: vec ShuttleStop;
+   stops: vec text;
+   vehicleNumber: text;
+   vehicleType: VehicleType;
+ };
+type ShuttleBookingStatus = 
+ variant {
+   boarded;
+   cancelled;
+   completed;
+   confirmed;
+ };
+type ShuttleBooking = 
+ record {
+   boardingStop: text;
+   createdAt: int;
+   dropStop: text;
+   fare: nat;
+   id: text;
+   otp: text;
+   passengerPhone: text;
+   routeId: text;
+   status: ShuttleBookingStatus;
+ };
+type ShiftStatus = 
+ variant {
+   active;
+   completed;
+ };
+type ServiceType = 
+ variant {
+   delivery;
+   sarthi;
+ };
+type ServiceBookingStatus = 
+ variant {
+   cancelled;
+   completed;
+   confirmed;
+   pending;
+ };
+type ServiceBooking = 
+ record {
+   createdAt: int;
+   customerPhone: text;
+   date: text;
+   duration: nat;
+   id: text;
+   notes: text;
+   serviceId: text;
+   status: ServiceBookingStatus;
+   timeSlot: text;
+   totalPrice: float64;
+   updatedAt: int;
+ };
+type ScriptRunStep = 
+ record {
+   actualOutput: text;
+   error: opt text;
+   expectedOutput: text;
+   input: text;
+   passed: bool;
+   stepIndex: nat;
+ };
+type ScriptRunResultInput = 
+ record {
+   failedSteps: nat;
+   flowName: text;
+   overallPass: bool;
+   passedSteps: nat;
+   runAt: int;
+   steps: vec ScriptRunStep;
+   totalSteps: nat;
+ };
+type ScriptRunResult = 
+ record {
+   failedSteps: nat;
+   flowName: text;
+   id: text;
+   overallPass: bool;
+   passedSteps: nat;
+   runAt: int;
+   steps: vec ScriptRunStep;
+   totalSteps: nat;
+ };
+type ScriptExecutionResult = 
+ record {
+   executionId: text;
+   flowId: text;
+   flowName: text;
+   passedSteps: nat;
+   stepResults: vec StepResult;
+   timestamp: int;
+   totalSteps: nat;
+ };
+type ScriptEntityRecord = 
+ record {
+   entityData: text;
+   entityId: text;
+   entityType: text;
+ };
+type SavedWordRow = 
+ record {
+   ancientTranslation: text;
+   id: text;
+   language: text;
+   translation: text;
+   userId: text;
+   word: text;
+ };
+type SarthiPendingRide = 
+ record {
+   createdAt: int;
+   customerId: text;
+   customerName: text;
+   destinationAddress: text;
+   estimatedFare: float64;
+   id: text;
+   pickupAddress: text;
+   status: TransportStatus;
+   vehicleType: VehicleType;
+ };
+type SarthiOTPVerification = 
+ record {
+   bookingId: text;
+   createdAt: int;
+   driverOTP: text;
+   driverVerified: bool;
+   id: text;
+   passengerOTP: text;
+   passengerVerified: bool;
+ };
+type SaleRecord = 
+ record {
+   buyerId: text;
+   buyerType: BuyerType;
+   createdAt: int;
+   id: text;
+   invoiceNo: text;
+   items: vec record {
+                text;
+                text;
+                nat;
+                float64;
+              };
+   manufacturerId: text;
+   paymentStatus: PaymentStatusSale;
+   totalAmount: float64;
+ };
+type SMSConfig = 
+ record {
+   apiKey: text;
+   authToken: text;
+   fromNumber: text;
+   id: text;
+   isEnabled: bool;
+   provider: text;
+   providerBaseUrl: text;
+   webhookUrl: text;
+ };
+type Result__1 = 
+ variant {
+   err: record {errorDetail: text;};
+   ok: LessonLike;
+ };
+type Result_9 = 
+ variant {
+   err: text;
+   ok: TourOperator;
+ };
+type Result_8 = 
+ variant {
+   err: ApiError;
+   ok: User;
+ };
+type Result_7 = 
+ variant {
+   err: ApiError;
+   ok: FullWhatsAppConfig;
+ };
+type Result_6 = 
+ variant {
+   err: ApiError;
+   ok: DeliveryPartner;
+ };
+type Result_57 = 
+ variant {
+   err: ApiError;
+   ok: PetrolExpense;
+ };
+type Result_56 = 
+ variant {
+   err: ApiError;
+   ok: TipRecord;
+ };
+type Result_55 = 
+ variant {
+   err: text;
+   ok: SubscriptionAssignment;
+ };
+type Result_54 = 
+ variant {
+   err: ApiError;
+   ok: ApiKey;
+ };
+type Result_53 = 
+ variant {
+   err: ApiError;
+   ok: DeliveryPaymentQR;
+ };
+type Result_52 = 
+ variant {
+   err: ApiError;
+   ok: OrderPaymentQR;
+ };
+type Result_51 = 
+ variant {
+   err: ApiError;
+   ok: SubscriptionQR;
+ };
+type Result_50 = 
+ variant {
+   err: ApiError;
+   ok: vec OrderGroup;
+ };
+type Result_5 = 
+ variant {
+   err: text;
+   ok: Employee;
+ };
+type Result_49 = 
+ variant {
+   err: ApiError;
+   ok: vec OrderStatusHistory;
+ };
+type Result_48 = 
+ variant {
+   err: ApiError;
+   ok: Product;
+ };
+type Result_47 = 
+ variant {
+   err: ApiError;
+   ok:
+    record {
+      reachedCount: nat;
+      status: PromotionStatus;
+      targetUserCount: nat;
+      viewedCount: nat;
+    };
+ };
+type Result_46 = 
+ variant {
+   err: ApiError;
+   ok: UserSubscription;
+ };
+type Result_45 = 
+ variant {
+   err: ApiError;
+   ok: nat;
+ };
+type Result_44 = 
+ variant {
+   err: text;
+   ok: JobCityFavorite;
+ };
+type Result_43 = 
+ variant {
+   err: ApiError;
+   ok: Notification;
+ };
+type Result_42 = 
+ variant {
+   err: ApiError;
+   ok: vec Product;
+ };
+type Result_41 = 
+ variant {
+   err: text;
+   ok: nat;
+ };
+type Result_40 = 
+ variant {
+   err: ApiError;
+   ok: Job;
+ };
+type Result_4 = 
+ variant {
+   err: ApiError;
+   ok: Merchant;
+ };
+type Result_39 = 
+ variant {
+   err: ApiError;
+   ok: Property;
+ };
+type Result_38 = 
+ variant {
+   err: ApiError;
+   ok: Lead;
+ };
+type Result_37 = 
+ variant {
+   err: ApiError;
+   ok: FlowDefinition;
+ };
+type Result_36 = 
+ variant {
+   err: text;
+   ok: ScriptRunResult;
+ };
+type Result_35 = 
+ variant {
+   err: ApiError;
+   ok: text;
+ };
+type Result_34 = 
+ variant {
+   err: text;
+   ok: AppVersion;
+ };
+type Result_33 = 
+ variant {
+   err: ApiError;
+   ok: FreeRideSarthi;
+ };
+type Result_32 = 
+ variant {
+   err: text;
+   ok: ProductLocationPrice;
+ };
+type Result_31 = 
+ variant {
+   err: ApiError;
+   ok: vec BotMessage;
+ };
+type Result_30 = 
+ variant {
+   err: text;
+   ok: text;
+ };
+type Result_3 = 
+ variant {
+   err: ApiError;
+   ok: bool;
+ };
+type Result_29 = 
+ variant {
+   err: ApiError;
+   ok: Promotion;
+ };
+type Result_28 = 
+ variant {
+   err: text;
+   ok: bool;
+ };
+type Result_27 = 
+ variant {
+   err: ApiError;
+   ok: TransportBooking;
+ };
+type Result_26 = 
+ variant {
+   err: text;
+   ok: BrandingConfig;
+ };
+type Result_25 = 
+ variant {
+   err: ApiError;
+   ok: Employee;
+ };
+type Result_24 = 
+ variant {
+   err: ApiError;
+   ok: Event;
+ };
+type Result_23 = 
+ variant {
+   err: text;
+   ok: HealthcareProvider;
+ };
+type Result_22 = 
+ variant {
+   err: ApiError;
+   ok: FamilyMember;
+ };
+type Result_21 = 
+ variant {
+   err: text;
+   ok: MenuOption;
+ };
+type Result_20 = 
+ variant {
+   err: ApiError;
+   ok: ModerationItem;
+ };
+type Result_2 = 
+ variant {
+   err: ApiError;
+   ok: record {
+         id: text;
+         name: text;
+       };
+ };
+type Result_19 = 
+ variant {
+   err: ApiError;
+   ok: OndcEnrollment;
+ };
+type Result_18 = 
+ variant {
+   err: ApiError;
+   ok: Order;
+ };
+type Result_17 = 
+ variant {
+   err: ApiError;
+   ok: SubscriptionPlan;
+ };
+type Result_16 = 
+ variant {
+   err: text;
+   ok: ProfessionalService;
+ };
+type Result_15 = 
+ variant {
+   err: ApiError;
+   ok: DeliveryRateCard;
+ };
+type Result_14 = 
+ variant {
+   err: ApiError;
+   ok: RestockOrder;
+ };
+type Result_13 = 
+ variant {
+   err: ApiError;
+   ok;
+ };
+type Result_12 = 
+ variant {
+   err: ApiError;
+   ok: ShuttleRoute;
+ };
+type Result_11 = 
+ variant {
+   err: ApiError;
+   ok: SupportTicket;
+ };
+type Result_10 = 
+ variant {
+   err: text;
+   ok;
+ };
+type Result_1 = 
+ variant {
+   err: ApiError;
+   ok: SarthiOTPVerification;
+ };
+type Result = 
+ variant {
+   err: ApiError;
+   ok: ShuttleBooking;
+ };
+type RestockStatus = 
+ variant {
+   accepted;
+   cancelled;
+   delivered;
+   pending;
+ };
+type RestockOrder = 
+ record {
+   createdAt: int;
+   id: text;
+   itemName: text;
+   merchantId: text;
+   merchantPhone: text;
+   notes: text;
+   quantity: nat;
+   status: RestockStatus;
+   supplierName: text;
+   updatedAt: int;
+ };
+type Relationship = 
+ variant {
+   brother;
+   daughter;
+   father;
+   friend;
+   husband;
+   mother;
+   relative;
+   sister;
+   son;
+   wife;
+ };
+type RecipeIngredient = 
+ record {
+   grams: float64;
+   name: text;
+ };
+type Recipe = 
+ record {
+   benefits: text;
+   createdAt: int;
+   id: text;
+   imageLink: text;
+   ingredients: vec RecipeIngredient;
+   ownerId: text;
+   rating: float64;
+   ratingCount: nat;
+   steps: vec text;
+   tips: text;
+   title: text;
+   updatedAt: int;
+   videoLink: text;
+ };
+type QuickReply = 
+ record {
+   id: text;
+   payload: text;
+   title: text;
+ };
+type PurchaseRecord = 
+ record {
+   createdAt: int;
+   id: text;
+   invoiceNo: text;
+   items: vec record {
+                text;
+                text;
+                nat;
+                float64;
+              };
+   manufacturerId: text;
+   paymentStatus: PaymentStatusPurchase;
+   supplierId: opt text;
+   supplierName: text;
+   totalAmount: float64;
+ };
+type PropertyListingType = 
+ variant {
+   buy;
+   lease;
+   rent;
+   sale;
+ };
+type Property = 
+ record {
+   description: text;
+   endDate: int;
+   expectedPrice: float64;
+   id: text;
+   isActive: bool;
+   leads: vec ContactRequest;
+   listingType: PropertyListingType;
+   location: Location;
+   posterId: text;
+   publishDate: int;
+ };
+type PromotionSubscriptionPlan = 
+ record {
+   id: text;
+   name: text;
+   price: float64;
+   userReach: nat;
+ };
+type PromotionStatus = 
+ variant {
+   active;
+   approved;
+   completed;
+   pendingApproval;
+   pendingPayment;
+   rejected;
+ };
+type PromotionReach = 
+ variant {
+   reach100;
+   reach1000;
+   reach200;
+   reach2000;
+   reach500;
+ };
+type Promotion = 
+ record {
+   advertiserPhone: text;
+   createdAt: int;
+   expiresAt: int;
+   id: text;
+   imageLink: text;
+   locationArea: text;
+   locationCity: text;
+   locationCountry: text;
+   moderationFlags: vec text;
+   reachedCount: nat;
+   reelLink: text;
+   status: PromotionStatus;
+   subscriptionPlan: PromotionReach;
+   targetUserCount: nat;
+   title: text;
+   viewedCount: nat;
+ };
+type ProfessionalService = 
+ record {
+   address: text;
+   areaRates: vec record {
+                    text;
+                    float64;
+                  };
+   availability: vec text;
+   city: text;
+   createdAt: int;
+   id: text;
+   merchantPhone: text;
+   pricePerHour: float64;
+   rating: float64;
+   serviceType: text;
+   specialization: text;
+   updatedAt: int;
+ };
+type ProductScanHistoryInput = 
+ record {
+   barcodeValue: text;
+   deviceInfo: opt text;
+   merchantId: text;
+   productId: text;
+ };
+type ProductScanHistory = 
+ record {
+   barcodeValue: text;
+   deviceInfo: opt text;
+   id: text;
+   merchantId: text;
+   productId: text;
+   scanTime: int;
+ };
+type ProductRevenue = 
+ record {
+   orderCount: nat;
+   productId: text;
+   productName: text;
+   totalRevenue: float64;
+ };
+type ProductPriceUniformity = 
+ record {
+   isUniform: bool;
+   locationCount: nat;
+   maxPrice: float64;
+   minPrice: float64;
+ };
+type ProductLocationPrice = 
+ record {
+   branchId: text;
+   cityId: text;
+   createdAt: int;
+   id: text;
+   price: float64;
+   productId: text;
+   updatedAt: int;
+ };
+type ProductInput = 
+ record {
+   baseRate: float64;
+   brand: text;
+   bulkMinQty: nat;
+   bulkRate: float64;
+   bulkRates: vec BulkRate;
+   condition: text;
+   description: text;
+   expiry: text;
+   imageUrl: text;
+   imageUrls: vec text;
+   instagramLink: opt text;
+   isNew: bool;
+   mrp: float64;
+   packing: text;
+   purchaseRate: float64;
+   purchasedFrom: text;
+   qty: nat;
+   schemeDiscount: float64;
+   specialDiscount: float64;
+   title: text;
+   videoUrl: opt text;
+   youtubeLink: opt text;
+ };
+type Product = 
+ record {
+   barcodeValue: opt text;
+   baseRate: float64;
+   bulkRates: vec BulkRate;
+   description: text;
+   expiry: text;
+   id: text;
+   imageUrls: vec text;
+   isActive: bool;
+   isNew: bool;
+   merchantId: text;
+   packing: text;
+   qty: nat;
+   specialDiscount: float64;
+   title: text;
+   videoUrl: opt text;
+ };
+type PetrolExpense = 
+ record {
+   amount: float64;
+   createdAt: int;
+   date: text;
+   id: text;
+   liters: float64;
+   notes: text;
+   partnerId: text;
+ };
+type PaymentStatus__1 = 
+ variant {
+   failed;
+   paid;
+   pending;
+   refunded;
+   unpaid;
+ };
+type PaymentStatusSale = 
+ variant {
+   paid;
+   partial;
+   pending;
+ };
+type PaymentStatusPurchase = 
+ variant {
+   paid;
+   pending;
+ };
+type PaymentStatus = 
+ variant {
+   paid;
+   partialPaid;
+   pending;
+   refunded;
+ };
+type PaymentMode = 
+ variant {
+   cod;
+   online;
+   qrCode;
+ };
+type PaySprintServiceType = 
+ variant {
+   billPayment;
+   bus;
+   fastTag;
+   flight;
+   insurance;
+   lpg;
+   municipality;
+   recharge;
+   train;
+ };
+type PaySprintEnvironment = 
+ variant {
+   live;
+   uat;
+ };
+type PaySprintCredential = 
+ record {
+   authorisedKey: text;
+   baseUrl: text;
+   createdAt: nat;
+   environment: PaySprintEnvironment;
+   id: text;
+   isActive: bool;
+   lastTestResult: opt text;
+   lastTestedAt: opt nat;
+   partnerId: text;
+   partnerKey: text;
+   serviceType: PaySprintServiceType;
+   updatedAt: nat;
+ };
+type PaySprintCallback = 
+ record {
+   amount: opt float64;
+   createdAt: nat;
+   eventType: text;
+   id: text;
+   merchantCode: opt text;
+   orderId: opt text;
+   processedAt: nat;
+   rawPayload: text;
+   referenceId: text;
+   serviceType: PaySprintServiceType;
+   status: text;
+ };
+type PaySprintAPILog = 
+ record {
+   createdAt: nat;
+   endpoint: text;
+   environment: PaySprintEnvironment;
+   errorMessage: opt text;
+   httpStatus: nat;
+   id: text;
+   isError: bool;
+   latencyMs: nat;
+   requestBody: text;
+   responseBody: text;
+   serviceType: PaySprintServiceType;
+ };
+type PassengerDetail = 
+ record {
+   age: nat;
+   email: text;
+   gender: text;
+   idNumber: text;
+   idType: text;
+   name: text;
+   phone: text;
+ };
+type ParkingType = 
+ variant {
+   covered;
+   open;
+ };
+type POSOrderLine = 
+ record {
+   productId: text;
+   productName: text;
+   quantity: nat;
+   tier: text;
+   unitPrice: float64;
+ };
+type POSOrder = 
+ record {
+   buyerName: text;
+   buyerPhone: text;
+   deliveryPartnerId: opt text;
+   id: text;
+   manufacturerId: text;
+   products: vec POSOrderLine;
+   source: text;
+   status: text;
+   timestamp: int;
+   total: float64;
+ };
+type OrderStatusHistory = 
+ record {
+   actor: text;
+   note: opt text;
+   status: OrderStatus;
+   timestamp: int;
+ };
+type OrderStatus = 
+ variant {
+   accepted;
+   assigned;
+   cancelled;
+   completed;
+   delivered;
+   expired;
+   inTransit;
+   new;
+   paymentCollected;
+   pending;
+   rejected;
+   vendorSettled;
+ };
+type OrderPaymentQR = 
+ record {
+   amount: float64;
+   expiresAt: int;
+   orderId: text;
+   qrData: text;
+   token: text;
+ };
+type OrderNotification = 
+ record {
+   data: text;
+   event: text;
+   orderId: text;
+   timestamp: int;
+ };
+type OrderItem = 
+ record {
+   productId: text;
+   productName: text;
+   quantity: nat;
+   totalRate: float64;
+   unitRate: float64;
+ };
+type OrderGroup = 
+ record {
+   deliveryCharge: float64;
+   items: vec OrderItem;
+   merchantId: text;
+   subtotal: float64;
+ };
+type OrderFunnel = 
+ record {
+   acceptRate: float64;
+   accepted: nat;
+   cancelRate: float64;
+   cancelled: nat;
+   delivered: nat;
+   deliveryRate: float64;
+   placed: nat;
+ };
+type Order = 
+ record {
+   acceptedAt: opt int;
+   assignedAt: opt int;
+   cancelledAt: opt int;
+   completedAt: opt int;
+   createdAt: int;
+   customerAddress: opt Location;
+   customerId: text;
+   customerRating: opt nat;
+   customerRatingValue: opt CustomerRating;
+   deliveredAt: opt int;
+   deliveryCharge: float64;
+   deliveryPartnerId: opt text;
+   dpAcceptedAt: opt int;
+   dpRating: opt nat;
+   id: text;
+   isManualOrder: bool;
+   items: vec OrderItem;
+   manualItems: vec ManualOrderItem;
+   merchantAcceptedAt: opt int;
+   merchantBranch: opt Branch;
+   merchantId: text;
+   merchantRating: opt nat;
+   notes: opt text;
+   ondcSource: bool;
+   paymentCollectedAmount: nat;
+   paymentCollectedAt: opt int;
+   paymentMode: PaymentMode;
+   paymentStatus: PaymentStatus;
+   pickedUpAt: opt int;
+   rejectionReason: opt text;
+   searchImageUrl: opt text;
+   searchQuery: opt text;
+   status: OrderStatus;
+   statusHistory: vec OrderStatusHistory;
+   surgeCharge: float64;
+   totalAmount: float64;
+   vendorSettledAt: opt int;
+   vendorSettlementAmount: nat;
+ };
+type OndcSetupGuide = 
+ record {
+   actionRequired: text;
+   description: text;
+   helpUrl: text;
+   isRequired: bool;
+   step: nat;
+   title: text;
+ };
+type OndcFAQ = 
+ record {
+   answer: text;
+   question: text;
+ };
+type OndcEnrollment = 
+ record {
+   bankAccount: text;
+   businessName: text;
+   enrollmentStatus: VerificationStatus;
+   fssaiLicense: opt text;
+   gstin: opt text;
+   id: text;
+   ifscCode: text;
+   notes: opt text;
+   reviewedAt: opt int;
+   role: UserRole;
+   submittedAt: int;
+   userId: text;
+ };
+type NotificationStatus = 
+ variant {
+   failed;
+   pending;
+   sent;
+ };
+type Notification = 
+ record {
+   createdAt: int;
+   id: text;
+   message: text;
+   notificationType: text;
+   recipientPhone: text;
+   sentAt: opt int;
+   status: NotificationStatus;
+   userId: text;
+ };
+type ModuleRoleStatus = 
+ record {
+   enabled: bool;
+   moduleName: text;
+   role: text;
+ };
+type ModerationItem = 
+ record {
+   checkedAt: int;
+   entityId: text;
+   entityType: text;
+   remark: text;
+   status: text;
+ };
+type MessageSender = 
+ variant {
+   bot;
+   user;
+ };
+type MerchantType = 
+ variant {
+   inquiry;
+   order;
+ };
+type MerchantRevenueTrendEntry = 
+ record {
+   period: text;
+   revenue: float64;
+ };
+type MerchantPerformanceTier = 
+ variant {
+   bronze;
+   gold;
+   platinum;
+   silver;
+ };
+type MerchantPerformance = 
+ record {
+   avgRating: float64;
+   businessName: text;
+   merchantId: text;
+   orderCount: nat;
+   revenue: float64;
+   tier: MerchantPerformanceTier;
+ };
+type MerchantEmployee = 
+ record {
+   createdAt: int;
+   id: text;
+   isActive: bool;
+   merchantId: text;
+   name: text;
+   phone: text;
+   role: EmployeeRole__1;
+ };
+type MerchantEarnings = 
+ record {
+   avgOrderValue: float64;
+   orderCount: nat;
+   pendingPayouts: float64;
+   totalRevenue: float64;
+ };
+type MerchantDashboardData = 
+ record {
+   earningsByDate: vec EarningsByDate;
+   passdigitRequired: bool;
+   pendingBookings: nat;
+   recentOrders: nat;
+   servicesByType: vec record {
+                         text;
+                         nat;
+                       };
+   subscriptionStatus: text;
+ };
+type MerchantBranch = 
+ record {
+   address: text;
+   branchId: text;
+   isActive: bool;
+   name: text;
+   upiId: text;
+ };
+type MerchantAnalytics = 
+ record {
+   branchComparison: vec record {
+                           text;
+                           float64;
+                         };
+   customerRetentionRate: float64;
+   orderFunnel: OrderFunnel;
+   revenueTrend: vec MerchantRevenueTrendEntry;
+   runningProducts: vec text;
+   topProductsByProfit: vec ProductRevenue;
+ };
+type Merchant = 
+ record {
+   avgRating: float64;
+   blockedUntil: opt int;
+   bookingAllowed: bool;
+   boostedOrderCount: nat;
+   branches: vec Branch;
+   businessName: text;
+   category: text;
+   codAvailable: bool;
+   customerCount: nat;
+   deliveryRadius: float64;
+   deliveryType: DeliveryType;
+   id: text;
+   isActive: bool;
+   isOndcEnrolled: bool;
+   isVerified: bool;
+   kyc: KYCDocuments;
+   location: Location;
+   menuProductIds: vec text;
+   merchantType: MerchantType;
+   orderCount: nat;
+   phone: text;
+   ratingCount: nat;
+   rejectionReason: opt text;
+   rentalAllowed: bool;
+   userId: text;
+ };
+type MenuOption = 
+ record {
+   cityModuleKey: text;
+   createdAt: int;
+   flowId: text;
+   id: text;
+   isActive: bool;
+   optionLabel: text;
+   roles: vec text;
+   sortOrder: nat;
+   updatedAt: int;
+ };
+type MatrimonyProfile = 
+ record {
+   age: opt nat;
+   bloodGroup: opt text;
+   caste: opt text;
+   education: opt text;
+   gender: text;
+   locationPreference: opt text;
+   memberId: text;
+   memberName: text;
+   occupation: opt text;
+   ownerPhone: text;
+   ownerRelationship: text;
+ };
+type MatchScore = 
+ record {
+   awayScore: text;
+   awayTeam: text;
+   createdAt: int;
+   fetchedAt: int;
+   homeScore: text;
+   homeTeam: text;
+   id: text;
+   leagueName: text;
+   matchTime: text;
+   sport: text;
+   status: text;
+   updatedAt: int;
+ };
+type MarketplaceItemInput = 
+ record {
+   category: text;
+   cityId: opt text;
+   instagramPhotoLink: text;
+   invoiceAvailable: bool;
+   listingType: text;
+   price: float64;
+   title: text;
+   yearOfManufacture: nat;
+ };
+type MarketplaceItem = 
+ record {
+   category: text;
+   cityId: opt text;
+   createdAt: int;
+   createdBy: text;
+   id: text;
+   instagramPhotoLink: text;
+   invoiceAvailable: bool;
+   isActive: bool;
+   listingType: text;
+   price: float64;
+   title: text;
+   yearOfManufacture: nat;
+ };
+type MarketSearchResult = 
+ record {
+   changePercent: float64;
+   createdAt: int;
+   currency: text;
+   currentPrice: float64;
+   exchangeName: text;
+   instrumentType: text;
+   lastUpdated: int;
+   name: text;
+   symbol: text;
+   updatedAt: int;
+ };
+type MarketSearchQuery = 
+ record {
+   country: text;
+   createdAt: int;
+   id: text;
+   matchedSymbols: vec text;
+   recommendations: vec TradeRecommendation;
+   results: vec MarketSearchResult;
+   scriptName: text;
+   searchedAt: int;
+   updatedAt: int;
+ };
+type ManufacturerReviewsAndComplaints = 
+ record {
+   complaints: vec ManufacturerComplaint;
+   ratings: vec ManufacturerRating;
+ };
+type ManufacturerRating = 
+ record {
+   createdAt: int;
+   id: text;
+   manufacturerId: text;
+   productId: text;
+   ratedBy: text;
+   rating: nat;
+   review: text;
+ };
+type ManufacturerProduct = 
+ record {
+   b2bCode: opt text;
+   batchCode: opt text;
+   batchNumber: text;
+   bulkPricingTiers: vec BulkPricingTier;
+   createdAt: int;
+   expiryDate: opt text;
+   hsnCode: opt text;
+   id: text;
+   isDiscontinued: bool;
+   isReturnable: bool;
+   manufactureDate: int;
+   manufacturerId: text;
+   originCity: text;
+   priceToCustomer: float64;
+   priceToDistributor: float64;
+   productName: text;
+   stockQty: nat;
+ };
+type ManufacturerEmployeeRole = 
+ variant {
+   accounts;
+   bills;
+   complaints;
+   expiry;
+   general;
+   inventory;
+   purchase;
+   restock;
+   sale;
+ };
+type ManufacturerEmployee = 
+ record {
+   createdAt: int;
+   id: text;
+   isActive: bool;
+   manufacturerId: text;
+   name: text;
+   phone: text;
+   role: ManufacturerEmployeeRole;
+ };
+type ManufacturerDashboardStats = 
+ record {
+   activeDistributors: nat;
+   avgRating: float64;
+   openComplaints: nat;
+   pendingReturns: nat;
+   totalDistributors: nat;
+   totalMarginPaid: float64;
+   totalOrders: nat;
+   totalProducts: nat;
+ };
+type ManufacturerComplaint = 
+ record {
+   createdAt: int;
+   description: text;
+   filedBy: text;
+   filedById: text;
+   id: text;
+   manufacturerId: text;
+   status: ComplaintStatus;
+   subject: text;
+ };
+type Manufacturer = 
+ record {
+   businessName: text;
+   createdAt: int;
+   customerCareEmail: text;
+   customerCarePhone: text;
+   id: text;
+   productCategories: vec text;
+   registeredCity: text;
+   updatedAt: int;
+   userId: text;
+ };
+type ManualOrderItem = 
+ record {
+   brand: text;
+   itemName: text;
+   quantity: nat;
+ };
+type Location = 
+ record {
+   address: text;
+   lat: float64;
+   lng: float64;
+ };
+type LessonRow = 
+ record {
+   content: text;
+   courseId: text;
+   id: text;
+   order: nat;
+   title: text;
+ };
+type LessonLike = 
+ record {
+   id: text;
+   lessonId: text;
+   likeType: text;
+   timestamp: int;
+   userId: text;
+ };
+type LendingItem = 
+ record {
+   borrowDate: int;
+   borrowerPhone: text;
+   charge: float64;
+   chargeDescription: text;
+   createdAt: int;
+   id: text;
+   itemCategory: text;
+   itemDescription: text;
+   itemName: text;
+   lastReminderSent: opt int;
+   lenderPhone: text;
+   reminderFrequency: text;
+   returnDate: int;
+   specificReminderDate: opt int;
+   status: text;
+   updatedAt: int;
+ };
+type LeaveStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type LeaveRequest = 
+ record {
+   approverNote: text;
+   createdAt: int;
+   employeeId: text;
+   endDate: text;
+   id: text;
+   merchantId: text;
+   reason: text;
+   startDate: text;
+   status: LeaveStatus;
+ };
+type LeadStatus = 
+ variant {
+   closed;
+   open;
+   responded;
+ };
+type Lead = 
+ record {
+   category: text;
+   createdAt: int;
+   id: text;
+   location: Location;
+   phone: text;
+   searchQuery: text;
+   status: LeadStatus;
+ };
+type LanguageCourse = 
+ record {
+   createdDate: int;
+   creatorPhone: text;
+   description: text;
+   enrollmentCount: nat;
+   id: text;
+   languagePair: text;
+   lessons: vec text;
+   price: nat;
+   status: text;
+   title: text;
+ };
+type KYCStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type KYCDocuments = 
+ record {
+   aadhaarImageUrl: opt text;
+   aadhaarNumber: opt text;
+   cancelledChequeUrl: opt text;
+   gstImageUrl: opt text;
+   gstNumber: opt text;
+   outletPhotoUrl: opt text;
+   panImageUrl: opt text;
+   panNumber: opt text;
+   personalQRUrl: opt text;
+   verificationStatus: VerificationStatus;
+ };
+type JobType = 
+ variant {
+   adhoc_daily;
+   adhoc_weekly;
+   oneoff;
+   permanent;
+ };
+type JobLocation = 
+ record {
+   city: text;
+   createdAt: int;
+   id: text;
+   jobId: text;
+   pincode: opt text;
+ };
+type JobCityFavorite = 
+ record {
+   city: text;
+   createdAt: int;
+   employerPhone: text;
+   id: text;
+   userId: text;
+ };
+type Job = 
+ record {
+   category: text;
+   contactPhone: opt text;
+   description: text;
+   educationLevel: opt text;
+   endDate: int;
+   expiresAt: opt int;
+   id: text;
+   isAdhoc: bool;
+   isOpen: bool;
+   jobType: JobType;
+   leads: vec ContactRequest;
+   location: Location;
+   posterId: text;
+   pricePerDay: opt float64;
+   publishDate: int;
+   salaryMax: float64;
+   salaryMin: float64;
+   title: text;
+ };
+type InventoryTransactionType = 
+ variant {
+   adjustment;
+   expiry_write_off;
+   purchase;
+   restock;
+   return_item;
+   sale;
+ };
+type InventoryTransaction = 
+ record {
+   createdAt: int;
+   id: text;
+   inventoryItemId: text;
+   notes: text;
+   quantity: int;
+   referenceId: opt text;
+   transactionType: InventoryTransactionType;
+ };
+type InventoryItem = 
+ record {
+   batchCode: text;
+   currentStock: nat;
+   expiryDate: opt text;
+   id: text;
+   lastUpdated: int;
+   manufacturerId: text;
+   productId: text;
+   productName: text;
+   reorderLevel: nat;
+   unit: text;
+ };
+type HttpResponse = 
+ record {
+   body: blob;
+   headers: vec record {
+                  text;
+                  text;
+                };
+   status_code: nat16;
+   upgrade: opt bool;
+ };
+type HttpRequest = 
+ record {
+   body: blob;
+   headers: vec record {
+                  text;
+                  text;
+                };
+   method: text;
+   url: text;
+ };
+type HealthcareProvider = 
+ record {
+   address: text;
+   availability: vec text;
+   city: text;
+   consultationFee: float64;
+   createdAt: int;
+   id: text;
+   name: text;
+   phone: text;
+   rating: float64;
+   specialization: text;
+   updatedAt: int;
+ };
+type HealthcareAppointment = 
+ record {
+   createdAt: int;
+   customerPhone: text;
+   date: text;
+   id: text;
+   notes: text;
+   providerId: text;
+   status: AppointmentStatus;
+   timeSlot: text;
+   updatedAt: int;
+ };
+type GroupType = 
+ variant {
+   family;
+   friends;
+ };
+type FullWhatsAppConfig = 
+ record {
+   apiKey: text;
+   businessAccountId: text;
+   isConnected: bool;
+   isTestMode: bool;
+   metaAppId: text;
+   phoneNumberId: text;
+   verifyToken: text;
+   webhookUrl: text;
+ };
+type FreeRideSarthi = 
+ record {
+   createdAt: int;
+   id: text;
+   isActive: bool;
+   sarthiPhone: text;
+   serviceArea: text;
+   vehicleType: VehicleType;
+ };
+type FlowStep = 
+ record {
+   dataNote: text;
+   input: text;
+   response: text;
+   stepIndex: nat;
+ };
+type FlowSession = 
+ record {
+   flowName: text;
+   id: text;
+   role: text;
+   status: text;
+   steps: vec FlowStep;
+   timestamp: int;
+ };
+type FlowIssue = 
+ record {
+   affectedNode: text;
+   affectedStep: nat;
+   description: text;
+   downstreamImpact: text;
+   issueId: text;
+   issueType: text;
+   rootCause: text;
+   severity: text;
+   suggestedFix: text;
+ };
+type FlowFix = 
+ record {
+   adminOverride: opt text;
+   afterConfig: text;
+   applied: bool;
+   approved: bool;
+   beforeConfig: text;
+   description: text;
+   fixId: text;
+   fixType: text;
+   issueId: text;
+   paramName: opt text;
+   paramValue: opt text;
+ };
+type FlowDiagnosticResult = 
+ record {
+   approvalStatus: text;
+   approvedAt: opt int;
+   deployedAt: opt int;
+   flowId: text;
+   flowName: text;
+   healthScore: nat;
+   issues: vec FlowIssue;
+   runId: text;
+   status: text;
+   stepResults: vec StepDiagnostic;
+   suggestedFixes: vec FlowFix;
+   testedAt: int;
+ };
+type FlowDefinition = 
+ record {
+   createdAt: int;
+   environment: text;
+   flowJson: text;
+   id: text;
+   name: text;
+   updatedAt: int;
+   version: nat;
+ };
+type FlowAgentSchedule = 
+ record {
+   intervalHours: nat;
+   isEnabled: bool;
+   lastRunAt: opt int;
+   nextRunAt: opt int;
+ };
+type FlowAgentRun = 
+ record {
+   completedAt: opt int;
+   failedFlows: nat;
+   fixesApplied: nat;
+   flowsScoped: vec text;
+   id: text;
+   issuesFound: nat;
+   passedFlows: nat;
+   startedAt: int;
+   status: text;
+   totalFlows: nat;
+   triggeredBy: text;
+ };
+type FlowAgentDiagnostic = 
+ record {
+   diagnosticId: text;
+   fixStatus: text;
+   flowId: text;
+   flowName: text;
+   issue: text;
+   proposedFix: text;
+   severity: text;
+   timestamp: int;
+ };
+type FlightBooking = 
+ record {
+   airline: text;
+   bookingRef: opt text;
+   cabinClass: text;
+   createdAt: nat;
+   customerId: text;
+   destination: text;
+   environment: PaySprintEnvironment;
+   fare: float64;
+   flightNumber: text;
+   id: text;
+   journeyDate: text;
+   passengers: vec PassengerDetail;
+   paymentStatus: PaymentStatus__1;
+   pnr: opt text;
+   source: text;
+   status: BookingStatus;
+   transactionId: opt text;
+   updatedAt: nat;
+ };
+type FamilyMember = 
+ record {
+   age: opt nat;
+   bloodGroup: opt text;
+   caste: opt text;
+   createdAt: int;
+   education: opt text;
+   gender: text;
+   id: text;
+   inviteStatus: FamilyInviteStatus;
+   isMatrimonyEligible: bool;
+   locationPreference: opt text;
+   occupation: opt text;
+   ownerName: text;
+   ownerPhone: text;
+   ownerSurname: text;
+   relationAddress: text;
+   relationName: text;
+   relationPhone: text;
+   relationship: Relationship;
+ };
+type FamilyInviteStatus = 
+ variant {
+   cancelled;
+   connected;
+   inactive;
+   pending;
+ };
+type FamilyGroup = 
+ record {
+   createdAt: int;
+   groupName: text;
+   groupType: GroupType;
+   id: text;
+   memberPhones: vec text;
+   ownerPhone: text;
+ };
+type FamilyConnectRequestStatus = 
+ variant {
+   accepted;
+   cancelled;
+   pending;
+ };
+type FamilyConnectRequest = 
+ record {
+   address: text;
+   createdAt: int;
+   fromPhone: text;
+   groupName: text;
+   id: text;
+   relationship: text;
+   status: FamilyConnectRequestStatus;
+   toPhone: text;
+ };
+type FacilityType = 
+ variant {
+   commonHall;
+   garden;
+   gym;
+   meetingRoom;
+   other;
+ };
+type ExpiryReturnStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type ExpiryReturn = 
+ record {
+   createdAt: int;
+   id: text;
+   manufacturerId: text;
+   productId: text;
+   quantity: nat;
+   reason: text;
+   returnedBy: text;
+   returnedById: text;
+   status: ExpiryReturnStatus;
+ };
+type EventStatus = 
+ variant {
+   cancelled;
+   expired;
+   pending;
+   published;
+ };
+type Event = 
+ record {
+   createdAt: int;
+   description: text;
+   distance: opt float64;
+   endDate: text;
+   eventName: text;
+   id: text;
+   isPaid: bool;
+   locationAddress: text;
+   organizerName: text;
+   organizerPhone: text;
+   price: float64;
+   publishUntil: int;
+   startDate: text;
+   status: EventStatus;
+   ticketVenue: text;
+ };
+type EntityView = 
+ record {
+   phone: text;
+   timestamp: int;
+ };
+type EnrollmentRow = 
+ record {
+   courseId: text;
+   enrollmentDate: int;
+   id: text;
+   isCompleted: bool;
+   progressPercent: nat;
+   userId: text;
+ };
+type EnhancedShuttleStop = 
+ record {
+   arrivalTime: text;
+   location: text;
+   sequenceOrder: nat;
+   stopName: text;
+   ticketFee: nat;
+ };
+type EnhancedAnalytics = 
+ record {
+   dailyActiveUsers: nat;
+   dpEfficiencyScores: vec DPEfficiency;
+   merchantTiers: vec MerchantPerformance;
+   orderFunnel: OrderFunnel;
+   revenueByCategoryEntries: vec record {
+                                   text;
+                                   float64;
+                                 };
+   topCustomers: vec TopCustomer;
+ };
+type EmployeeRole__1 = 
+ variant {
+   cashier;
+   delivery_coordinator;
+   store_manager;
+ };
+type EmployeeRole = 
+ variant {
+   admin;
+   agent;
+   manager;
+ };
+type EmployeeLeaveStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type EmployeeLeaveRequest = 
+ record {
+   createdAt: int;
+   employeeId: text;
+   fromDate: text;
+   id: text;
+   leaveType: text;
+   reason: text;
+   status: EmployeeLeaveStatus;
+   toDate: text;
+ };
+type EmployeeAttendanceRecord = 
+ record {
+   checkInTime: int;
+   checkOutTime: opt int;
+   date: text;
+   employeeId: text;
+   id: text;
+   notes: text;
+ };
+type EmployeeAttendance = 
+ record {
+   checkInTime: int;
+   checkOutTime: opt int;
+   date: text;
+   employeeId: text;
+   id: text;
+   merchantId: text;
+   notes: text;
+ };
+type Employee = 
+ record {
+   createdAt: int;
+   email: text;
+   id: text;
+   isActive: bool;
+   name: text;
+   passwordHash: text;
+   permissions: vec text;
+   phone: text;
+   role: EmployeeRole;
+ };
+type ElectionResult = 
+ record {
+   candidateName: text;
+   constituency: text;
+   id: text;
+   isLeading: bool;
+   isWon: bool;
+   partyName: text;
+   source: text;
+   state: text;
+   timestamp: int;
+   voteShare: float64;
+   votes: nat;
+ };
+type EarningsSummary = 
+ record {
+   completedTrips: nat;
+   dailyEarnings: float64;
+   monthlyEarnings: float64;
+   totalEarnings: float64;
+ };
+type EarningsByDate = 
+ record {
+   date: text;
+   earnings: float64;
+ };
+type DonationRequest = 
+ record {
+   category: text;
+   createdAt: int;
+   description: text;
+   id: text;
+   location: text;
+   quantityNeeded: text;
+   requesterName: text;
+   requesterPhone: text;
+   source: text;
+   status: text;
+ };
+type DonationItem = 
+ record {
+   category: text;
+   contactPhone: text;
+   createdAt: int;
+   description: text;
+   donorName: text;
+   donorPhone: text;
+   id: text;
+   location: text;
+   quantity: text;
+   source: text;
+   status: text;
+ };
+type DistributorNetwork = 
+ record {
+   assignedDeliveryPartnerName: opt text;
+   assignedDeliveryPartnerPhone: opt text;
+   city: text;
+   createdAt: int;
+   distributorCode: text;
+   distributorName: text;
+   distributorPhone: text;
+   id: text;
+   manufacturerId: text;
+   marginEarned: float64;
+   marginPercent: float64;
+   pincode: text;
+   routeDescription: text;
+   schemeApplicable: text;
+   status: text;
+   totalOrders: nat;
+ };
+type DietaryType = 
+ variant {
+   nonveg;
+   veg;
+   vegan;
+ };
+type DeliveryType = 
+ variant {
+   delivery;
+   takeaway;
+ };
+type DeliveryRateCard = 
+ record {
+   baseRate: float64;
+   id: text;
+   isActive: bool;
+   perKmRate: float64;
+   serviceType: ServiceType;
+   surgeMultiplier: float64;
+   vehicleType: VehicleType;
+ };
+type DeliveryPaymentQR = 
+ record {
+   amount: float64;
+   expiresAt: int;
+   orderId: text;
+   partnerId: text;
+   qrData: text;
+   token: text;
+ };
+type DeliveryPartnerShift = 
+ record {
+   checkInTime: int;
+   checkOutTime: opt int;
+   earningsDuringShift: float64;
+   id: text;
+   ordersCompleted: nat;
+   partnerId: text;
+   status: ShiftStatus;
+ };
+type DeliveryPartner = 
+ record {
+   aadhaarNo: text;
+   aadhaarUrl: opt text;
+   avgRating: float64;
+   blockedUntil: opt int;
+   currentLocation: opt Location;
+   id: text;
+   isOndcEnrolled: bool;
+   isOnline: bool;
+   isVerified: bool;
+   kycStatus: KYCStatus;
+   name: text;
+   otherPlatforms: vec text;
+   panNo: text;
+   panUrl: opt text;
+   phone: text;
+   ratePerKm: float64;
+   ratingCount: nat;
+   rcBook: text;
+   rcUrl: opt text;
+   rejectionReason: opt text;
+   selfieUrl: opt text;
+   serviceType: ServiceType;
+   userId: text;
+   vehicleType: VehicleType;
+ };
+type DeliveryDashboardData = 
+ record {
+   activeDeliveries: nat;
+   passdigitRequired: bool;
+   rating: float64;
+   subscriptionStatus: text;
+   totalEarnings: float64;
+ };
+type DeliveryAssignment = 
+ record {
+   assignedPartners: vec AssignedPartner;
+   city: text;
+   createdAt: int;
+   description: text;
+   id: text;
+   requestedCount: nat;
+   requesterId: text;
+   requesterType: text;
+   status: text;
+ };
+type DashboardStats = 
+ record {
+   activeOrders: nat;
+   activePromotions: nat;
+   pendingKYC: nat;
+   totalDeliveryPartners: nat;
+   totalEvents: nat;
+   totalFamilyMembers: nat;
+   totalJobs: nat;
+   totalLeads: nat;
+   totalMerchants: nat;
+   totalOrders: nat;
+   totalPromotions: nat;
+   totalProperties: nat;
+   totalRevenue: float64;
+   totalUsers: nat;
+ };
+type DailyLessonRow = 
+ record {
+   difficulty: text;
+   id: text;
+   isCompleted: bool;
+   languagePair: text;
+   streakDate: int;
+   topic: text;
+   userId: text;
+ };
+type DPEfficiency = 
+ record {
+   avgDeliveryMinutes: float64;
+   completionRate: float64;
+   name: text;
+   ordersCompleted: nat;
+   partnerId: text;
+ };
+type DPEarningsWithExpenses = 
+ record {
+   expenseEntries: vec PetrolExpense;
+   netProfit: float64;
+   totalEarned: float64;
+   totalExpenses: float64;
+ };
+type DPEarnings = 
+ record {
+   completedCount: nat;
+   pendingCount: nat;
+   pendingPayouts: float64;
+   totalEarned: float64;
+ };
+type DPAnalytics = 
+ record {
+   areaHeatmap: vec record {
+                      text;
+                      nat;
+                    };
+   avgDeliveryMinutes: float64;
+   avgRating: float64;
+   completionRate: float64;
+   revenueTrend: vec MerchantRevenueTrendEntry;
+ };
+type CustomerRating__1 = 
+ record {
+   comment: text;
+   createdAt: int;
+   customerId: text;
+   customerName: text;
+   id: text;
+   orderId: text;
+   ratedById: text;
+   ratedByName: text;
+   ratedByRole: text;
+   rating: nat;
+ };
+type CustomerRating = 
+ variant {
+   bad;
+   good;
+   neutral;
+ };
+type CustomerDashboardData = 
+ record {
+   activeSubscriptions: nat;
+   expenditureByCategory: vec record {
+                                text;
+                                float64;
+                              };
+   familyMemberCount: nat;
+   ordersByCategory: vec record {
+                           text;
+                           nat;
+                         };
+   totalExpenditure: float64;
+ };
+type CustomerBudget = 
+ record {
+   currentMonthSpend: float64;
+   monthlyBudget: float64;
+   percentUsed: float64;
+   userId: text;
+ };
+type CourseRow = 
+ record {
+   createdDate: int;
+   description: text;
+   enrollmentCount: nat;
+   id: text;
+   languagePair: text;
+   price: nat;
+   status: text;
+   title: text;
+ };
+type CourseLikeSummary = 
+ record {
+   courseId: text;
+   likeRatio: nat;
+   totalDislikes: nat;
+   totalLikes: nat;
+ };
+type CourseApprovalRow = 
+ record {
+   adminNotes: text;
+   courseId: text;
+   id: text;
+   status: text;
+ };
+type ConversationState = 
+ variant {
+   approveJobContact;
+   approvePropertyContact;
+   authConfirmPassdigit;
+   authOtpSent;
+   authOtpVerify;
+   authPassdigit;
+   authPassdigitWrong;
+   authSessionLocked;
+   authSetNewPassdigit;
+   busBookingMenu;
+   custConfirmPassdigit;
+   custRegLocation;
+   custRegName;
+   custRegOtp;
+   custSetPassdigit;
+   customOrderConfirm;
+   customOrderItem;
+   customOrderTracking;
+   customerLocation;
+   customerLocationConfirm;
+   customerMenu;
+   deliveryActions;
+   donationsMenu;
+   dpAccept;
+   dpAvailableOrders;
+   dpCollectPayment;
+   dpComplete;
+   dpConfirmPassdigit;
+   dpDeliveryInstructions;
+   dpMenu;
+   dpOrderDetail;
+   dpOrders;
+   dpPaymentConfirmed;
+   dpPickupConfirmed;
+   dpPickupInstructions;
+   dpRegAadhaar;
+   dpRegName;
+   dpRegPan;
+   dpRegRc;
+   dpRegType;
+   dpRegVehicle;
+   dpSetPassdigit;
+   dpVendorSettlement;
+   eventMenu;
+   eventPostDates;
+   eventPostDesc;
+   eventPostLocation;
+   eventPostName;
+   eventPostPaid;
+   eventPostPrice;
+   eventPostTickets;
+   eventPublished;
+   eventSearch;
+   familyAddAddress;
+   familyAddBloodGroup;
+   familyAddCaste;
+   familyAddEducation;
+   familyAddGender;
+   familyAddLocationPref;
+   familyAddMatrimonyEligible;
+   familyAddOccupation;
+   familyAddPhone;
+   familyAddRelationName;
+   familyAddRelationship;
+   familyAddSelfName;
+   familyAddSelfSurname;
+   familyMenu;
+   familySaved;
+   flightBookingMenu;
+   freeRideCompleted;
+   freeRideIncoming;
+   freeRideOTPEntry;
+   freeRideResults;
+   freeRideSearch;
+   freeRideSearchAgain;
+   freeRideSearchDest;
+   healthcareBooking;
+   healthcareMenu;
+   healthcareSearch;
+   inquiryResult;
+   inquirySent;
+   jobBrowse;
+   jobContactApproval;
+   jobContactRequest;
+   jobMenu;
+   jobMyListings;
+   jobMyListings2;
+   jobPost;
+   jobPostCategory;
+   jobPostConfirm;
+   jobPostDesc;
+   jobPostDesc2;
+   jobPostLocation;
+   jobPostLocation2;
+   jobPostSalary;
+   jobPostSalaryMax;
+   jobPostSalaryMin;
+   jobPostTitle;
+   jobPostTitle2;
+   jobPublished;
+   jobRequestContact;
+   jobSearch;
+   jobSearchResults;
+   mainMenu;
+   merchantAccept;
+   merchantActions;
+   merchantAddProductBulk;
+   merchantAddProductCondition;
+   merchantAddProductConfirm;
+   merchantAddProductDesc;
+   merchantAddProductDiscount;
+   merchantAddProductImage;
+   merchantAddProductImageLink;
+   merchantAddProductRate;
+   merchantAddProductTitle;
+   merchantAddProductVideo;
+   merchantCollectionPending;
+   merchantComplete;
+   merchantConfirmPassdigit;
+   merchantFulfill;
+   merchantMenu;
+   merchantOrderDetail;
+   merchantOrderList;
+   merchantOrders;
+   merchantRegAdvance;
+   merchantRegBooking;
+   merchantRegBranchAddr;
+   merchantRegBranchMore;
+   merchantRegBranchRadius;
+   merchantRegCategory;
+   merchantRegDeliveryType;
+   merchantRegMultibranch;
+   merchantRegName;
+   merchantRegOutlet;
+   merchantRegPayment;
+   merchantRegRadius;
+   merchantRegRental;
+   merchantRegType;
+   merchantReject;
+   merchantSetPassdigit;
+   merchantViewOrder;
+   orderCart;
+   orderCategory;
+   orderConfirm;
+   orderNotFound;
+   orderPlaced;
+   orderResults;
+   orderSearch;
+   orderSearch2;
+   orderSearchFurther;
+   orderSearchInput;
+   orderTracking;
+   otpVerify;
+   payBillsMenu;
+   professionalServicesMenu;
+   professionalServicesSearch;
+   promotionMenu;
+   promotionPayment;
+   promotionPendingApproval;
+   promotionPlanSelect;
+   promotionPostImageLink;
+   promotionPostLocation;
+   promotionPostReelLink;
+   promotionPostTitle;
+   propertyBrowse;
+   propertyContactApproval;
+   propertyContactRequest;
+   propertyMenu;
+   propertyMyListings;
+   propertyPost;
+   propertyPostCategory;
+   propertyPostConfirm;
+   propertyPostDesc;
+   propertyPostDesc2;
+   propertyPostLocation;
+   propertyPostLocation2;
+   propertyPostPrice;
+   propertyPostPrice2;
+   propertyPostType;
+   propertyPostType2;
+   propertyPublished;
+   propertyRequestContact;
+   propertySearch;
+   propertySearchResults;
+   registerCustomer;
+   registerDeliveryPartner;
+   registerMerchant;
+   registerType;
+   rideDeclined;
+   roleSelect;
+   sarthiFreeRideOTP;
+   sarthiMenu;
+   sarthiOrderDetail;
+   sarthiOrders;
+   sarthiPassengerOTPVerify;
+   shuttleBookConfirm;
+   shuttleBooked;
+   shuttleMenu;
+   shuttleResults;
+   shuttleSearchDest;
+   shuttleSearchSource;
+   subscriptionPrompt;
+   supplierOrderConfirm;
+   supplierOrderDone;
+   supplierOrderItem;
+   supplierOrderList;
+   supplierOrderNotes;
+   supplierOrderQty;
+   supplierOrderSupplier;
+   supportConfirm;
+   supportDescInput;
+   supportMenu;
+   toursMenu;
+   toursSearch;
+   trainBookingMenu;
+   transportBooked;
+   transportDest;
+   transportEstimate;
+   transportMenu;
+   transportOrigin;
+   transportTracking;
+   transportVehicle;
+   welcome;
+ };
+type ConversationMessage = 
+ record {
+   content: text;
+   id: text;
+   messageType: text;
+   sender: MessageSender;
+   timestamp: int;
+ };
+type ContactRequestStatus = 
+ variant {
+   approved;
+   declined;
+   pending;
+ };
+type ContactRequest = 
+ record {
+   requestedAt: int;
+   requesterId: text;
+   requesterName: text;
+   requesterPhone: text;
+   status: ContactRequestStatus;
+ };
+type ComplaintStatus = 
+ variant {
+   in_progress;
+   open;
+   resolved;
+ };
+type CommunityWorkOrder = 
+ record {
+   communityId: text;
+   createdAt: int;
+   description: text;
+   id: text;
+   memberPhone: text;
+   scheduledDate: text;
+   serviceType: WorkServiceType;
+   status: BookingStatus__1;
+   updatedAt: int;
+ };
+type CommunityRoomBooking = 
+ record {
+   bookingDate: text;
+   communityId: text;
+   createdAt: int;
+   description: text;
+   facilityType: FacilityType;
+   id: text;
+   memberPhone: text;
+   status: BookingStatus__1;
+   timeSlot: text;
+   updatedAt: int;
+ };
+type CommunityParkingBooking = 
+ record {
+   communityId: text;
+   cost: float64;
+   createdAt: int;
+   endDate: text;
+   id: text;
+   memberPhone: text;
+   parkingType: ParkingType;
+   startDate: text;
+   status: BookingStatus__1;
+   updatedAt: int;
+ };
+type CommunityMember = 
+ record {
+   address: text;
+   apartmentName: text;
+   city: text;
+   id: text;
+   location: text;
+   name: text;
+   phone: text;
+   registeredAt: int;
+   roles: vec text;
+   updatedAt: int;
+ };
+type CommunityFoodOrder = 
+ record {
+   buyerPhone: text;
+   communityId: text;
+   cost: float64;
+   createdAt: int;
+   cuisineType: text;
+   deliveryTime: text;
+   dietary: DietaryType;
+   id: text;
+   mealDescription: text;
+   quantity: nat;
+   sellerPhone: text;
+   status: BookingStatus__1;
+   updatedAt: int;
+ };
+type CityRow = 
+ record {
+   cityName: text;
+   createdAt: int;
+   id: text;
+   isEnabled: bool;
+   pincode: text;
+ };
+type CityControl = 
+ record {
+   cityId: text;
+   cityName: text;
+   moduleToggles: vec record {
+                        text;
+                        bool;
+                      };
+   pincode: text;
+ };
+type City = 
+ record {
+   createdAt: int;
+   id: text;
+   isEnabled: bool;
+   name: text;
+   pincode: text;
+ };
+type ChatSimulatorSession = 
+ record {
+   botOutput: text;
+   createdEntityIds: vec text;
+   flowId: text;
+   role: text;
+   sessionId: text;
+   stepNumber: nat;
+   timestamp: int;
+   userInput: text;
+ };
+type CategorySpend = 
+ record {
+   amount: float64;
+   category: text;
+ };
+type BuyerType = 
+ variant {
+   customer;
+   distributor;
+   merchant;
+ };
+type BusBooking = 
+ record {
+   arrivalTime: text;
+   blockKey: opt text;
+   createdAt: nat;
+   customerId: text;
+   departureTime: text;
+   destination: text;
+   environment: PaySprintEnvironment;
+   fare: float64;
+   id: text;
+   journeyDate: text;
+   operatorName: text;
+   passengerEmail: text;
+   passengerName: text;
+   passengerPhone: text;
+   paymentStatus: PaymentStatus__1;
+   pnr: opt text;
+   seatNumbers: vec text;
+   source: text;
+   status: BookingStatus;
+   ticketRef: opt text;
+   transactionId: opt text;
+   updatedAt: nat;
+ };
+type BulkRate = 
+ record {
+   minQuantity: nat;
+   rate: float64;
+ };
+type BulkPricingTier = 
+ record {
+   maxQty: nat;
+   minQty: nat;
+   pricePerUnit: float64;
+ };
+type BudgetWarningLevel = 
+ variant {
+   approaching;
+   exceeded;
+   none;
+ };
+type BudgetCheckResult = 
+ record {
+   currentSpend: float64;
+   limit: float64;
+   warningLevel: BudgetWarningLevel;
+   withinBudget: bool;
+ };
+type BrandingConfig = 
+ record {
+   brandName: text;
+   createdAt: int;
+   logoUrl: text;
+   updatedAt: int;
+   welcomeMessage: text;
+ };
+type Branch = 
+ record {
+   address: text;
+   deliveryRadius: float64;
+   isActive: bool;
+   location: Location;
+ };
+type BotMessage = 
+ record {
+   body: text;
+   footer: opt text;
+   languageKey: text;
+   messageType: text;
+   quickReplies: vec QuickReply;
+   to: text;
+ };
+type BotLog = 
+ record {
+   direction: text;
+   errorDetail: text;
+   flowTriggered: text;
+   id: text;
+   messageText: text;
+   platform: text;
+   rawPayload: opt text;
+   senderId: text;
+   status: text;
+   timestamp: int;
+ };
+type BookingStatus__1 = 
+ variant {
+   cancelled;
+   completed;
+   confirmed;
+   pending;
+ };
+type BookingStatus = 
+ variant {
+   cancelled;
+   confirmed;
+   failed;
+   initiated;
+   pending;
+   refunded;
+ };
+type BlogReview = 
+ record {
+   blogId: text;
+   comment: text;
+   createdAt: int;
+   id: text;
+   rating: nat;
+   reviewerId: text;
+   reviewerName: text;
+ };
+type Blog = 
+ record {
+   authorId: text;
+   authorName: text;
+   category: text;
+   content: text;
+   createdAt: int;
+   id: text;
+   location: text;
+   status: text;
+   title: text;
+   updatedAt: int;
+ };
+type BillType = 
+ variant {
+   other;
+   purchase_bill;
+   rent;
+   sale_bill;
+   utility;
+ };
+type BillRecord = 
+ record {
+   amount: float64;
+   billType: BillType;
+   createdAt: int;
+   dueDate: opt text;
+   id: text;
+   isPaid: bool;
+   manufacturerId: text;
+   notes: text;
+   partyName: text;
+   pendingNote: opt text;
+   pendingPayment: opt bool;
+ };
+type AssignedPartner = 
+ record {
+   name: text;
+   partnerId: text;
+   phone: text;
+   route: text;
+ };
+type AppointmentStatus = 
+ variant {
+   cancelled;
+   completed;
+   confirmed;
+   pending;
+ };
+type AppVersion = 
+ record {
+   brandName: text;
+   buildNumber: nat;
+   createdAt: int;
+   id: text;
+   isActive: bool;
+   platform: text;
+   releaseDate: int;
+   version: text;
+ };
+type ApiKey = 
+ record {
+   createdAt: int;
+   id: text;
+   isActive: bool;
+   key: text;
+   keyLabel: text;
+   lastUsed: opt int;
+   ownerId: text;
+   usageCount: nat;
+ };
+type ApiError = 
+ variant {
+   alreadyExists;
+   internalError: text;
+   invalidInput: text;
+   notFound;
+   otpFailed;
+   subscriptionLimitReached;
+   unauthorized;
+ };
+type AgentDeployment = 
+ record {
+   channelsSynced: vec text;
+   deployedAt: int;
+   deployedBy: text;
+   fixesApplied: vec text;
+   flowsDeployed: vec text;
+   id: text;
+   rollbackSnapshot: text;
+ };
+type Advertisement = 
+ record {
+   active: bool;
+   adId: text;
+   cityId: opt text;
+   createdAt: int;
+   description: text;
+   targetRole: text;
+   title: text;
+ };
+type AdminUPIProfile = 
+ record {
+   name: text;
+   upiId: text;
+ };
+type AdminConfig = 
+ record {
+   baseUrl: text;
+   upiId: text;
+   upiName: text;
+   webhookUrl: text;
+ };
+type AccountEntryType = 
+ variant {
+   expense;
+   income;
+   payable;
+   receivable;
+ };
+type AccountEntry = 
+ record {
+   amount: float64;
+   category: text;
+   createdAt: int;
+   description: text;
+   entryDate: text;
+   entryType: AccountEntryType;
+   id: text;
+   manufacturerId: text;
+   referenceId: opt text;
+ };
+service : {
+  activateShuttleRoute: (routeId: text) -> (Result_12);
+  addAccountEntry: (manufacturerId: text, entryType: AccountEntryType,
+   category: text, amount: float64, description: text, referenceId: opt text,
+   entryDate: text) -> (variant {
+                          err: text;
+                          ok: AccountEntry;
+                        });
+  /// Add an Internet Identity principal to the admin whitelist.
+  /// Only existing admins can call this.
+  addAdminPrincipal: (p: principal) -> (Result_28);
+  addAppVersion: (brandName: text, platform: text, version: text,
+   buildNumber: nat) -> (Result_34);
+  addBillRecord: (manufacturerId: text, billType: BillType, partyName: 
+   text, amount: float64, dueDate: opt text, isPaid: bool, pendingPayment:
+   bool, pendingNote: text, notes: text) ->
+   (variant {
+      err: text;
+      ok: BillRecord;
+    });
+  addBlogReview: (review: BlogReview) -> (variant {
+                                            err: text;
+                                            ok: text;
+                                          });
+  addCity: (name: text, pincode: text) -> (variant {
+                                             err: text;
+                                             ok: City;
+                                           });
+  /// Add a CityControl record for a city (creates if missing, returns existing if already present).
+  addCityControl: (cityId: text) -> (variant {
+                                       err: text;
+                                       ok: CityControl;
+                                     });
+  addCourse: (creatorPhone: text, title: text, languagePair: text,
+   description: text, price: nat) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  addCustomerRating: (rating: CustomerRating__1) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  addDPPetrolExpense: (partnerId: text, date: text, amount: float64, liters:
+   float64, notes: text) -> (PetrolExpense);
+  addDeliveryPartnerToDistributor: (distributorId: text, phone: text, name:
+   text, route: text) -> (variant {
+                            err: record {errorDetail: text;};
+                            ok;
+                          });
+  addDistributorToNetwork: (manufacturerId: text, distributorName: text,
+   distributorPhone: text, city: text, pincode: text, schemeApplicable: 
+   text, marginPercent: float64, routeDescription: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: DistributorNetwork;
+    });
+  /// Add a donation offer.
+  addDonation: (category: text, description: text, quantity: text, location:
+   text, contactPhone: text, donorPhone: text, donorName: text, source:
+   text) -> (Result_30);
+  addEmployee: (name: text, email: text, phone: text, passwordHash: text,
+   role: EmployeeRole, permissions: vec text) -> (Result_25);
+  addFamilyMember: (ownerPhone: text, ownerName: text, ownerSurname: 
+   text, relationship: Relationship, relationName: text, relationPhone: 
+   text, relationAddress: text, gender: text) -> (Result_22);
+  addFriend: (ownerPhone: text, friendName: text, friendPhone: text) ->
+   (Result_22);
+  addHealthcareProvider: (name: text, specialization: text, location: 
+   text, phone: text, availableDays: text, fee: nat) -> (Result_23);
+  addInventoryItem: (manufacturerId: text, productId: text, productName:
+   text, batchCode: text, currentStock: nat, reorderLevel: nat, unit: 
+   text, expiryDate: opt text) -> (variant {
+                                     err: text;
+                                     ok: InventoryItem;
+                                   });
+  addJobLocation: (loc: JobLocation) -> (variant {
+                                           err: text;
+                                           ok: text;
+                                         });
+  addManufacturerEmployee: (manufacturerId: text, name: text, phone: 
+   text, role: ManufacturerEmployeeRole) ->
+   (variant {
+      err: text;
+      ok: ManufacturerEmployee;
+    });
+  addManufacturerPOSOrder: (order: POSOrder) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  addManufacturerProduct: (manufacturerId: text, productName: text,
+   batchNumber: text, hsnCode: opt text, batchCode: opt text, originCity:
+   text, manufactureDate: int, expiryDate: opt text, priceToDistributor:
+   float64, priceToCustomer: float64, bulkPricingTiers: vec BulkPricingTier,
+   isReturnable: bool, stockQty: nat) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: ManufacturerProduct;
+    });
+  addMenuOption: (option: MenuOption) -> (Result_21);
+  addMerchantBranch: (merchantId: text, branch: Branch) -> (Result_4);
+  addMerchantEmployee: (merchantId: text, name: text, phone: text, role:
+   text) -> (MerchantEmployee);
+  addOrUpdateCommunityMember: (member: CommunityMember) -> ();
+  addOrderStatusHistory: (id: text, actor: text, note: text) -> (Result_18);
+  addPetrolExpense: (dpId: text, date: text, amount: float64, liters:
+   float64, notes: opt text) -> (Result_57);
+  addProduct: (merchantId: text, title: text, imageUrls: vec text, videoUrl:
+   opt text, description: text, isNew: bool, baseRate: float64, bulkRates:
+   vec BulkRate, specialDiscount: float64, qty: nat, packing: text, expiry:
+   text) -> (Result_48);
+  /// Record a product barcode scan event for a merchant device.
+  addProductScanHistory: (entry: ProductScanHistoryInput) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: ProductScanHistory;
+    });
+  /// Bulk-add products from Excel or photo menu upload.
+  addProductsBulk: (merchantId: text, products: vec ProductInput) ->
+   (Result_42);
+  addProfessionalService: (name: text, serviceType: text, location: text,
+   phone: text, experience: text, hourlyRate: nat, description: text,
+   areaRates: vec record {
+                    text;
+                    float64;
+                  }) -> (Result_16);
+  addPurchaseRecord: (manufacturerId: text, supplierName: text, supplierId:
+   opt text, items: vec record {
+                          text;
+                          text;
+                          nat;
+                          float64;
+                        }, totalAmount: float64, invoiceNo: text) ->
+   (variant {
+      err: text;
+      ok: PurchaseRecord;
+    });
+  addSaleRecord: (manufacturerId: text, buyerId: text, buyerType: BuyerType,
+   items: vec record {
+                text;
+                text;
+                nat;
+                float64;
+              }, totalAmount: float64, invoiceNo: text) ->
+   (variant {
+      err: text;
+      ok: SaleRecord;
+    });
+  addTip: (entityId: text, entityType: text, amount: nat, fromCustomerId:
+   text, toPartnerId: text) -> (Result_56);
+  addTourOperator: (name: text, destination: text, tourType: text, duration:
+   text, price: nat, phone: text, description: text) -> (Result_9);
+  addVisitorCheckin: (visitorName: text, visitorPhone: text, purpose: 
+   text, communityId: text, communityMemberId: text, vehicleDetails: 
+   text) -> (VisitorCheckin);
+  applyApprovedFixes: (runId: text) -> (record {reTestRunId: text;});
+  applyLeave: (employeeId: text, merchantId: text, startDate: text, endDate:
+   text, reason: text) -> (LeaveRequest);
+  approveCourse: (courseId: text, adminNotes: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  approveExpiryReturn: (id: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok;
+    });
+  approveFlowFixes: (runId: text, flowId: text, fixIds: vec text,
+   adminOverrides: vec record {
+                         text;
+                         text;
+                       }) -> (bool);
+  approveJobContactShare: (jobId: text, leadUserId: text) -> (Result_35);
+  approveLeave: (id: text, approverNote: text) ->
+   (variant {
+      err: text;
+      ok: LeaveRequest;
+    });
+  approveManufacturerLeave: (requestId: text, approve: bool) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  approvePromotion: (id: text) -> (Result_29);
+  /// Admin approves a promotion so it can be fired.
+  approvePromotionAdmin: (id: text) -> (variant {
+                                          err: text;
+                                          ok: Promotion;
+                                        });
+  approvePropertyContactShare: (propertyId: text, leadUserId: text) ->
+   (Result_35);
+  approveVisitorEntry: (id: text, status: text) ->
+   (variant {
+      err: text;
+      ok: VisitorCheckin;
+    });
+  assignDeliveryPartner: (orderId: text, dpId: text) -> (Result_18);
+  assignPlanToUser: (userId: text, planId: text) -> (Result_46);
+  assignSarthiPartner: (bookingId: text, sarthiPartnerId: text) ->
+   (Result_27);
+  /// Assign a delivery user (by phone) to a merchant's subscription slot with an order cap.
+  assignUserToSubscription: (merchantId: text, userPhone: text, orderCap:
+   nat) -> (Result_55);
+  blockBusSeat: (tripId: text, seatName: text, fare: float64, baseFare:
+   float64, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  blockBusSeatPub: (tripId: text, seatName: text, fare: float64, baseFare:
+   float64, credId: text) -> (variant {
+                                err: text;
+                                ok: text;
+                              });
+  bookBusTicket: (booking: BusBooking, blockKey: text, credId: text,
+   transform: func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: BusBooking;
+    });
+  bookBusTicketPub: (booking: BusBooking, blockKey: text, credId: text) ->
+   (variant {
+      err: text;
+      ok: BusBooking;
+    });
+  bookFlight: (booking: FlightBooking, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: FlightBooking;
+    });
+  bookFlightPub: (booking: FlightBooking, credId: text) ->
+   (variant {
+      err: text;
+      ok: FlightBooking;
+    });
+  bookHealthcareAppointment: (providerId: text, customerPhone: text, date:
+   text, timeSlot: text, notes: text) -> (HealthcareAppointment);
+  bookProfessionalService: (serviceId: text, customerPhone: text, date: 
+   text, timeSlot: text, duration: nat, notes: text, customerArea:
+   opt text) -> (ServiceBooking);
+  bookShuttle: (passengerPhone: text, routeId: text, boardingStop: text,
+   dropStop: text) -> (Result);
+  bookTour: (operatorId: text, customerPhone: text, destination: text,
+   tourType: text, date: text, passengerCount: nat) -> (TourBooking);
+  bookTrainTicket: (booking: TrainBooking, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: TrainBooking;
+    });
+  bookTrainTicketPub: (booking: TrainBooking, credId: text) ->
+   (variant {
+      err: text;
+      ok: TrainBooking;
+    });
+  calculateFare: (vehicleType: VehicleType, serviceType: ServiceType,
+   distanceKm: float64) -> (float64);
+  cancelBusTicket: (bookingId: text, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: BusBooking;
+    });
+  cancelBusTicketPub: (bookingId: text, credId: text) ->
+   (variant {
+      err: text;
+      ok: BusBooking;
+    });
+  cancelFlight: (bookingId: text, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: FlightBooking;
+    });
+  cancelFlightPub: (bookingId: text, credId: text) ->
+   (variant {
+      err: text;
+      ok: FlightBooking;
+    });
+  cancelTrainTicket: (bookingId: text, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: TrainBooking;
+    });
+  cancelTrainTicketPub: (bookingId: text, credId: text) ->
+   (variant {
+      err: text;
+      ok: TrainBooking;
+    });
+  checkAndAssignSubscription: (userId: text) -> (SubscriptionStatus);
+  checkAndEnforceSubscription: (userId: text) ->
+   (record {
+      hasActive: bool;
+      plans: vec SubscriptionPlan;
+    }) query;
+  checkAndSendOverdueReminders: () -> (nat);
+  /// Returns true if the assigned user is still within their per-user order cap.
+  checkAssignedUserOrderCap: (merchantId: text, userPhone: text) ->
+   (bool) query;
+  /// Moderate a custom order via internet-based HTTP outcall check (async).
+  /// Falls back to keyword-based if outcall fails.
+  checkCustomOrderModeration: (orderText: text) ->
+   (record {
+      categories: vec text;
+      confidence: float64;
+      isIllegal: bool;
+    });
+  checkCustomerBudget: (userId: text, orderAmount: float64) ->
+   (BudgetCheckResult) query;
+  checkCustomerExists: (phone: text) -> (bool) query;
+  checkInquiryLimit: (userId: text) -> (Result_3) query;
+  /// Check text content for illegal/inappropriate items using keyword moderation.
+  /// Returns { approved: Bool; flaggedCategories: [Text]; reason: Text }.
+  checkItemModeration: ("text": text) ->
+   (record {
+      approved: bool;
+      flaggedCategories: vec text;
+      reason: text;
+    }) query;
+  checkOrderLimit: (userId: text) -> (Result_3) query;
+  checkOutVisitor: (id: text) -> (variant {
+                                    err: text;
+                                    ok: VisitorCheckin;
+                                  });
+  checkProductPriceUniformity: (productId: text) ->
+   (ProductPriceUniformity) query;
+  checkUserSubscriptionAccess: (userId: text) ->
+   (SubscriptionAccessResult) query;
+  /// Clear all bot logs for the specified platform ("telegram", "whatsapp", "sms", or "all").
+  clearBotLogs: (platform: text) -> ();
+  /// Clear ALL stuck flow caches immediately (admin full flush).
+  clearFlowCache: () -> ();
+  clearScriptRunResults: () -> ();
+  /// Clear the simulator session for a given phone — resets state to #welcome.
+  clearSimulatorSession: (phone: text) -> ();
+  /// Clear stuck custom-order flow states.
+  /// If userId is provided, clears only that user's pending state.
+  /// If null, clears all states that have been pending for more than 30 minutes.
+  /// Returns the number of states cleared.
+  clearUserFlowCache: (userId: opt text) -> (nat);
+  /// Clear the registered Telegram webhook (calls Telegram's deleteWebhook API), then
+  /// immediately drain any pending updates via getUpdates. This is the "diagnostic drain"
+  /// tool — use it to switch from webhook mode to polling mode and flush queued messages.
+  /// 
+  /// Steps:
+  ///   1. Calls https://api.telegram.org/bot{TOKEN}/deleteWebhook
+  ///   2. Clears webhookUrl in the stored config so pollUpdates conflict guard allows polling
+  ///   3. Drains all pending updates via getUpdates, processes each through the chatbot engine
+  ///   4. Returns the count of messages processed
+  /// 
+  /// After calling this you MUST either:
+  ///   a) Re-register the webhook (setWebhook) to restore webhook mode, OR
+  ///   b) Call pollTelegramUpdates() periodically (no webhook registered)
+  clearWebhookAndPoll: () -> (Result_41);
+  closeExpiredJobs: () -> (nat);
+  closeExpiredProperties: () -> (nat);
+  closeLead: (leadId: text) -> (Result_38);
+  compareShuttleRoutesWithLiveData: () -> (vec ShuttleRoute) query;
+  completeOrder: (orderId: text) -> (Result_18);
+  completeRide: (bookingId: text) -> (Result_27);
+  completeShuttleRide: (bookingId: text) -> (Result);
+  configureAgentChannelSync: (whatsapp: bool, telegram: bool, sms: bool) ->
+   (bool);
+  confirmManualOrder: (orderId: text, paymentMode: PaymentMode) ->
+   (Result_18);
+  confirmPromotionPayment: (id: text) -> (Result_29);
+  confirmSubscriptionQRPayment: (planId: text, userId: text, _transactionRef:
+   text) -> (Result_46);
+  createAdhocJob: (title: text, category: text, pricePerDay: float64,
+   educationLevel: text, location: Location, phone: text, description: 
+   text, posterId: text, jobType: JobType) -> (Result_40);
+  /// Admin: create a new adhoc job directly (bypasses chatbot flow).
+  createAdhocJobAdmin: (title: text, category: text, pricePerDay: float64,
+   educationLevel: text, address: text, phone: text, description: text,
+   posterId: text, jobType: JobType) -> (text);
+  createBlog: (blog: Blog) -> (variant {
+                                 err: text;
+                                 ok: text;
+                               });
+  createCommunityFoodOrder: (buyerPhone: text, sellerPhone: text,
+   communityId: text, mealDescription: text, cuisineType: text, dietary:
+   text, deliveryTime: text, quantity: nat, cost: float64) ->
+   (CommunityFoodOrder);
+  createCommunityParkingBooking: (memberPhone: text, communityId: text,
+   parkingType: text, startDate: text, endDate: text, cost: float64) ->
+   (CommunityParkingBooking);
+  createCommunityRoomBooking: (memberPhone: text, communityId: text,
+   facilityType: text, bookingDate: text, timeSlot: text, description:
+   text) -> (CommunityRoomBooking);
+  createCommunityWorkOrder: (memberPhone: text, communityId: text,
+   serviceType: text, description: text, scheduledDate: text) ->
+   (CommunityWorkOrder);
+  /// Create a delivery assignment for a merchant or manufacturer.
+  /// Assigns up to requestedCount available delivery partners from the pool.
+  createDeliveryAssignment: (requesterId: text, requesterType: text,
+   requestedCount: nat, city: text, description: text, partnerPhones:
+   vec text) -> (variant {
+                   err: text;
+                   ok: DeliveryAssignment;
+                 });
+  createEvent: (organizerPhone: text, organizerName: text, eventName: 
+   text, description: text, isPaid: bool, price: float64, locationAddress:
+   text, startDate: text, endDate: text, ticketVenue: text) -> (Result_24);
+  createLead: (phone: text, searchQuery: text, category: text, location:
+   Location) -> (Lead);
+  createLendingItem: (item: LendingItem) -> (text);
+  createManualOrder: (customerPhone: text, merchantId: text, manualItems:
+   vec ManualOrderItem, customerAddress: opt Location) -> (Result_18);
+  createMarketplaceItem: (input: MarketplaceItemInput, createdBy: text) ->
+   (MarketplaceItem);
+  /// Admin: create a marketplace item directly.
+  createMarketplaceItemAdmin: (title: text, price: float64, category: 
+   text, listingType: text, createdBy: text) -> (text);
+  createMerchant: (userId: text, phone: text, businessName: text, category:
+   text, merchantType: MerchantType, location: Location, deliveryType:
+   DeliveryType, deliveryRadius: float64) -> (Result_4);
+  createMerchantV2: (userId: text, phone: text, businessName: text, category:
+   text, merchantType: MerchantType, location: Location, deliveryType:
+   DeliveryType, deliveryRadius: float64) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: Merchant;
+    });
+  /// Manually flag a piece of content for moderation review.
+  createModerationItem: (contentType: text, contentId: text, reason: 
+   text) -> (text);
+  /// Admin: create a moderation item with a structured input record.
+  createModerationItemAdmin: (entityType: text, entityId: text, remark:
+   text) -> (text);
+  createNotification: (userId: text, recipientPhone: text, notificationType:
+   text, message: text) -> (Result_43);
+  createOndcOrder: (customerId: text, merchantId: text, items: vec OrderItem,
+   customerAddress: opt Location, paymentMode: PaymentMode, searchQuery:
+   opt text) -> (Result_18);
+  createOrder: (customerId: text, merchantId: text, items: vec OrderItem,
+   customerAddress: opt Location, paymentMode: PaymentMode, searchQuery:
+   opt text) -> (Result_18);
+  createPlan: (name: text, planType: SubscriptionPlanType, targetRole:
+   UserRole, priceFlat: float64, pricePercentage: float64, orderLimit: 
+   nat, inquiryLimit: nat, durationDays: nat, features: vec text,
+   categoryScope: opt text, flatFee: opt float64, percentageFee: opt float64,
+   minTransactionAmount: opt float64, maxTransactionAmount: opt float64,
+   applicableRoles: vec UserRole) -> (Result_17);
+  createPromotion: (advertiserPhone: text, title: text, reelLink: text,
+   imageLink: text, locationArea: text, locationCity: text, locationCountry:
+   text, subscriptionPlan: text) -> (Result_29);
+  createRateCard: (vehicleType: VehicleType, serviceType: ServiceType,
+   baseRate: float64, perKmRate: float64, surgeMultiplier: float64) ->
+   (Result_15);
+  createRecipe: (ownerId: text, title: text, ingredients:
+   vec RecipeIngredient, steps: vec text, imageLink: text, videoLink: 
+   text, benefits: text, tips: text) -> (Recipe);
+  /// Create a restock order from merchant to supplier (via chatbot or admin).
+  createRestockOrder: (merchantId: text, merchantPhone: text, supplierName:
+   text, itemName: text, quantity: nat, notes: text) -> (Result_14);
+  /// Restock Orders API ──────────────────────────────────────────────────────
+  /// Admin: create a restock order with a full input record.
+  createRestockOrderAdmin: (merchantId: text, merchantPhone: text,
+   supplierName: text, itemName: text, quantity: nat, notes: text) -> (
+   text);
+  createShuttleRoute: (routeName: text, source: text, destination: text,
+   stops: vec text, vehicleType: VehicleType, departureTime: text,
+   arrivalTime: text, fare: nat, availableSeats: nat, driverId: text) ->
+   (ShuttleRoute);
+  /// Save a supplier order (called when merchant confirms order via chatbot or admin).
+  createSupplierOrder: (merchantId: text, supplierContact: text, itemName:
+   text, quantity: text, notes: text) -> (SupplierOrder);
+  createSupportTicket: (fromPhone: text, role: UserRole, category:
+   SupportTicketCategory, description: text, orderId: opt text) ->
+   (Result_11);
+  /// Create a test order (created by Script Executor / Flow Agent).
+  /// Marks the order ID in testOrderIds so getTestOrders can return it.
+  createTestOrder: (merchantId: text, items: vec OrderItem, customerId: 
+   text, deliveryPartnerId: opt text) -> (Result_30);
+  createTransportBooking: (customerId: text, origin: Location, destination:
+   Location, vehicleType: VehicleType, estimatedCharge: float64) ->
+   (Result_27);
+  createUser: (phone: text, name: text, role: UserRole, location:
+   opt Location, address: opt text) -> (Result_8);
+  createUserV2: (phone: text, name: text, role: UserRole, location:
+   opt Location, address: opt text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: User;
+    });
+  deactivateMarketplaceItem: (id: text) -> (bool);
+  deactivateShuttleRoute: (routeId: text, callerPhone: text, isAdmin:
+   bool) -> (Result_12);
+  /// Permanently delete an adhoc job.
+  deleteAdhocJob: (jobId: text) -> (bool);
+  /// Admin: delete an adhoc job (alias with consistent naming).
+  deleteAdhocJobAdmin: (jobId: text) -> (bool);
+  deleteBlog: (id: text) -> (variant {
+                               err: text;
+                               ok: text;
+                             });
+  deleteBlogReview: (id: text) -> (variant {
+                                     err: text;
+                                     ok: text;
+                                   });
+  deleteCity: (cityId: text) -> (bool);
+  /// Delete a CityControl record by cityId.
+  deleteCityControlRecord: (cityId: text) -> (bool);
+  deleteCustomerRating: (id: text) -> (variant {
+                                         err: text;
+                                         ok: text;
+                                       });
+  /// Delete a donation item.
+  deleteDonation: (id: text) -> (Result_10);
+  /// Delete a donation request.
+  deleteDonationRequest: (id: text) -> (Result_10);
+  deleteEmployee: (id: text) -> (Result_35);
+  deleteEvent: (id: text) -> (Result_35);
+  deleteFamilyLink: (ownerPhone: text, relationPhone: text) -> (Result_35);
+  deleteFamilyMember: (id: text) -> (Result_35);
+  deleteFlow: (id: text) -> (Result_35);
+  deleteHealthcareProvider: (id: text) -> (Result_28);
+  deleteJobLocation: (id: text) -> (variant {
+                                      err: text;
+                                      ok: text;
+                                    });
+  deleteMarketSearch: (id: text) -> (bool);
+  deleteMarketplaceItem: (id: text) -> (bool);
+  /// Admin: delete a marketplace item by id.
+  deleteMarketplaceItemAdmin: (id: text) -> (bool);
+  deleteMatchScore: (id: text) -> (bool);
+  deleteMenuOption: (id: text) -> (Result_28);
+  /// Delete a moderation item by composite key.
+  deleteModerationItem: (contentId: text, contentType: text) -> (bool);
+  /// Admin: delete a moderation item by composite key (entityType:entityId).
+  deleteModerationItemAdmin: (id: text) -> (bool);
+  deletePlan: (id: text) -> (Result_35);
+  deleteProductLocationPrice: (productId: text, cityId: text, branchId:
+   text) -> (Result_28);
+  /// Delete a scan history entry — only allowed for the owning merchant.
+  deleteProductScanEntry: (entryId: text, merchantId: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: bool;
+    });
+  deleteProfessionalService: (id: text) -> (Result_28);
+  deleteRateCard: (id: text) -> (Result_35);
+  deleteRecipe: (id: text) -> (bool);
+  /// Admin: delete a recipe by id.
+  deleteRecipeAdmin: (id: text) -> (bool);
+  /// Delete a restock order by id.
+  deleteRestockOrder: (orderId: text) -> (bool);
+  /// Admin: delete a restock order by id.
+  deleteRestockOrderAdmin: (orderId: text) -> (bool);
+  /// Delete a support ticket by id.
+  deleteSupportTicket: (ticketId: text) -> (bool);
+  /// Admin alias — delete a support ticket by id.
+  deleteSupportTicketAdmin: (id: text) -> (bool);
+  deleteTourOperator: (id: text) -> (Result_28);
+  deployFixesToLive: (runId: text) -> (bool);
+  deployFlowToLive: (flowId: text) -> (bool);
+  discontinueProduct: (productId: text, manufacturerId: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok;
+    });
+  dislikeLesson: (userId: text, lessonId: text) -> (Result__1);
+  doFastTagRecharge: (tx: UtilityTransaction, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: UtilityTransaction;
+    });
+  doFastTagRechargePub: (tx: UtilityTransaction, credId: text) ->
+   (variant {
+      err: text;
+      ok: UtilityTransaction;
+    });
+  doFetchElectionResults: (state: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (vec ElectionResult);
+  doGetAllElectionResults: () -> (vec ElectionResult);
+  doGetElectionResults: (state: text) -> (vec ElectionResult) query;
+  doGetUpcomingElections: () ->
+   (vec record {
+          date: text;
+          electionType: text;
+          name: text;
+          state: text;
+        }) query;
+  doRecharge: (tx: UtilityTransaction, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: UtilityTransaction;
+    });
+  doRechargePub: (tx: UtilityTransaction, credId: text) ->
+   (variant {
+      err: text;
+      ok: UtilityTransaction;
+    });
+  doSearchMarket: (scriptName: text, country: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: MarketSearchQuery;
+    });
+  dpAcceptOrder: (orderId: text, dpId: text) -> (Result_18);
+  dpCollectPayment: (orderId: text, dpId: text, amount: nat) -> (Result_18);
+  dpConfirmDelivery: (orderId: text, dpId: text) -> (Result_18);
+  dpConfirmPickup: (orderId: text, dpId: text) -> (Result_18);
+  dpSettleVendor: (orderId: text, dpId: text, amount: nat) -> (Result_18);
+  employeeCheckIn: (employeeId: text, merchantId: text, notes: text) ->
+   (EmployeeAttendance);
+  employeeCheckOut: (attendanceId: text) ->
+   (variant {
+      err: text;
+      ok: EmployeeAttendance;
+    });
+  endDeliveryShift: (shiftId: text) -> (bool);
+  enforceSubscriptionLimit: (userId: text, limitType: text) ->
+   (Result_3) query;
+  enrollUser: (userId: text, courseId: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  executeFlowStep: (flowId: text, stepIndex: nat, userInput: text, sessionId:
+   text) ->
+   (record {
+      entityCreated: opt record {
+                           entityId: text;
+                           entityType: text;
+                         };
+      errorMsg: opt text;
+      nextStepHint: text;
+      response: text;
+      stepPassed: bool;
+    });
+  exportDeliveryPartners: () -> (vec DeliveryPartner) query;
+  exportEvents: () -> (vec Event) query;
+  exportFamilyMembers: () -> (vec FamilyMember) query;
+  exportJobs: () -> (vec Job) query;
+  exportLeads: () -> (vec Lead) query;
+  exportMerchants: () -> (vec Merchant) query;
+  exportOrders: () -> (vec Order) query;
+  exportPromotions: () -> (vec Promotion) query;
+  exportProperties: () -> (vec Property) query;
+  exportUsers: () -> (vec User) query;
+  /// Export all flows as a WhatsApp-compatible script structure.
+  /// Dynamically generated from flowsStore — no hardcoded entries.
+  exportWhatsAppScript: () -> (text) query;
+  fetchBill: (operator: text, consumerNum: text, refId: text, credId: 
+   text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  fetchBillPub: (operator: text, consumerNum: text, refId: text, credId:
+   text) -> (variant {
+               err: text;
+               ok: text;
+             });
+  /// Wrapper: fetch election results from ECI for the given state.
+  fetchElectionResults: (state: text) -> (vec ElectionResult);
+  fetchLPGDetails: (operator: text, caNumber: text, bookingMethod: nat,
+   additionalFields: text, refId: text, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  fetchLPGDetailsPub: (operator: text, caNumber: text, bookingMethod: 
+   nat, additionalFields: text, refId: text, credId: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  fetchMunicipalityBill: (operator: text, consumerNum: text, refId: text,
+   credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  fetchMunicipalityBillPub: (operator: text, consumerNum: text, refId: 
+   text, credId: text) -> (variant {
+                             err: text;
+                             ok: text;
+                           });
+  fetchTodayMatchScores: (transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (vec MatchScore);
+  fileExpiryReturn: (productId: text, manufacturerId: text, returnedBy: 
+   text, returnedById: text, quantity: nat, reason: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: ExpiryReturn;
+    });
+  fileManufacturerComplaint: (mfgId: text, filedBy: text, filedById: 
+   text, subject: text, description: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: ManufacturerComplaint;
+    });
+  /// Admin fires a promotion to up to targetUserCount users.
+  firePromotion: (id: text, targetUserCount: nat) ->
+   (variant {
+      err: text;
+      ok: Promotion;
+    });
+  /// Force-clear webhookUrl in stored Telegram config WITHOUT calling deleteWebhook via HTTP.
+  /// Use when the HTTP outcall to Telegram is also failing (e.g. network issues, invalid token).
+  /// This unblocks pollTelegramUpdates() which is guarded against running alongside a webhook.
+  /// Returns a message describing what was cleared.
+  forceClearWebhookForPolling: () -> (Result_30);
+  generateApiKey: (ownerId: text, keyLabel: text) -> (Result_54);
+  generateDailyLesson: (userId: text, languagePair: text, topic: text,
+   difficulty: text, content: text, quizQuestion: text, quizChoices:
+   vec text, correctAnswer: nat) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  generateDeliveryPaymentQR: (orderId: text, amount: float64, partnerId:
+   text) -> (Result_53);
+  generateFreeRideOTP: (rideId: text) -> (Result_1);
+  generateOrderPaymentQR: (orderId: text, amount: float64, upiId: text) ->
+   (Result_52);
+  generatePOSOTP: (phone: text, role: variant {
+                                        deliveryPartner;
+                                        merchant;
+                                      }) -> (Result_35);
+  generateSarthiOTP: (bookingId: text) -> (Result_1);
+  generateSubscriptionQR: (planId: text, userId: text) -> (Result_51);
+  getAccountEntries: (manufacturerId: text) -> (vec AccountEntry) query;
+  getActiveDelivery: (partnerId: text) -> (opt Order) query;
+  getActiveTransportBookings: () -> (vec TransportBooking) query;
+  getAdhocJobCategories: () -> (vec text) query;
+  getAdhocJobStats: () ->
+   (record {
+      categoryBreakdown: vec record {
+                               text;
+                               nat;
+                             };
+      totalActive: nat;
+    }) query;
+  getAdminConfig: () -> (AdminConfig) query;
+  getAdminDashboardStats: () -> (DashboardStats);
+  /// Return all admin principals as text IDs.
+  getAdminPrincipals: () -> (vec text) query;
+  getAdminUPIProfile: () -> (opt AdminUPIProfile) query;
+  getAdvertisements: () -> (vec Advertisement) query;
+  getAgentChannelSync: () ->
+   (record {
+      sms: bool;
+      telegram: bool;
+      whatsapp: bool;
+    }) query;
+  getAgentRun: (runId: text) -> (opt FlowAgentRun) query;
+  getAgentSchedule: () -> (FlowAgentSchedule) query;
+  /// Returns a plain-text explanation of how to find the Telegram Alert Chat ID.
+  /// Display this in the admin panel Telegram configuration form.
+  getAlertChatIdHelper: () -> (text) query;
+  /// All adhoc/daily jobs as flat rows for Data Explorer.
+  getAllAdhocJobs: () ->
+   (vec
+     record {
+       category: text;
+       createdAt: int;
+       id: text;
+       isActive: bool;
+       jobType: text;
+       posterId: text;
+       price: float64;
+       title: text;
+     }) query;
+  getAllAppVersions: () -> (vec AppVersion) query;
+  getAllBillPayments: () -> (vec UtilityTransaction) query;
+  getAllBlogReviews: () -> (vec BlogReview) query;
+  getAllBlogs: () -> (vec Blog) query;
+  getAllBusBookings: () -> (vec BusBooking) query;
+  getAllCities: () -> (vec City) query;
+  /// Return all city controls as a flat array for Data Explorer.
+  getAllCityControls: () -> (vec CityControl) query;
+  getAllCommunityFoodOrders: () -> (vec CommunityFoodOrder) query;
+  getAllCommunityMembers: () -> (vec CommunityMember) query;
+  getAllCommunityParkingBookings: () -> (vec CommunityParkingBooking) query;
+  getAllCommunityRoomBookings: () -> (vec CommunityRoomBooking) query;
+  getAllCommunityWorkOrders: () -> (vec CommunityWorkOrder) query;
+  getAllCustomerRatings: () -> (vec CustomerRating__1) query;
+  /// All daily jobs (jobType == #adhoc_daily) as flat rows for Data Explorer.
+  getAllDailyJobs: () ->
+   (vec
+     record {
+       category: text;
+       createdAt: int;
+       id: text;
+       isActive: bool;
+       jobType: text;
+       posterId: text;
+       price: float64;
+       title: text;
+     }) query;
+  getAllDeliveryAssignments: () -> (vec DeliveryAssignment) query;
+  getAllDistributors: () -> (vec DistributorNetwork) query;
+  /// Returns all stored election results across all states.
+  /// Lazily seeds sample data if the store is empty.
+  getAllElectionResults: () -> (vec ElectionResult);
+  getAllEvents: () -> (vec Event) query;
+  getAllExpiryReturns: () -> (vec ExpiryReturn) query;
+  getAllFamilyMembers: () -> (vec FamilyMember) query;
+  getAllFastagTransactions: () -> (vec UtilityTransaction) query;
+  getAllFlightBookings: () -> (vec FlightBooking) query;
+  /// Returns ALL flows from the registry deduplicated by name (highest version wins).
+  /// Use this as the canonical source for all surfaces (Flow Agent, Chat Simulator,
+  /// Flow Designer, Script Executor, Telegram/WhatsApp/SMS scripts).
+  getAllFlows: () ->
+   (vec
+     record {
+       createdAt: int;
+       environment: text;
+       flowJson: text;
+       id: text;
+       name: text;
+       updatedAt: int;
+       version: nat;
+     }) query;
+  getAllHealthcareProviders: () -> (vec HealthcareProvider) query;
+  getAllInsurancePayments: () -> (vec UtilityTransaction) query;
+  getAllJobCityFavorites: () -> (vec JobCityFavorite) query;
+  getAllJobLocations: () -> (vec JobLocation) query;
+  getAllJobs: (isOpen: opt bool) -> (vec Job) query;
+  getAllLendingItems: () -> (vec LendingItem) query;
+  getAllLpgBookings: () -> (vec UtilityTransaction) query;
+  getAllManufacturerComplaints: () -> (vec ManufacturerComplaint) query;
+  getAllManufacturerProducts: () -> (vec ManufacturerProduct) query;
+  getAllManufacturerRatings: () -> (vec ManufacturerRating) query;
+  getAllManufacturers: () -> (vec Manufacturer) query;
+  /// All marketplace (old items) listings as flat rows for Data Explorer.
+  getAllMarketplaceItems: () ->
+   (vec
+     record {
+       category: text;
+       createdAt: int;
+       id: text;
+       invoiceAvailable: bool;
+       isActive: bool;
+       price: float64;
+       rentOrSale: text;
+       title: text;
+       userId: text;
+     }) query;
+  /// Alias: returns all stored match scores (no outcall) for frontend display.
+  /// Alias: returns all stored match scores (no outcall) for frontend display.
+  getAllMatchScores: () -> (vec MatchScore) query;
+  getAllMatrimonyProfiles: () -> (vec MatrimonyProfile) query;
+  getAllMenuOptions: () -> (vec MenuOption) query;
+  /// All moderation items as flat rows for Data Explorer.
+  getAllModerationItems: () ->
+   (vec
+     record {
+       contentId: text;
+       contentType: text;
+       createdAt: int;
+       flagReason: text;
+       id: text;
+       remarks: text;
+       status: text;
+     }) query;
+  getAllModerationRecords: () -> (vec ModerationItem) query;
+  getAllMunicipalityPayments: () -> (vec UtilityTransaction) query;
+  getAllNotifications: (status: opt NotificationStatus, from: opt int, to:
+   opt int) -> (vec Notification) query;
+  getAllOndcEnrollments: (status: opt VerificationStatus) ->
+   (vec OndcEnrollment) query;
+  getAllOrders: (status: opt OrderStatus, from: opt int, to: opt int) ->
+   (vec Order);
+  getAllPaySprintAPILogs: () -> (vec PaySprintAPILog) query;
+  getAllPaySprintCallbacks: () -> (vec PaySprintCallback) query;
+  getAllPaySprintCredentials: () -> (vec PaySprintCredential) query;
+  getAllPlans: (targetRole: opt UserRole) -> (vec SubscriptionPlan) query;
+  getAllProductLocationPrices: () -> (vec ProductLocationPrice) query;
+  /// Returns every product across all merchants — used by the admin All Products view.
+  /// Never returns a negative count or undefined — guaranteed to return [] when empty.
+  getAllProducts: () -> (vec Product) query;
+  getAllProfessionalServices: () -> (vec ProfessionalService) query;
+  getAllPromotions: () -> (vec Promotion) query;
+  getAllProperties: (listingType: opt PropertyListingType, isActive:
+   opt bool) -> (vec Property) query;
+  getAllRateCards: () -> (vec DeliveryRateCard) query;
+  getAllRecharges: () -> (vec UtilityTransaction) query;
+  getAllRecipes: () -> (vec Recipe) query;
+  /// All recipes as flat summary rows for Data Explorer.
+  getAllRecipesTable: () ->
+   (vec
+     record {
+       createdAt: int;
+       id: text;
+       ingredientCount: nat;
+       rating: float64;
+       title: text;
+       userId: text;
+     }) query;
+  /// List all restock orders (admin view).
+  getAllRestockOrders: () -> (vec RestockOrder) query;
+  /// All support tickets as flat rows for Data Explorer.
+  getAllSupportTickets: () ->
+   (vec
+     record {
+       createdAt: int;
+       creatorId: text;
+       creatorRole: text;
+       id: text;
+       issueType: text;
+       orderId: text;
+       resolutionDate: opt int;
+       status: text;
+     }) query;
+  /// Alias: get all support tickets as full records (not flattened Data Explorer rows).
+  getAllSupportTicketsFull: (filter: opt text) -> (vec SupportTicket) query;
+  getAllTourOperators: () -> (vec TourOperator) query;
+  getAllTrainBookings: () -> (vec TrainBooking) query;
+  getAllUtilityTransactions: () -> (vec UtilityTransaction) query;
+  getAllVisitorCheckins: () -> (vec VisitorCheckin) query;
+  getAllowedTipAmounts: () -> (vec nat) query;
+  getApiKeys: (ownerId: text) -> (vec ApiKey) query;
+  getAppVersions: (brandName: text) -> (vec AppVersion) query;
+  getAreaRates: (serviceId: text) -> (vec record {
+                                            text;
+                                            float64;
+                                          }) query;
+  /// Get stats for a specific assigned user under a merchant.
+  getAssignedUserStats: (merchantId: text, userPhone: text) ->
+   (opt SubscriptionAssignment) query;
+  /// List all users assigned to a merchant's subscription.
+  getAssignedUsers: (merchantId: text) -> (vec SubscriptionAssignment) query;
+  getAvailableDeliveryPartners: (lat: float64, lng: float64, radiusKm:
+   float64) -> (vec DeliveryPartner);
+  getBillPaymentOperators: (category: text, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  getBillPaymentOperatorsPub: (category: text, credId: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  getBillRecords: (manufacturerId: text) -> (vec BillRecord) query;
+  getBlogById: (id: text) -> (opt Blog) query;
+  getBlogReviews: (blogId: text) -> (vec BlogReview) query;
+  getBlogsByAuthor: (authorId: text) -> (vec Blog) query;
+  getBookingDetails: (bookingId: text) -> (opt TransportBooking) query;
+  getBookingsByCustomer: (customerId: text) -> (vec TransportBooking) query;
+  getBookingsBySarthi: (sarthiPartnerId: text) ->
+   (vec TransportBooking) query;
+  getBookingsByStatus: (status: TransportStatus) -> (vec TransportBooking);
+  /// Alias: get bot logs by platform — frontend may call getBotLogs instead of listBotLogs.
+  getBotLogs: (platform: text) -> (vec BotLog) query;
+  /// Returns message/user/order counts broken down by channel (telegram/whatsapp/sms/simulator).
+  /// Message counts come from BotLogs; user/order counts are computed from address/stateData tags.
+  getBotPerformanceStats: () ->
+   (record {
+      messagesByChannel:
+       record {
+         simulator: nat;
+         sms: nat;
+         telegram: nat;
+         whatsapp: nat;
+       };
+      ordersByChannel:
+       record {
+         simulator: nat;
+         sms: nat;
+         telegram: nat;
+         whatsapp: nat;
+       };
+      usersByChannel:
+       record {
+         simulator: nat;
+         sms: nat;
+         telegram: nat;
+         whatsapp: nat;
+       };
+    }) query;
+  getBrandingConfig: () -> (BrandingConfig) query;
+  getBusBooking: (id: text) -> (opt BusBooking) query;
+  getBusBookingsByCustomer: (customerId: text) -> (vec BusBooking) query;
+  getBusSeatAvailability: (tripId: text, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  getBusSeatAvailabilityPub: (tripId: text, credId: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  /// Returns the build ID string. Call this from the admin panel or browser to
+  /// confirm that the newly deployed wasm is live.
+  /// Expected response: "localbazar-kart-v4-telegram-fix-20260430"
+  getCanisterVersion: () -> (text) query;
+  getChatConversationHistory: (phoneNumber: text) ->
+   (vec ConversationMessage);
+  getChatSimulatorSessions: (role: text) -> (vec ChatSimulatorSession) query;
+  getCitiesForDataExplorer: () -> (vec CityRow) query;
+  getCityAreas: (city: text) -> (vec text) query;
+  getCityAreasForPromotion: (cityId: text) -> (vec text) query;
+  getCityControl: (cityId: text) -> (opt CityControl) query;
+  /// Alias: getCityControls returns all city controls (flat array, empty if none).
+  getCityControls: () -> (vec CityControl) query;
+  getCityControlsForCity: (cityId: text) -> (opt CityControl) query;
+  getCityControlsForDataExplorer: () ->
+   (vec record {
+          cityId: text;
+          cityName: text;
+          enabled: bool;
+          moduleName: text;
+        }) query;
+  getCityList: () -> (vec text) query;
+  getCityModules: (cityId: text) ->
+   (vec record {
+          enabled: bool;
+          moduleName: text;
+        }) query;
+  getCommoditySymbolsForCountry: (country: text) -> (vec text) query;
+  getCommunityFoodOrderById: (id: text) -> (opt CommunityFoodOrder) query;
+  getCommunityFoodOrdersByCommunity: (communityId: text) ->
+   (vec CommunityFoodOrder) query;
+  getCommunityFoodOrdersByPhone: (phone: text) ->
+   (vec CommunityFoodOrder) query;
+  getCommunityMemberByPhone: (phone: text) -> (opt CommunityMember) query;
+  getCommunityMembersByCity: (city: text) -> (vec CommunityMember) query;
+  getCommunityParkingBookingById: (id: text) ->
+   (opt CommunityParkingBooking) query;
+  getCommunityParkingBookingsByCommunity: (communityId: text) ->
+   (vec CommunityParkingBooking) query;
+  getCommunityParkingBookingsByPhone: (phone: text) ->
+   (vec CommunityParkingBooking) query;
+  getCommunityRoomBookingById: (id: text) -> (opt CommunityRoomBooking) query;
+  getCommunityRoomBookingsByCommunity: (communityId: text) ->
+   (vec CommunityRoomBooking) query;
+  getCommunityRoomBookingsByPhone: (phone: text) ->
+   (vec CommunityRoomBooking) query;
+  getCommunityVisitorHistory: (communityId: text) ->
+   (vec VisitorCheckin) query;
+  getCommunityWorkOrderById: (id: text) -> (opt CommunityWorkOrder) query;
+  getCommunityWorkOrdersByCommunity: (communityId: text) ->
+   (vec CommunityWorkOrder) query;
+  getCommunityWorkOrdersByPhone: (phone: text) ->
+   (vec CommunityWorkOrder) query;
+  getCountryInfoForPhone: (phone: text) ->
+   (record {
+      countryCode: text;
+      countryName: text;
+      currency: text;
+      currencySymbol: text;
+    }) query;
+  getCourse: (id: text) -> (opt LanguageCourse) query;
+  getCourseApprovalsForDataExplorer: () -> (vec CourseApprovalRow) query;
+  getCourseLikeSummary: (courseId: text) -> (CourseLikeSummary) query;
+  getCurrencyForUser: (phone: text) -> (text) query;
+  getCurrentDeliveryShift: (partnerId: text) ->
+   (opt DeliveryPartnerShift) query;
+  getCustomerBudget: (userId: text) -> (CustomerBudget) query;
+  getCustomerDashboardData: (customerPhone: text) ->
+   (CustomerDashboardData) query;
+  getCustomerRatingHistory: (customerPhone: text) ->
+   (vec
+     record {
+       date: int;
+       merchantId: text;
+       orderId: text;
+       rating: CustomerRating;
+     }) query;
+  getCustomerRatings: (customerId: text) -> (vec CustomerRating__1) query;
+  getCustomerSpendAnalysis: (userId: text, period: text) ->
+   (SpendAnalysis) query;
+  getCustomerTips: (customerId: text) -> (vec TipRecord) query;
+  getDPActiveDeliveries: (partnerId: text) -> (vec Order) query;
+  getDPAnalytics: (partnerId: text) -> (DPAnalytics) query;
+  getDPEarnings: (partnerId: text, date: opt text) -> (DPEarnings) query;
+  getDPEarningsWithExpenses: (partnerId: text, fromDate: text, toDate:
+   text) -> (DPEarningsWithExpenses) query;
+  getDPPetrolExpenses: (partnerId: text, fromDate: text, toDate: text) ->
+   (vec PetrolExpense) query;
+  /// Returns per-day message counts for the last N days from BotLogs.
+  /// DailyStat: { date: Text (YYYY-MM-DD); telegram: Nat; whatsapp: Nat; sms: Nat }
+  getDailyBotStats: (days: nat) ->
+   (vec record {
+          date: text;
+          sms: nat;
+          telegram: nat;
+          whatsapp: nat;
+        }) query;
+  getDailyLessonsForDataExplorer: () -> (vec DailyLessonRow) query;
+  getDailyStreak: (userId: text) -> (nat) query;
+  getDefaultFreePlan: () -> (opt SubscriptionPlan) query;
+  getDeliveryAssignments: (requesterId: text) ->
+   (vec DeliveryAssignment) query;
+  getDeliveryDashboardData: (partnerPhone: text) ->
+   (DeliveryDashboardData) query;
+  getDeliveryOrders: () -> (vec Order);
+  getDeliveryPartnerOndcSetupGuide: () -> (vec OndcSetupGuide) query;
+  getDeliveryShiftHistory: (partnerId: text) ->
+   (vec DeliveryPartnerShift) query;
+  getDeploymentHistory: (limit: nat) -> (vec AgentDeployment) query;
+  getDiscountedSubscriptionPrice: (merchantName: text, planPrice: float64) ->
+   (float64) query;
+  getDisplayTotalOrders: (merchantId: text) -> (nat) query;
+  getDistributorNetwork: (manufacturerId: text) ->
+   (vec DistributorNetwork) query;
+  /// Admin: get all donation requests.
+  getDonationRequests: () -> (vec DonationRequest) query;
+  /// Admin: get all donations.
+  getDonations: () -> (vec DonationItem) query;
+  /// Returns stored election results for a state.  Pass "" to get all results.
+  getElectionResults: (state: text) -> (vec ElectionResult) query;
+  getEmployeeAttendance: (employeeId: text) -> (vec EmployeeAttendance) query;
+  getEmployeeLeaves: (employeeId: text) -> (vec LeaveRequest) query;
+  getEnabledCities: () -> (vec text) query;
+  getEnhancedAnalytics: () -> (EnhancedAnalytics) query;
+  getEnrollmentsForDataExplorer: () -> (vec EnrollmentRow) query;
+  getEntitiesCreatedByRun: (runId: text) -> (vec ScriptEntityRecord) query;
+  getEquitySymbolsForCountry: (country: text) -> (vec text) query;
+  getEventById: (id: text) -> (Result_24) query;
+  getEventsForLocation: (city: text) -> (vec Event) query;
+  getEventsForUser: (city: text) -> (vec Event) query;
+  getExpiryReturns: (manufacturerId: text) -> (vec ExpiryReturn) query;
+  getFamilyByOwner: (ownerPhone: text) -> (vec FamilyMember) query;
+  getFamilyBySurname: (surname: text) -> (vec FamilyMember) query;
+  getFamilyConnectRequests: (phone: text) -> (vec FamilyConnectRequest) query;
+  /// Return all family groups across all owners.
+  /// Returns empty array when none exist.
+  getFamilyGroups: () -> (vec FamilyGroup) query;
+  getFavoriteEmployers: (userId: text) -> (vec JobCityFavorite) query;
+  getFlightBookingsByCustomer: (customerId: text) ->
+   (vec FlightBooking) query;
+  getFlow: (id: text) -> (opt FlowDefinition) query;
+  getFlowAgentDiagnostics: () -> (vec FlowAgentDiagnostic) query;
+  getFlowAgentEntitySummary: (runId: text) ->
+   (record {
+      customersCreated: nat;
+      merchantsCreated: nat;
+      ordersCreated: nat;
+    }) query;
+  getFlowAgentSummary: () ->
+   (record {
+      failed: nat;
+      healthScore: nat;
+      lastRunAt: opt int;
+      passed: nat;
+      pendingFixes: nat;
+      totalFlows: nat;
+      warnings: nat;
+    }) query;
+  getFlowDefinitions: (_environment: text) ->
+   (vec
+     record {
+       createdAt: int;
+       environment: text;
+       flowJson: text;
+       id: text;
+       name: text;
+       updatedAt: int;
+       version: nat;
+     });
+  getFlowDiagnosticDetail: (runId: text, flowId: text) ->
+   (opt FlowDiagnosticResult) query;
+  getFlowDiagnostics: (runId: text) -> (vec FlowDiagnosticResult) query;
+  getFlowFixStatus: (runId: text) ->
+   (record {
+      allApproved: bool;
+      allRetestPassed: bool;
+      approved: nat;
+      pending: nat;
+      rejected: nat;
+      totalFlows: nat;
+    }) query;
+  getFlowHealthSummary: () ->
+   (record {
+      criticalFlows: nat;
+      healthyFlows: nat;
+      lastRunAt: opt int;
+      overallHealthScore: nat;
+      totalFlows: nat;
+      warningFlows: nat;
+    }) query;
+  getFlowRegistryHealth: () ->
+   (record {
+      flowCount: nat;
+      menuOptionCount: nat;
+    }) query;
+  getFlowSessions: (role: text) ->
+   (variant {
+      err: text;
+      ok: vec FlowSession;
+    }) query;
+  getFriendsByOwner: (phone: text) -> (vec FamilyMember) query;
+  /// Returns the full WhatsApp config (including businessAccountId, metaAppId).
+  getFullWhatsAppConfig: () -> (FullWhatsAppConfig) query;
+  getHealthcareAppointments: (customerPhone: opt text, providerId:
+   opt text) -> (vec HealthcareAppointment) query;
+  getInventoryItems: (manufacturerId: text) -> (vec InventoryItem) query;
+  getInventoryTransactions: (itemId: text) ->
+   (vec InventoryTransaction) query;
+  getJobById: (id: text) -> (Result_40) query;
+  getJobCitiesAvailable: () -> (vec text) query;
+  getJobLocations: (jobId: text) -> (vec JobLocation) query;
+  getJobsByEmployer: (employerPhone: text) -> (vec Job) query;
+  getJobsLookingFor: (category: opt text) -> (vec Job) query;
+  getLanguageCoursesForDataExplorer: () -> (vec CourseRow) query;
+  getLanguageLearningAnalytics: () ->
+   (record {
+      activeStreakUsers: nat;
+      totalCourses: nat;
+      totalDailyLessons: nat;
+      totalEnrollments: nat;
+      totalSavedWords: nat;
+    }) query;
+  getLeads: () -> (vec Lead) query;
+  getLeadsForEntity: (entityType: text, entityId: text) ->
+   (record {
+      interested: nat;
+      interestedList: vec EntityView;
+      viewers: vec EntityView;
+      views: nat;
+    }) query;
+  getLendingItemById: (id: text) -> (opt LendingItem) query;
+  getLendingItemsByBorrower: (phone: text) -> (vec LendingItem) query;
+  getLendingItemsByLender: (phone: text) -> (vec LendingItem) query;
+  getLendingItemsDueSoon: () -> (vec LendingItem) query;
+  getLessonLikeCounts: (lessonId: text) ->
+   (record {
+      dislikes: nat;
+      likes: nat;
+    }) query;
+  getLessonsForDataExplorer: () -> (vec LessonRow) query;
+  getManufacturerById: (mfgId: text) -> (opt Manufacturer) query;
+  getManufacturerByUser: (userId: text) -> (opt Manufacturer) query;
+  getManufacturerComplaints: (mfgId: text) ->
+   (vec ManufacturerComplaint) query;
+  getManufacturerDashboardStats: (manufacturerId: text) ->
+   (ManufacturerDashboardStats) query;
+  getManufacturerEmployeeAttendance: (employeeId: text, date: text) ->
+   (vec EmployeeAttendanceRecord) query;
+  getManufacturerEmployees: (manufacturerId: text) ->
+   (vec ManufacturerEmployee) query;
+  getManufacturerLeaveRequests: (manufacturerId: text) ->
+   (vec EmployeeLeaveRequest) query;
+  getManufacturerPOSOrders: (manufacturerId: text) ->
+   (variant {
+      err: text;
+      ok: vec POSOrder;
+    }) query;
+  getManufacturerProducts: (manufacturerId: text) ->
+   (vec ManufacturerProduct) query;
+  getManufacturerProductsForMerchant: (merchantPhone: text) ->
+   (variant {
+      err: text;
+      ok: vec ManufacturerProduct;
+    }) query;
+  getManufacturerRatings: (manufacturerId: text) ->
+   (vec ManufacturerRating) query;
+  getManufacturerReviewsAndComplaints: (manufacturerId: text) ->
+   (ManufacturerReviewsAndComplaints) query;
+  getManufacturerVersion: () -> (text) query;
+  getMarketSearchByCountry: (country: text) -> (vec MarketSearchQuery) query;
+  getMarketSearchById: (id: text) -> (opt MarketSearchQuery) query;
+  getMarketSearchHistory: () -> (vec MarketSearchQuery) query;
+  getMarketplaceItemById: (id: text) -> (opt MarketplaceItem) query;
+  /// Alias: getMarketplaceItems returns all marketplace items as flat rows for frontend/Data Explorer.
+  getMarketplaceItems: () ->
+   (vec
+     record {
+       category: text;
+       createdAt: int;
+       id: text;
+       invoiceAvailable: bool;
+       isActive: bool;
+       price: float64;
+       rentOrSale: text;
+       title: text;
+       userId: text;
+     }) query;
+  getMatchScores: () -> (vec MatchScore) query;
+  getMatchScoresBySport: (sport: text) -> (vec MatchScore) query;
+  /// Search matrimony-eligible family members with optional filters.
+  getMatrimonyMembers: (casteFilter: opt text, locationFilter: opt text,
+   educationFilter: opt text, bloodGrpFilter: opt text) ->
+   (vec MatrimonyProfile) query;
+  getMenuOptions: (role: text, city: text) -> (vec MenuOption) query;
+  getMenuOptionsByRole: (role: text) -> (vec MenuOption) query;
+  getMenuRepositoryHealth: () ->
+   (record {
+      flowCount: nat;
+      menuOptionCount: nat;
+      seededAt: opt int;
+    }) query;
+  getMenuWebhookUpdateLog: () -> (vec text) query;
+  getMerchantAnalytics: (merchantId: text) -> (MerchantAnalytics) query;
+  getMerchantBranches: (merchantId: text) -> (vec MerchantBranch) query;
+  getMerchantById: (id: text) -> (Result_4);
+  getMerchantDashboardData: (merchantPhone: text) ->
+   (MerchantDashboardData) query;
+  getMerchantEarnings: (merchantId: text, branchId: opt text, date:
+   opt text) -> (MerchantEarnings) query;
+  getMerchantImportStats: (merchantName: text) ->
+   (record {
+      lastImportDate: opt int;
+      totalImported: nat;
+    }) query;
+  getMerchantOndcSetupGuide: () -> (vec OndcSetupGuide) query;
+  getMerchantPOSOrders: (merchantId: text, branchId: opt text, status:
+   opt OrderStatus) -> (vec Order) query;
+  getMerchantPendingLeaves: (merchantId: text) -> (vec LeaveRequest) query;
+  /// Return the merchant's subscription status along with product count and limit info.
+  getMerchantSubscriptionStatus: (merchantId: text) ->
+   (record {
+      daysRemaining: opt int;
+      isActive: bool;
+      isAtLimit: bool;
+      planName: text;
+      productCount: nat;
+      productLimit: opt nat;
+    }) query;
+  getMerchantTopProducts: (merchantId: text) -> (vec ProductRevenue) query;
+  getMerchantsNearby: (lat: float64, lng: float64, radiusKm: float64) ->
+   (vec Merchant);
+  getModerationQueue: () -> (vec ModerationItem) query;
+  getModerationStatusForEntity: (entityType: text, entityId: text) ->
+   (opt ModerationItem) query;
+  getModuleStatuses: () -> (vec record {
+                                  text;
+                                  bool;
+                                }) query;
+  getModuleStatusesWithRoles: () -> (vec ModuleRoleStatus) query;
+  getMonthlyOrderStats: (year: int, month: int) ->
+   (vec record {
+          day: int;
+          orderCount: nat;
+          revenue: float64;
+        });
+  getMonthlyPetrolExpenses: (dpId: text, month: text) ->
+   (vec PetrolExpense) query;
+  getMyEvents: (phone: text) -> (vec Event) query;
+  /// Get jobs posted by a specific phone number (posterId).
+  getMyJobListings: (phone: opt text) -> (vec Job) query;
+  getMyListings: (phone: text) ->
+   (record {
+      events: vec Event;
+      jobs: vec Job;
+      promotions: vec Promotion;
+      properties: vec Property;
+    }) query;
+  getMyListingsWithProducts: (phone: text) ->
+   (record {
+      events: vec Event;
+      jobs: vec Job;
+      products: vec Product;
+      promotions: vec Promotion;
+      properties: vec Property;
+    }) query;
+  getMyProductListings: (phone: text) -> (vec Product) query;
+  getMyPromotions: (phone: text) -> (vec Promotion) query;
+  /// Get properties posted by a specific phone number (posterId).
+  getMyPropertyListings: (phone: opt text) -> (vec Property) query;
+  /// Alias: get support tickets for a user phone (frontend may call getMySupportTickets).
+  getMySupportTickets: (phone: text) -> (vec SupportTicket) query;
+  getMyTickets: (phone: text) -> (vec SupportTicket) query;
+  getNotificationsByUser: (userId: text) -> (vec Notification) query;
+  getOndcEnrollment: (enrollmentId: text) -> (Result_19) query;
+  getOndcEnrollmentByUserId: (userId: text) -> (Result_19) query;
+  getOndcFAQ: () -> (vec OndcFAQ) query;
+  /// Get only online delivery partners.
+  getOnlineDeliveryPartners: () -> (vec DeliveryPartner) query;
+  /// Get only online sarthi partners.
+  getOnlineSarthiPartners: () -> (vec DeliveryPartner) query;
+  getOpenLeads: () -> (vec Lead) query;
+  getOptOutCustomers: (merchantName: text) -> (vec text) query;
+  getOrderById: (id: text) -> (Result_18);
+  getOrderGroups: (orderId: text) -> (Result_50) query;
+  getOrderStatusLabel: (status: OrderStatus) -> (text) query;
+  getOrderTracking: (orderId: text) -> (Result_49) query;
+  getOrdersByCustomer: (customerId: text) -> (vec Order);
+  getOrdersByDeliveryPartner: (dpId: text) -> (vec Order);
+  getOrdersByDeliveryPartnerQuery: (partnerId: text) -> (vec Order);
+  getOrdersByMerchant: (merchantId: text, from: opt int, to: opt int) ->
+   (vec Order);
+  /// Order counts grouped by status — always returns at least one entry per status.
+  getOrdersByStatus: () -> (vec record {
+                                  text;
+                                  nat;
+                                }) query;
+  /// Order counts by day (last 30 days). Format: ("YYYY-MM-DD", count).
+  getOrdersTimeline: () -> (vec record {
+                                  text;
+                                  nat;
+                                }) query;
+  getOverdueTickets: () -> (vec SupportTicket) query;
+  getPartnerEarnings: (partnerId: text) -> (EarningsSummary) query;
+  getPartnerTips: (partnerId: text) -> (vec TipRecord) query;
+  getPaySprintCredential: (serviceType: PaySprintServiceType, env:
+   PaySprintEnvironment) -> (opt PaySprintCredential) query;
+  getPendingApprovals: () -> (vec CourseRow) query;
+  getPendingBills: (manufacturerId: text) -> (vec BillRecord) query;
+  getPendingMerchants: () -> (vec Merchant) query;
+  getPendingOndcEnrollments: () -> (vec OndcEnrollment) query;
+  getPendingOrdersForDP: (lat: float64, lng: float64, radiusKm: float64) ->
+   (vec Order) query;
+  getPendingPromotions: () -> (vec Promotion) query;
+  getPetrolExpenseSummary: (dpId: text) ->
+   (record {
+      expenses: vec PetrolExpense;
+      monthlyTotal: float64;
+      todayTotal: float64;
+    }) query;
+  getPipelineEnvironment: () -> (text);
+  getPlan: (id: text) -> (Result_17) query;
+  getPlanById: (id: text) -> (Result_17) query;
+  getPlans: (targetRole: opt UserRole, planType: opt SubscriptionPlanType) ->
+   (vec SubscriptionPlan) query;
+  /// Look up a product by its barcode value OR by its product ID.
+  /// Iterates productsByIdCurrent and returns the first match.
+  getProductByBarcode: (barcodeValue: text) -> (opt Product) query;
+  getProductById: (id: text) -> (Result_48);
+  getProductLocationPrices: (productId: text) ->
+   (vec ProductLocationPrice) query;
+  /// Return the most recent scan history entries for a merchant, ordered by scanTime descending.
+  getProductScanHistory: (merchantId: text, limit: nat) ->
+   (vec ProductScanHistory) query;
+  getProductTemplate: () -> (text) query;
+  getProductsByMerchant: (merchantId: text) -> (vec Product);
+  getProductsForDistributor: (manufacturerId: text) ->
+   (vec ManufacturerProduct) query;
+  getProjectDocumentationData: () ->
+   (record {
+      flowCount: nat;
+      menuByRole: vec record {
+                        text;
+                        nat;
+                      };
+      menuOptionCount: nat;
+    }) query;
+  getPromotionAnalytics: (id: text) -> (Result_47) query;
+  getPromotionById: (id: text) -> (Result_29) query;
+  getPromotionPlans: () -> (vec PromotionSubscriptionPlan);
+  getPromotionsForLocation: (city: text, area: text) -> (vec Promotion) query;
+  getPromotionsForUser: (city: text, area: text) -> (vec Promotion) query;
+  getPropertyById: (id: text) -> (Result_39) query;
+  getPurchaseRecords: (manufacturerId: text) -> (vec PurchaseRecord) query;
+  getRateCard: (vehicleType: VehicleType) -> (Result_15) query;
+  getReTestResults: (reTestRunId: text) -> (vec FlowDiagnosticResult) query;
+  getRechargeOperators: (operatorType: text, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  getRechargeOperatorsPub: (operatorType: text, credId: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  getRecipeById: (id: text) -> (opt Recipe) query;
+  getRecipesByOwner: (ownerId: text) -> (vec Recipe) query;
+  getRegisteredDeliveryPartners: () -> (vec DeliveryPartner) query;
+  getRegisteredMerchants: () -> (vec Merchant) query;
+  /// Alias: getRestockOrders returns all restock orders (frontend may call getRestockOrders).
+  getRestockOrders: () -> (vec RestockOrder) query;
+  /// List all restock orders for a given merchant.
+  getRestockOrdersByMerchant: (merchantId: text) -> (vec RestockOrder) query;
+  /// Revenue grouped by merchant — returns empty array when no completed orders.
+  getRevenueByMerchant: () -> (vec record {
+                                     text;
+                                     float64;
+                                   }) query;
+  getRideDetails: (rideId: text) -> (Result_27) query;
+  /// Returns the currently stored SMS config, or null if not yet configured.
+  getSMSConfig: () -> (opt SMSConfig) query;
+  /// Returns all SMS config fields as flat rows for the Data Explorer.
+  getSMSConfigTable: () -> (vec record {
+                                  field: text;
+                                  value: text;
+                                }) query;
+  /// Returns a JSON array describing SMS-specific flows.
+  /// Dynamically generated from flowsStore — no hardcoded entries.
+  getSMSFlowScript: () -> (text) query;
+  getSaleRecords: (manufacturerId: text) -> (vec SaleRecord) query;
+  getSarthiPendingRides: (sarthiId: text) -> (vec SarthiPendingRide) query;
+  getSarthiRideBookings: () -> (vec TransportBooking);
+  getSavedWordsForDataExplorer: () -> (vec SavedWordRow) query;
+  getScriptExecutionResults: (flowId: text) ->
+   (vec ScriptExecutionResult) query;
+  getScriptExecutorFlowSteps: (flowId: text) ->
+   (vec
+     record {
+       promptText: text;
+       stepIndex: nat;
+       stepName: text;
+       stepType: text;
+       testValue: text;
+       validationPattern: opt text;
+     }) query;
+  getScriptRunResult: (id: text) -> (opt ScriptRunResult) query;
+  getScriptRunResults: () -> (vec ScriptRunResult) query;
+  getServiceBookings: (customerPhone: opt text, merchantPhone: opt text) ->
+   (vec ServiceBooking) query;
+  getSessionLanguage: (phone: text) -> (text) query;
+  getShuttleBookingsByPassenger: (passengerPhone: text) ->
+   (vec ShuttleBooking) query;
+  getShuttleRouteWithStops: (routeId: text) -> (Result_12) query;
+  /// Get shuttle routes with optional inactive routes included (for admin panel).
+  getShuttleRoutes: (includeInactive: bool) -> (vec ShuttleRoute) query;
+  /// Returns the current session state label for the simulator (e.g. "merchantMenu").
+  getSimulatorSessionState: (phone: text) -> (opt text) query;
+  /// Get aggregated subscription dashboard stats for a merchant (plan utilisation, top user, etc.).
+  getSubscriptionDashboardStats: (merchantId: text) ->
+   (SubscriptionDashboardStats) query;
+  getSubscriptionDiscountForMerchant: (merchantName: text) -> (nat) query;
+  /// List supplier orders for a merchant.
+  getSupplierOrdersByMerchant: (merchantId: text) ->
+   (vec SupplierOrder) query;
+  getSupportTicketById: (ticketId: text) -> (Result_11) query;
+  getSupportTickets: (filter: opt text) -> (vec SupportTicket) query;
+  /// Returns row counts for all backend tables — used by the Data Explorer.
+  getTableRowCounts: () ->
+   (record {
+      deliveryPartners: nat;
+      employees: nat;
+      events: nat;
+      familyMembers: nat;
+      jobs: nat;
+      leads: nat;
+      merchants: nat;
+      moduleToggles: nat;
+      ondcEnrollments: nat;
+      orders: nat;
+      products: nat;
+      promotions: nat;
+      properties: nat;
+      recipes: nat;
+      restockOrders: nat;
+      shuttleRoutes: nat;
+      subscriptions: nat;
+      supplierOrders: nat;
+      supportTickets: nat;
+      telegramConfigs: nat;
+      users: nat;
+      whatsAppConfigs: nat;
+    }) query;
+  /// Returns the currently stored Telegram config, or null if not yet configured.
+  getTelegramConfig: () -> (opt TelegramConfig) query;
+  /// Returns all Telegram config fields as flat rows for the Data Explorer.
+  getTelegramConfigTable: () -> (vec record {
+                                       field: text;
+                                       value: text;
+                                     });
+  /// Makes a live HTTP outcall to Telegram's getWebhookInfo API and returns the result
+  /// along with canister-side delivery mode. Use from the admin Telegram Config page
+  /// to see what Telegram actually sees (registered URL, errors, pending updates).
+  getTelegramDebugInfo: () ->
+   (record {
+      botTokenSet: bool;
+      deliveryMode: text;
+      lastErrorDate: int;
+      lastErrorMessage: text;
+      pendingUpdateCount: nat;
+      pollingActive: bool;
+      rawResponse: text;
+      webhookConfigured: bool;
+      webhookUrl: text;
+    });
+  /// Returns the current Telegram delivery mode — "Webhook" if a webhook URL is
+  /// configured and polling is disabled, "Polling" if polling is active, or "Inactive".
+  /// Also returns whether pollingEnabled flag is set and the stored webhook URL.
+  getTelegramDeliveryMode: () ->
+   (record {
+      botTokenSet: bool;
+      deliveryMode: text;
+      pollingEnabled: bool;
+      webhookConfigured: bool;
+      webhookUrl: text;
+    }) query;
+  /// Returns a JSON array describing all active flows available on the Telegram channel.
+  /// Dynamically generated from flowsStore — no hardcoded entries.
+  getTelegramFlowScript: () -> (text) query;
+  /// Get the current Telegram polling offset (last processed update_id).
+  getTelegramPollOffset: () -> (int) query;
+  /// Return up to 20 most-recent test orders (orders created by Script Executor / Flow Agent).
+  getTestOrders: () -> (vec Order) query;
+  getTodayAttendance: (merchantId: text) -> (vec EmployeeAttendance) query;
+  /// Delegates to MatchScoreMixin.fetchTodayMatchScores — passes the canister's
+  /// shared query transform function required for ICP HTTP outcalls.
+  getTodayMatchScores: () -> (vec MatchScore);
+  getTodayPetrolExpense: (dpId: text) -> (float64) query;
+  getTopMerchants: (limit: nat) ->
+   (vec
+     record {
+       avgRating: float64;
+       merchant: Merchant;
+       orderCount: nat;
+       revenue: float64;
+     });
+  getTopRatedRecipes: (limit: nat) -> (vec Recipe) query;
+  getTotalCompletedOrdersByCustomer: (customerPhone: text, merchantId:
+   text) -> (nat) query;
+  /// Total delivery partners. Returns 0 if none.
+  getTotalDeliveryPartners: () -> (nat) query;
+  /// Total registered merchants. Returns 0 if none.
+  getTotalMerchants: () -> (nat) query;
+  /// Total orders stored. Returns 0 if none.
+  getTotalOrders: () -> (nat) query;
+  /// Total active products. Returns 0 if none.
+  getTotalProducts: () -> (nat) query;
+  getTotalTipsEarned: (partnerId: text) -> (nat) query;
+  /// Total registered users (all roles). Returns 0 if none.
+  getTotalUsers: () -> (nat) query;
+  getTourBookings: (customerPhone: opt text, operatorId: opt text) ->
+   (vec TourBooking) query;
+  getTrainBookingsByCustomer: (customerId: text) -> (vec TrainBooking) query;
+  getTransportBookings: () -> (vec TransportBooking) query;
+  /// Returns upcoming Indian elections.
+  getUpcomingElections: () ->
+   (vec record {
+          date: text;
+          electionType: text;
+          name: text;
+          state: text;
+        }) query;
+  getUserByPhone: (phone: text) -> (Result_8);
+  getUserEnrollments: (userId: text) -> (vec UserEnrollment) query;
+  getUserLessonLike: (userId: text, lessonId: text) -> (opt LessonLike) query;
+  getUserListings: (userId: text) -> (vec MarketplaceItem) query;
+  getUserPlan: (userId: text) -> (Result_17) query;
+  getUserSubscription: (userId: text) -> (Result_46) query;
+  getUtilityTransactionsByCustomer: (customerId: text) ->
+   (vec UtilityTransaction) query;
+  getVisitorsByDate: (date: text) -> (vec VisitorCheckin) query;
+  /// Call Telegram's getWebhookInfo API and return a structured diagnostic record.
+  /// Useful for debugging 404 errors — shows the registered webhook URL, pending update
+  /// count, last error message, and whether polling is currently safe to use.
+  getWebhookDiagnostics: () ->
+   (record {
+      lastError: text;
+      pendingUpdates: opt nat;
+      pollingActive: bool;
+      rawResponse: text;
+      webhookUrl: text;
+    });
+  /// Returns the stored WhatsApp config (full), or null if not yet configured.
+  getWhatsAppConfig: () -> (opt FullWhatsAppConfig) query;
+  /// Returns all stored WhatsApp settings as a queryable flat table for the Data Explorer.
+  getWhatsAppConfigTable: () ->
+   (vec record {
+          category: text;
+          key: text;
+          value: text;
+        }) query;
+  getWordDefinitionsForDataExplorer: () -> (vec WordDefinitionRow) query;
+  getYahooChartUrl: (symbol: text) -> (text) query;
+  /// Returns true if the phone owner has at least one matrimony-eligible family member.
+  hasMatrimonyEligibleMember: (ownerPhone: text) -> (bool) query;
+  /// Query handler — upgrades ALL POST requests to http_request_update (for outcall capability).
+  /// GET /telegram/webhook returns 200 {"ok":true} for Telegram health checks.
+  /// GET /sms/webhook returns 200 for SMS provider health checks.
+  /// All other GET requests return 200 so health probes never see 404.
+  /// 
+  /// IMPORTANT: Motoko requires `public query func` to have `async` return type syntactically,
+  /// but the ICP HTTP gateway reads the Candid interface which strips the async wrapper from
+  /// query methods. The generated Candid signature is:
+  ///   http_request : (HttpRequest) -> (HttpResponse) query
+  /// This is correct — the gateway treats it as synchronous. Do NOT remove `async`.
+  http_request: (req: HttpRequest) -> (HttpResponse) query;
+  /// Update handler — routes incoming POST webhooks to Telegram or SMS handlers.
+  /// All POST requests are upgraded here (see http_request), so we check the path
+  /// and dispatch to the correct handler. Body must be read BEFORE any async call.
+  /// NOTE: ICP HTTP gateway calls this as an update method (has async capability for outcalls).
+  http_request_update: (req: HttpRequest) -> (HttpResponse);
+  importMerchantContacts: (merchantPhone: text, merchantName: text, contacts:
+   vec text) ->
+   (record {
+      duplicates: nat;
+      imported: nat;
+      skippedDPs: nat;
+      skippedMerchants: nat;
+    });
+  /// Increment the order count for an assigned user. Called when the user places an order.
+  incrementAssignedUserOrders: (merchantId: text, userPhone: text) -> ();
+  incrementInquiryCount: (userId: text) -> (Result_45);
+  incrementOrderCount: (userId: text) -> (Result_45);
+  /// One-time bootstrap: the first Internet Identity caller claims admin.
+  /// After that this call is a no-op (returns false).
+  initAdminPrincipal: () -> (bool);
+  isCityEnabled: (cityId: text) -> (bool) query;
+  isCityModuleEnabled: (cityId: text, moduleName: text) -> (bool) query;
+  isDeliveryPartnerBlocked: (dpId: text) -> (bool) query;
+  isDistributorRegistered: (manufacturerId: text, userPhone: text) ->
+   (bool) query;
+  isMerchantBlocked: (merchantId: text) -> (bool) query;
+  isModuleEnabled: (moduleName: text) -> (bool) query;
+  isSubscriptionActive: (userId: text) -> (bool) query;
+  /// Returns true when the given order ID was created as a test run.
+  isTestOrder: (orderId: text) -> (bool) query;
+  likeLesson: (userId: text, lessonId: text) -> (Result__1);
+  listAdhocJobs: (categoryFilter: opt text, minPrice: opt float64, maxPrice:
+   opt float64, location: opt text) -> (vec Job) query;
+  /// List adhoc jobs for Data Explorer (all adhoc jobs, optionally filtered by category).
+  listAdhocJobsAdmin: (categoryFilter: opt text) -> (vec Job) query;
+  listAgentRuns: (limit: nat) -> (vec FlowAgentRun) query;
+  /// Return all adhoc jobs as [Types.Job] — used by frontend pages that need full Job records.
+  listAllAdhocJobs: () -> (vec Job) query;
+  listAllDeliveryPartners: () -> (vec DeliveryPartner);
+  listAllMerchants: () -> (vec Merchant);
+  listAllShuttleRoutesAdmin: () -> (vec ShuttleRoute) query;
+  listAllUsers: () -> (vec User);
+  /// Return bot message logs filtered by platform.
+  /// Pass "telegram", "whatsapp", or "all" for `platform`.
+  listBotLogs: (platform: text) -> (vec BotLog) query;
+  listCities: () -> (vec City) query;
+  listDeliveryPartners: (isVerified: opt bool) -> (vec DeliveryPartner);
+  listEmployees: () -> (vec Employee) query;
+  /// List all events, optionally filtered by city (matched against locationAddress).
+  listEvents: (city: opt text) -> (vec Event) query;
+  listFlows: () -> (vec FlowDefinition) query;
+  listFreeRideSarthis: () -> (vec FreeRideSarthi) query;
+  /// List all jobs, optionally filtered by city (matched against location.address).
+  listJobs: (city: opt text) -> (vec Job) query;
+  listMarketplaceItems: (category: opt text, listingType: opt text) ->
+   (vec MarketplaceItem) query;
+  listMerchantEmployees: (merchantId: text) -> (vec MerchantEmployee) query;
+  listMerchants: (isActive: opt bool, isVerified: opt bool) -> (vec Merchant);
+  /// List moderation items, optionally filtered by status.
+  listModerationItems: (statusFilter: opt text) -> (vec ModerationItem) query;
+  listMyShuttleRoutes: (dpPhone: text) -> (vec ShuttleRoute) query;
+  listOndcOrders: () -> (vec Order) query;
+  /// List all properties, optionally filtered by city (matched against location.address).
+  listProperties: (city: opt text) -> (vec Property) query;
+  /// Alias: list all recipes (frontend may call listRecipes instead of getAllRecipes).
+  listRecipes: () -> (vec Recipe) query;
+  /// List restock orders, optionally filtered by merchant id.
+  listRestockOrders: (merchantId: opt text) -> (vec RestockOrder) query;
+  listShuttleRoutes: () -> (vec ShuttleRoute) query;
+  /// List all support tickets, optionally filtered by status string ("new", "resolved", etc.).
+  listSupportTickets: (statusFilter: opt text) -> (vec SupportTicket) query;
+  listUsers: (role: opt UserRole) -> (vec User);
+  manualUnblock: (entityId: text, entityType:
+   variant {
+     deliveryPartner;
+     merchant;
+   }) -> (Result_35);
+  markBillPaid: (billId: text) -> (variant {
+                                     err: text;
+                                     ok;
+                                   });
+  markDeliveryPaymentCollected: (orderId: text, partnerId: text) ->
+   (Result_18);
+  markEmployerFavorite: (userId: text, employerPhone: text, city: text) ->
+   (Result_44);
+  markLessonComplete: (dailyLessonId: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  markNotificationFailed: (id: text) -> (Result_43);
+  markNotificationSent: (id: text) -> (Result_43);
+  migrateFlowJson: () -> ();
+  migrateFlowTimestamps: () -> ();
+  /// Moderate a custom order text — keyword-based sync check.
+  moderateCustomOrderSync: (orderText: text) ->
+   (record {
+      approved: bool;
+      flaggedCategories: vec text;
+      reason: text;
+    }) query;
+  /// Moderate a job posting for illegal/inappropriate content.
+  moderateJobPosting: (jobTitle: text, description: text) ->
+   (record {
+      approved: bool;
+      flaggedCategories: vec text;
+      reason: text;
+    }) query;
+  /// Moderate a property listing for illegal/inappropriate content.
+  moderatePropertyPosting: (title: text, description: text) ->
+   (record {
+      approved: bool;
+      flaggedCategories: vec text;
+      reason: text;
+    }) query;
+  /// Parse products from an uploaded Excel CSV payload and save them to the merchant.
+  parseProductsFromExcel: (merchantId: text, csvText: text) -> (Result_42);
+  /// Parse products from a photo menu description and save them to the merchant.
+  parseProductsFromPhoto: (merchantId: text, photoDescription: text) ->
+   (Result_42);
+  parseProductsFromText: (merchantId: text, rawText: text) ->
+   (vec ProductInput);
+  payBill: (tx: UtilityTransaction, _billFetchData: text, credId: text,
+   transform: func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: UtilityTransaction;
+    });
+  payBillPub: (tx: UtilityTransaction, billFetchData: text, credId: text) ->
+   (variant {
+      err: text;
+      ok: UtilityTransaction;
+    });
+  payLPGBooking: (tx: UtilityTransaction, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: UtilityTransaction;
+    });
+  payLPGBookingPub: (tx: UtilityTransaction, credId: text) ->
+   (variant {
+      err: text;
+      ok: UtilityTransaction;
+    });
+  payMunicipalityBill: (tx: UtilityTransaction, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: UtilityTransaction;
+    });
+  payMunicipalityBillPub: (tx: UtilityTransaction, credId: text) ->
+   (variant {
+      err: text;
+      ok: UtilityTransaction;
+    });
+  /// Alias for admin panel usage.
+  performMarketSearch: (scriptName: text, country: text) ->
+   (variant {
+      err: text;
+      ok: MarketSearchQuery;
+    });
+  /// Poll pending order notifications for a customer. Clears queue after returning.
+  pollCustomerNotifications: (customerId: text) -> (vec OrderNotification);
+  /// Poll pending order notifications for a delivery partner. Clears queue after returning.
+  pollDeliveryNotifications: (partnerId: text) -> (vec OrderNotification);
+  /// Poll pending order notifications for a merchant. Clears queue after returning.
+  pollMerchantNotifications: (merchantId: text) -> (vec OrderNotification);
+  /// Poll Telegram for new messages using getUpdates (long-polling alternative to webhook).
+  /// This is the fallback when the ICP HTTP gateway cannot receive inbound POST webhooks
+  /// from Telegram (e.g. 404 routing issues). Call this periodically from the admin panel
+  /// or a heartbeat. Returns the number of updates processed.
+  /// 
+  /// IMPORTANT: Calling this when a webhook URL is registered will result in Telegram
+  /// returning 409 Conflict — both modes cannot run simultaneously. This method now
+  /// checks pollingEnabled AND the stored webhook URL before proceeding.
+  /// 
+  /// pollingEnabled is set to false whenever updateTelegramConfig is called with a
+  /// webhook URL, ensuring polling cannot accidentally run alongside a webhook.
+  /// 
+  /// The offset is persisted in telegramUpdateOffset so replays never occur across calls.
+  pollTelegramUpdates: () -> (Result_41);
+  /// Alias: postEvent (thin wrapper so frontend can call postEvent or createEvent).
+  postEvent: (organizerPhone: text, organizerName: text, eventName: text,
+   description: text, isPaid: bool, price: float64, locationAddress: 
+   text, startDate: text, endDate: text, ticketVenue: text) -> (Result_24);
+  postJob: (posterId: text, title: text, description: text, category: 
+   text, salaryMin: float64, salaryMax: float64, location: Location) ->
+   (Result_40);
+  postProperty: (posterId: text, listingType: PropertyListingType,
+   description: text, expectedPrice: float64, location: Location) ->
+   (Result_39);
+  /// Alias: postRecipe (thin wrapper so frontend can call postRecipe or createRecipe).
+  postRecipe: (ownerId: text, title: text, ingredients: vec RecipeIngredient,
+   steps: vec text, imageLink: text, videoLink: text, benefits: text, tips:
+   text) -> (Recipe);
+  postShuttleRoute: (routeName: text, serviceName: text, vehicleNumber: 
+   text, source: text, destination: text, stops: vec text, price: nat,
+   vehicleType: VehicleType, departureTime: text, driverId: text) ->
+   (ShuttleRoute);
+  postShuttleRouteWithStops: (routeName: text, serviceName: text,
+   vehicleNumber: text, source: text, destination: text, stopDetails:
+   vec ShuttleStop, pricePerKm: float64, baseFare: nat, vehicleType:
+   VehicleType, departureTime: text, driverId: text, operatorPhone: text) ->
+   (ShuttleRoute);
+  processPaySprintCallback: (body: text, _headers:
+   vec record {
+         text;
+         text;
+       }) -> (variant {
+                err: text;
+                ok: text;
+              });
+  /// Route an inbound Telegram webhook message through the shared chatbot engine.
+  /// Returns a Telegram-compatible JSON response string (with inline_keyboard for
+  /// quick replies) that the frontend/webhook handler can relay back to the user.
+  processTelegramWebhook: (chatId: text, userId: text, messageText: text,
+   messageType: text) -> (text);
+  processWebhookEvent: (body: text) -> (Result_31);
+  progressComplaint: (id: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok;
+    });
+  rateManufacturerProduct: (manufacturerId: text, productId: text, ratedBy:
+   text, rating: nat, review: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: ManufacturerRating;
+    });
+  rateRecipe: (id: text, rating: float64) -> (opt Recipe);
+  /// Record that a user has a pending custom order (used by chatbot engine to track timestamps).
+  recordCustomOrderPending: (userId: text) -> ();
+  recordDistributorOrder: (distributorId: text, orderValue: float64) ->
+   (bool);
+  recordManufacturerEmployeeAttendance: (employeeId: text, checkIn: bool,
+   notes: text) -> (variant {
+                      err: text;
+                      ok;
+                    });
+  registerDeliveryPartner: (userId: text, phone: text, name: text,
+   vehicleType: VehicleType, serviceType: ServiceType, ratePerKm: float64,
+   aadhaarNo: text, rcBook: text, panNo: text) -> (Result_6);
+  registerDeliveryPartnerV2: (userId: text, phone: text, name: text,
+   vehicleType: VehicleType, serviceType: ServiceType, ratePerKm: float64,
+   aadhaarNo: text, rcBook: text, panNo: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: DeliveryPartner;
+    });
+  registerFreeRideSarthi: (phone: text, vehicleType: VehicleType, area:
+   text) -> (Result_33);
+  registerHealthcareProvider: (name: text, specialization: text,
+   consultationFee: float64, address: text, city: text, availability: 
+   text, phone: text) -> (HealthcareProvider);
+  registerManufacturer: (userId: text, businessName: text, customerCarePhone:
+   text, customerCareEmail: text, productCategories: vec text,
+   registeredCity: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: Manufacturer;
+    });
+  registerProfessionalService: (merchantPhone: text, serviceType: text,
+   specialization: text, pricePerHour: float64, address: text, city: 
+   text, availability: text, areaRates: vec record {
+                                              text;
+                                              float64;
+                                            }) -> (ProfessionalService);
+  registerTourOperator: (name: text, destinations: vec text, tourTypes:
+   vec text, duration: text, pricePerPerson: float64, maxPassengers: 
+   nat, phone: text, city: text) -> (TourOperator);
+  rejectCourse: (courseId: text, adminNotes: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  rejectExpiryReturn: (id: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok;
+    });
+  rejectFlowFixes: (runId: text, flowId: text) -> (bool);
+  rejectLeave: (id: text, approverNote: text) ->
+   (variant {
+      err: text;
+      ok: LeaveRequest;
+    });
+  rejectPromotion: (id: text, reason: text) -> (Result_29);
+  /// Remove an Internet Identity principal from the admin whitelist.
+  /// Only existing admins can call this. Cannot remove yourself.
+  removeAdminPrincipal: (p: principal) -> (Result_28);
+  removeAreaRate: (serviceId: text, merchantPhone: text, area: text) ->
+   (Result_16);
+  removeCommunityMember: (phone: text) -> (bool);
+  removeLessonLike: (userId: text, lessonId: text) -> (bool);
+  /// Remove a user assignment from a merchant's subscription.
+  removeUserFromSubscription: (merchantId: text, userPhone: text) ->
+   (Result_10);
+  /// Place a donation request.
+  requestDonation: (category: text, description: text, quantityNeeded: 
+   text, location: text, requesterPhone: text, requesterName: text, source:
+   text) -> (Result_30);
+  requestJobContact: (jobId: text, requesterId: text, requesterName: 
+   text, requesterPhone: text) -> (Result_35);
+  requestPropertyContact: (propertyId: text, requesterId: text,
+   requesterName: text, requesterPhone: text) -> (Result_35);
+  resetChatConversation: (phoneNumber: text) -> (Result_35);
+  /// Reset monthly order/inquiry counts for a user if a new calendar month has started.
+  resetMonthlyCountsIfNeeded: (userId: text) -> ();
+  /// Reset the Telegram polling offset to 0 (re-processes all pending updates from Telegram).
+  resetTelegramPollOffset: () -> ();
+  resolveComplaint: (id: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok;
+    });
+  respondToFamilyConnectRequest: (requestId: text, accept: bool) ->
+   (Result_13);
+  respondToLead: (leadId: text, responseText: text) -> (Result_38);
+  revokeApiKey: (keyId: text) -> (Result_35);
+  runFlowDiagnostics: (flowIds: vec text, triggeredBy: text) ->
+   (record {runId: text;});
+  saveAdvertisement: (ad: Advertisement) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  saveChatSimulatorSession: (session: ChatSimulatorSession) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  saveCityControl: (cityId: text, moduleName: text, enabled: bool) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  saveFlow: (flow: FlowDefinition) -> (Result_37);
+  saveFlowAgentDiagnostic: (diag: FlowAgentDiagnostic) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  saveFlowDefinition: (name: text, environment: text, flowJson: text) ->
+   (text);
+  saveFlowSession: (session: FlowSession) -> (variant {
+                                                err: text;
+                                                ok: text;
+                                              });
+  saveFlowsBatch: (flows: vec FlowDefinition) -> (Result_35);
+  saveMarketSearchRecord: (scriptName: text, country: text, results:
+   vec MarketSearchResult, recommendations: vec TradeRecommendation) ->
+   (MarketSearchQuery);
+  saveMatchScores: (scores: vec MatchScore) -> ();
+  savePaySprintCredential: (cred: PaySprintCredential) ->
+   (variant {
+      err: text;
+      ok: PaySprintCredential;
+    });
+  saveScriptExecutionResult: (result: ScriptExecutionResult) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  saveScriptRunResult: (input: ScriptRunResultInput) -> (Result_36);
+  saveScriptRunResultWithData: (input: ScriptRunResultInput) -> (Result_36);
+  saveWord: (userId: text, word: text, language: text, translation: text,
+   ancientTranslation: text, ipa: text, examples: vec text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  searchBuses: (source: text, destination: text, date: text, credId: 
+   text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  searchBusesPub: (source: text, destination: text, date: text, credId:
+   text) -> (variant {
+               err: text;
+               ok: text;
+             });
+  searchCommunityMembers: (searchTerm: text) -> (vec CommunityMember) query;
+  searchCourses: (keyword: text, languagePair: text) ->
+   (vec LanguageCourse) query;
+  /// Search donations with optional category and location filters.
+  searchDonations: (categoryFilter: opt text, locationFilter: opt text) ->
+   (vec DonationItem) query;
+  searchEvents: (keyword: text) -> (vec Event);
+  searchFlights: (source: text, destination: text, date: text, passengers:
+   nat, cabinClass: text, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  searchFlightsPub: (source: text, destination: text, date: text, passengers:
+   nat, cabinClass: text, credId: text) -> (variant {
+                                              err: text;
+                                              ok: text;
+                                            });
+  searchHealthcareProviders: (specialization: opt text, city: opt text) ->
+   (vec HealthcareProvider) query;
+  searchJobs: (keyword: opt text, category: opt text, location: opt Location,
+   radiusKm: float64) -> (vec Job) query;
+  searchJobsByCity: (city: text, willingToRelocate: bool, relocateCities:
+   vec text) -> (vec Job) query;
+  /// Public 2-arg searchMarket matching the frontend API (scriptName, country).
+  /// Calls doSearchMarket from the mixin, passing the canister's transform function.
+  searchMarket: (scriptName: text, country: text) ->
+   (variant {
+      err: text;
+      ok: MarketSearchQuery;
+    });
+  searchOndcProducts: (keyword: text, location: text) ->
+   (vec record {
+          merchant: Merchant;
+          product: Product;
+        }) query;
+  /// Search ONDC products with lat/lng coordinates (for future live ONDC API integration).
+  searchOndcProductsWithLocation: (keyword: text, latitude: float64,
+   longitude: float64) ->
+   (vec
+     record {
+       category: text;
+       id: text;
+       isOndc: bool;
+       merchantId: text;
+       merchantName: text;
+       price: float64;
+       title: text;
+     }) query;
+  searchProductsByKeyword: (keyword: text) -> (vec Product);
+  searchProfessionalServices: (serviceType: opt text, city: opt text,
+   customerArea: opt text) ->
+   (vec record {
+          ProfessionalService;
+          float64;
+        }) query;
+  searchProfessionalServicesByArea: (category: text, city: text, area:
+   text) -> (vec record {
+                   ProfessionalService;
+                   float64;
+                 }) query;
+  searchProperties: (listingType: opt PropertyListingType, location:
+   opt Location, radiusKm: float64, maxPrice: opt float64) ->
+   (vec Property) query;
+  searchRecipes: (keyword: text) -> (vec Recipe) query;
+  searchShuttles: (source: text, dest: text) -> (vec ShuttleRoute) query;
+  searchTourOperators: (destination: opt text, city: opt text) ->
+   (vec TourOperator) query;
+  searchTrains: (source: text, destination: text, date: text, classType:
+   text, credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  searchTrainsPub: (source: text, destination: text, date: text, classType:
+   text, credId: text) -> (variant {
+                             err: text;
+                             ok: text;
+                           });
+  searchWordDefinition: (word: text, language: text) ->
+   (opt WordDefinition) query;
+  seedElectionResults: () -> (nat);
+  seedSampleData: () ->
+   (record {
+      adhocJobs: nat;
+      cities: nat;
+      communityMembers: nat;
+      customers: nat;
+      deliveryPartners: nat;
+      distributorNetworks: nat;
+      donations: nat;
+      events: nat;
+      familyGroups: nat;
+      healthcareProviders: nat;
+      jobs: nat;
+      languageCourses: nat;
+      languageEnrollments: nat;
+      languageLessons: nat;
+      languageWordDefs: nat;
+      lendingItems: nat;
+      manufacturerProducts: nat;
+      manufacturers: nat;
+      merchants: nat;
+      oldItems: nat;
+      products: nat;
+      professionalServices: nat;
+      promotions: nat;
+      properties: nat;
+      rateCards: nat;
+      recipes: nat;
+      restockOrders: nat;
+      shuttleRoutes: nat;
+      subscriptionPlans: nat;
+      supportTickets: nat;
+      tourOperators: nat;
+    });
+  /// Same as seedSampleData() but with optional reset. If resetFirst=true, ALL sample-tagged
+  /// records (IDs starting with "sample-") are cleared first so the call is a true re-seed.
+  seedSampleDataFull: (resetFirst: bool) ->
+   (record {
+      created:
+       record {
+         adhocJobs: nat;
+         cities: nat;
+         communityMembers: nat;
+         customers: nat;
+         deliveryPartners: nat;
+         distributorNetworks: nat;
+         donations: nat;
+         events: nat;
+         familyGroups: nat;
+         healthcareProviders: nat;
+         jobs: nat;
+         languageCourses: nat;
+         languageEnrollments: nat;
+         languageLessons: nat;
+         languageWordDefs: nat;
+         lendingItems: nat;
+         manufacturerProducts: nat;
+         manufacturers: nat;
+         merchants: nat;
+         oldItems: nat;
+         products: nat;
+         professionalServices: nat;
+         promotions: nat;
+         properties: nat;
+         rateCards: nat;
+         recipes: nat;
+         restockOrders: nat;
+         shuttleRoutes: nat;
+         subscriptionPlans: nat;
+         supportTickets: nat;
+         tourOperators: nat;
+       };
+      reset: bool;
+    });
+  seedWordDefinitions: (defs: vec WordDefinition) -> ();
+  sendFamilyConnectRequest: (fromPhone: text, toPhone: text, relationship:
+   text, groupName: text, address: text) -> (Result_35);
+  sendMerchantPromotion: (merchantName: text, messageText: text) ->
+   (record {
+      recipients: vec text;
+      sent: nat;
+      skipped: nat;
+    });
+  /// Send an alert message to the configured Telegram alert chat.
+  sendTelegramAlert: ("text": text) -> ();
+  setAdminBaseUrl: (baseUrl: text) -> (bool);
+  setAdminUPI: (upiId: text, upiName: text) -> (Result_13);
+  setAdminUPIProfile: (upiId: text, name: text) -> (bool);
+  setAdminWebhookUrl: (webhookUrl: text) -> (bool);
+  setAgentSchedule: (schedule: FlowAgentSchedule) -> (bool);
+  setAppVersionActive: (id: text, isActive: bool) -> (Result_34);
+  setAreaRate: (serviceId: text, merchantPhone: text, area: text, rate:
+   float64) -> (Result_16);
+  setBoostedOrderCount: (merchantId: text, count: nat) -> (Result_4);
+  setCityModuleEnabled: (cityId: text, moduleName: text, enabled: bool) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  setCustomerBudget: (userId: text, monthlyBudget: float64) ->
+   (CustomerBudget);
+  setCustomerRating: (orderId: text, rating: CustomerRating) -> (Result_18);
+  /// Alias for admin panel.
+  setDeliveryPartnerOnlineStatus: (phone: text, isOnline: bool) -> (Result_6);
+  setEmployeeActive: (id: text, isActive: bool) -> (Result_25);
+  /// Set online/offline status for a free ride sharer.
+  setFreeRideSharerOnlineStatus: (phone: text, isOnline: bool) -> (Result_33);
+  setManualOrderAmount: (orderId: text, amount: float64, deliveryCharges:
+   float64) -> (Result_18);
+  setMerchantEmployeeActive: (id: text, isActive: bool) -> (bool);
+  setMerchantOndcEnrollment: (merchantId: text, enrolled: bool) -> (Result_4);
+  /// Set merchant online/offline status (used by merchant to appear/disappear in search).
+  setMerchantOnlineStatus: (merchantId: text, isOnline: bool) -> (Result_4);
+  setModuleEnabled: (moduleName: text, enabled: bool) -> (bool);
+  setModuleEnabledForRole: (moduleName: text, role: text, enabled: bool) ->
+   (bool);
+  setPassdigit: (phone: text, passdigit: text) -> (Result_8);
+  setPaySprintCredentialActive: (id: text, isActive: bool) ->
+   (variant {
+      err: text;
+      ok: PaySprintCredential;
+    });
+  setPipelineEnvironment: (env: text) -> ();
+  setProductLocationPrice: (productId: text, cityId: text, branchId: 
+   text, price: float64) -> (Result_32);
+  setPromotionalOptOut: (customerPhone: text, optOut: bool) -> (Result_13);
+  setSessionLanguage: (phone: text, language: text) -> ();
+  simulateChatMessage: (phoneNumber: text, message: text, messageType:
+   text) -> (Result_31);
+  startDeliveryShift: (partnerId: text) -> (DeliveryPartnerShift);
+  stopAgentRun: (runId: text) -> (bool);
+  submitManufacturerLeave: (employeeId: text, leaveType: text, fromDate:
+   text, toDate: text, reason: text) -> (variant {
+                                           err: text;
+                                           ok;
+                                         });
+  submitOndcEnrollment: (userId: text, role: UserRole, businessName: 
+   text, gstin: opt text, fssaiLicense: opt text, bankAccount: text,
+   ifscCode: text) -> (Result_19);
+  syncMenuOptionsFromRegistry: () ->
+   (record {
+      added: nat;
+      byRole: vec record {
+                    text;
+                    nat;
+                  };
+      total: nat;
+    });
+  /// Verify the bot token via /getMe only — does NOT require alertChatId.
+  /// Use this when alertChatId is not yet configured.
+  testBotToken: () -> (Result_30);
+  testPaySprintConnection: (credId: text, transform:
+   func (TransformationInput) -> (TransformationOutput) query) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  testPaySprintConnectionPub: (credId: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  /// Send a test SMS to verify provider credentials.
+  testSMSConnection: (toPhone: text) -> (Result_30);
+  /// Send a test message to verify the Telegram bot token and alert chat ID.
+  testTelegramConnection: () -> (Result_30);
+  /// Full Telegram diagnostic: calls /getMe (extracts bot name) AND /sendMessage to alertChatId.
+  /// Uses the exact same sendMessageWithLog code path as the real webhook handler.
+  /// If this succeeds, real bot messages will also succeed.
+  testTelegramOutcall: () -> (record {
+                                body: text;
+                                error: text;
+                                status: text;
+                              });
+  /// Send a test message to the given Telegram chatId using the EXACT same code path
+  /// as the real webhook handler. Returns a plain-text result with success or error details.
+  testTelegramSendMessage: (chatId: text) -> (text);
+  toggleRateCardActive: (id: text) -> (Result_15);
+  trackApiUsage: (keyId: text, endpoint: text, statusCode: nat) -> ();
+  trackEntityInterest: (entityType: text, entityId: text, phone: text) -> ();
+  trackEntityView: (entityType: text, entityId: text, phone: text) -> ();
+  trackPromotionReach: (id: text) -> (Result_29);
+  trackPromotionView: (id: text) -> (Result_29);
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+  triggerLendingReminder: (itemId: text) -> (bool);
+  triggerMenuSeed: () -> (nat);
+  unmarkEmployerFavorite: (userId: text, employerPhone: text, city: text) ->
+   (Result_28);
+  /// Update all fields of an adhoc job (title, category, price, description, location, phone).
+  updateAdhocJob: (jobId: text, title: text, category: text, pricePerDay:
+   float64, educationLevel: text, description: text, phone: text, isOpen:
+   bool) -> (bool);
+  /// Close/reopen an adhoc job.
+  updateAdhocJobStatus: (jobId: text, isOpen: bool) -> (bool);
+  /// Admin: update open/close status of an adhoc job (alias with consistent naming).
+  updateAdhocJobStatusAdmin: (jobId: text, isOpenStr: text) -> (bool);
+  updateAdminUPISettings: (upiId: text, upiName: text) -> (Result_13);
+  updateAreaRates: (serviceId: text, areaRates:
+   vec record {
+         text;
+         float64;
+       }) -> (Result_16);
+  updateAssignmentRoute: (assignmentId: text, partnerId: text, route:
+   text) -> (variant {
+               err: text;
+               ok: text;
+             });
+  updateBillRecord: (billId: text, pendingPayment: bool, pendingNote:
+   text) -> (variant {
+               err: text;
+               ok: BillRecord;
+             });
+  updateBlog: (id: text, title: text, location: text, category: text,
+   content: text, status: text) -> (variant {
+                                      err: text;
+                                      ok: text;
+                                    });
+  updateBookingStatus: (bookingId: text, newStatus: TransportStatus,
+   actorPhone: text, note: text) -> (Result_27);
+  updateBrandingConfig: (brandName: text, logoUrl: text) -> (Result_26);
+  updateCity: (cityId: text, name: text, pincode: text) ->
+   (variant {
+      err: text;
+      ok: City;
+    });
+  updateCityEnabled: (cityId: text, enabled: bool) ->
+   (variant {
+      err: text;
+      ok: City;
+    });
+  updateCityPincode: (cityId: text, pincode: text) ->
+   (variant {
+      err: text;
+      ok: City;
+    });
+  updateCommunityFoodOrderStatus: (id: text, status: text) -> (bool);
+  updateCommunityParkingBookingStatus: (id: text, status: text) -> (bool);
+  updateCommunityRoomBookingStatus: (id: text, status: text) -> (bool);
+  updateCommunityWorkOrderStatus: (id: text, status: text) -> (bool);
+  updateDeliveryPartnerKYC: (dpId: text, aadhaarNo: text, rcBook: text,
+   panNo: text) -> (Result_6);
+  updateDeliveryPartnerOnlineStatus: (id: text, isOnline: bool, location:
+   opt Location) -> (Result_6);
+  /// Update a donation request's status.
+  updateDonationRequestStatus: (id: text, status: text) -> (Result_10);
+  /// Update a donation item's status.
+  updateDonationStatus: (id: text, status: text) -> (Result_10);
+  updateEmployee: (id: text, name: text, email: text, phone: text, role:
+   EmployeeRole, permissions: vec text) -> (Result_25);
+  updateEventStatus: (id: text, status: EventStatus) -> (Result_24);
+  updateFamilyInviteStatus: (id: text, status: FamilyInviteStatus) ->
+   (Result_22);
+  /// Save the FULL WhatsApp config — all fields persisted atomically.
+  /// This is the canonical save method used by the admin panel.
+  updateFullWhatsAppConfig: (cfg: FullWhatsAppConfig) -> (Result_7);
+  updateHealthcareAppointmentStatus: (appointmentId: text, status:
+   AppointmentStatus) -> (opt HealthcareAppointment);
+  updateHealthcareProvider: (id: text, name: text, specialization: text,
+   location: text, phone: text, availableDays: text, fee: nat) -> (Result_23);
+  updateInventoryStock: (itemId: text, transactionType:
+   InventoryTransactionType, quantity: int, referenceId: opt text, notes:
+   text) -> (variant {
+               err: text;
+               ok;
+             });
+  updateLendingItem: (id: text, item: LendingItem) -> (bool);
+  updateLendingStatus: (id: text, status: text) -> (bool);
+  updateManufacturerEmployee: (id: text, newName: opt text, newRole:
+   opt ManufacturerEmployeeRole, isActive: opt bool) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  updateMarketplaceItem: (id: text, title: text, price: float64, isActive:
+   bool) -> (bool);
+  /// Admin: update a marketplace item.
+  updateMarketplaceItemAdmin: (id: text, title: text, price: float64,
+   isActive: bool) -> (bool);
+  /// Update matrimony eligibility and profile for a family member.
+  updateMatrimonyEligibility: (memberId: text, eligible: bool, caste:
+   opt text, occupation: opt text, education: opt text, locationPreference:
+   opt text, bloodGroup: opt text, age: opt nat) -> (Result_22);
+  updateMenuOption: (id: text, optionLabel: text, sortOrder: nat, isActive:
+   bool) -> (Result_21);
+  updateMerchantEmployee: (id: text, name: text, phone: text, role: text) ->
+   (variant {
+      err: text;
+      ok: MerchantEmployee;
+    });
+  updateMerchantKYCDocuments: (merchantId: text, panNo: text, panUrl: 
+   text, aadhaarNo: text, aadhaarUrl: text, gstNo: text, gstUrl: text,
+   outletPhotoUrl: text, chequeUrl: text, qrUrl: text) -> (Result_4);
+  updateMerchantStatus: (id: text, isActive: bool, isVerified: bool) ->
+   (Result_4);
+  /// Update the status and remarks on a moderation item (approve/reject/clear).
+  updateModerationItemStatus: (contentId: text, contentType: text, status:
+   text, notes: text) -> (bool);
+  /// Admin: update status of a moderation item by composite key (entityType:entityId).
+  updateModerationItemStatusAdmin: (id: text, status: text) -> (bool);
+  updateModerationStatus: (entityType: text, entityId: text, status: 
+   text, remark: text) -> (Result_20);
+  /// Update moderation status by entityType+entityId (frontend-compatible wrapper).
+  updateModerationStatusById: (entityType: text, entityId: text, status:
+   text) -> (Result_20);
+  updateOndcEnrollmentStatus: (id: text, status: VerificationStatus, notes:
+   opt text) -> (Result_19);
+  updateOrderStatus: (id: text, status: OrderStatus, actorPhone: text, note:
+   opt text, rejectionReason: opt text) -> (Result_18);
+  updatePOSOrderStatus: (orderId: text, status: text, deliveryPartnerId:
+   opt text) -> (variant {
+                   err: text;
+                   ok: text;
+                 });
+  updatePlan: (id: text, name: text, planType: SubscriptionPlanType,
+   targetRole: UserRole, priceFlat: float64, pricePercentage: float64,
+   orderLimit: nat, inquiryLimit: nat, durationDays: nat, features: vec text,
+   isActive: bool, categoryScope: opt text, flatFee: opt float64,
+   percentageFee: opt float64, minTransactionAmount: opt float64,
+   maxTransactionAmount: opt float64, applicableRoles: vec UserRole) ->
+   (Result_17);
+  updateProfessionalService: (id: text, name: text, serviceType: text,
+   location: text, phone: text, experience: text, hourlyRate: nat,
+   description: text) -> (Result_16);
+  updateRateCard: (id: text, baseRate: float64, perKmRate: float64,
+   surgeMultiplier: float64) -> (Result_15);
+  updateRecipe: (id: text, title: opt text, ingredients:
+   opt vec RecipeIngredient, steps: opt vec text, imageLink: opt text,
+   videoLink: opt text, benefits: opt text, tips: opt text) -> (opt Recipe);
+  /// Admin: update a recipe by id.
+  updateRecipeAdmin: (id: text, title: text, benefits: text, tips: text) ->
+   (bool);
+  /// Update all fields of a restock order.
+  updateRestockOrder: (orderId: text, supplierName: text, itemName: text,
+   quantity: nat, notes: text, status: RestockStatus) -> (Result_14);
+  /// Admin: update restock order fields (supplier name, item name, quantity, notes).
+  /// Pass empty string for fields you do not want to update.
+  updateRestockOrderAdmin: (orderId: text, supplierName: text, itemName:
+   text, quantity: nat, notes: text) -> (bool);
+  /// Update the status of a restock order.
+  updateRestockOrderStatus: (orderId: text, status: RestockStatus) ->
+   (Result_13);
+  /// Save SMS provider configuration.
+  updateSMSConfig: (config: SMSConfig) -> (Result_10);
+  updateServiceBookingStatus: (bookingId: text, status:
+   ServiceBookingStatus) -> (opt ServiceBooking);
+  updateShuttleRouteStops: (routeId: text, stops: vec EnhancedShuttleStop) ->
+   (Result_12);
+  /// Update the status of a supplier order.
+  updateSupplierOrderStatus: (orderId: text, newStatus:
+   SupplierOrderStatus) -> (opt SupplierOrder);
+  updateSupportTicket: (ticketId: text, status: SupportTicketStatus,
+   adminNote: text) -> (Result_11);
+  /// Update support ticket status by string status label (used by Data Explorer).
+  updateSupportTicketStatus: (ticketId: text, statusStr: text, adminNote:
+   text) -> (Result_11);
+  /// Save Telegram bot configuration (bot token, webhook URL, alert chat ID, username).
+  /// When a webhook URL is set, pollingEnabled is forced to false so the two modes
+  /// cannot run simultaneously (Telegram would return 409 Conflict).
+  updateTelegramConfig: (config: TelegramConfig) -> (Result_10);
+  updateTourBookingStatus: (bookingId: text, status: TourBookingStatus) ->
+   (opt TourBooking);
+  updateTourOperator: (id: text, name: text, destination: text, tourType:
+   text, duration: text, price: nat, phone: text, description: text) ->
+   (Result_9);
+  updateUserLocation: (id: text, location: Location) -> (Result_8);
+  /// Update only the webhook callback URL (editable separately).
+  updateWebhookUrl: (webhookUrl: text) -> (Result_7);
+  /// Convenience alias — saves base fields only (businessAccountId / metaAppId default to "").
+  updateWhatsAppConfig: (newConfig: WhatsAppConfig) -> (Result_7);
+  /// Save or update a PaySprint credential (public update wrapper).
+  /// serviceType: "bus" | "train" | "flight" | "recharge" | "billPayment" | "fastTag" | "lpg" | "municipality" | "insurance"
+  /// environment: "uat" | "live"
+  upsertPaySprintCredential: (serviceType: text, environment: text,
+   partnerId: text, partnerKey: text, authorisedKey: text, baseUrl: text,
+   credId: text) -> (variant {
+                       err: text;
+                       ok: PaySprintCredential;
+                     });
+  validateMerchantForDistributor: (phone: text) ->
+   (variant {
+      err: record {errorDetail: text;};
+      ok: text;
+    });
+  validateOrderQRPayment: (orderId: text, qrToken: text) -> (Result_3);
+  verifyDeliveryPartner: (dpId: text, isApproved: bool, reason: text) ->
+   (Result_6);
+  verifyDriverOTP: (bookingId: text, otp: text) -> (Result_1);
+  verifyEmployeeLogin: (email: text, passwordHash: text) -> (Result_5);
+  verifyMerchant: (merchantId: text, isApproved: bool, reason: text) ->
+   (Result_4);
+  verifyOTP: (phone: text, otp: text) -> (Result_3);
+  verifyPOSOTP: (phone: text, otp: text, role:
+   variant {
+     deliveryPartner;
+     merchant;
+   }) -> (Result_2);
+  verifyPassengerOTP: (bookingId: text, otp: text) -> (Result_1);
+  verifyShuttleOTP: (bookingId: text, otp: text) -> (Result);
+  verifyWebhookToken: (token: text) -> (bool);
+  /// Meta webhook verification: echo ?challenge back to Meta when mode and token match.
+  /// Returns null if verification fails (Meta will retry with a different request).
+  verifyWhatsAppWebhook: (mode: text, token: text, challenge: text) ->
+   (opt text) query;
+}

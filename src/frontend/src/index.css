@@ -1,0 +1,464 @@
+/* Google Fonts — must come before @tailwind */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "General Sans";
+    src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "General Sans";
+    src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+    font-weight: 600;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "JetBrains Mono";
+    src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  :root {
+    --font-display: "General Sans", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --radius: 0.625rem;
+
+    /* Light mode — hex/hsl values, browser-compatible */
+    --background: #f8fafc;
+    --foreground: #1e293b;
+    --card: #ffffff;
+    --card-foreground: #1e293b;
+    --popover: #ffffff;
+    --popover-foreground: #1e293b;
+
+    --primary: #16a34a;
+    --primary-foreground: #ffffff;
+
+    --secondary: #f1f5f9;
+    --secondary-foreground: #334155;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+
+    --accent: #16a34a;
+    --accent-foreground: #ffffff;
+
+    --destructive: #dc2626;
+    --destructive-foreground: #ffffff;
+
+    --warning: #f59e0b;
+    --warning-foreground: #ffffff;
+    --success: #10b981;
+    --success-foreground: #ffffff;
+
+    --border: #e2e8f0;
+    --input: #f8fafc;
+    --ring: #16a34a;
+
+    --chart-1: #3b82f6;
+    --chart-2: #10b981;
+    --chart-3: #f59e0b;
+    --chart-4: #8b5cf6;
+    --chart-5: #ef4444;
+
+    /* Role-specific colors — used for status badges and header accents */
+    --role-merchant: #f59e0b;
+    --role-merchant-fg: #ffffff;
+    --role-delivery: #06b6d4;
+    --role-delivery-fg: #ffffff;
+    --role-customer: #a855f7;
+    --role-customer-fg: #ffffff;
+    --role-healthcare: #ec4899;
+    --role-healthcare-fg: #ffffff;
+    --role-travel: #3b82f6;
+    --role-travel-fg: #ffffff;
+
+    /* Sidebar — always dark navy panel regardless of page mode */
+    --sidebar: #1a1f2e;
+    --sidebar-foreground: #e2e8f0;
+    --sidebar-primary: #22c55e;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #2d3748;
+    --sidebar-accent-foreground: #f1f5f9;
+    --sidebar-border: #2d3748;
+    --sidebar-ring: #22c55e;
+  }
+
+  .dark {
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --card: #1e293b;
+    --card-foreground: #f1f5f9;
+    --popover: #1e293b;
+    --popover-foreground: #f1f5f9;
+
+    --primary: #22c55e;
+    --primary-foreground: #0f172a;
+
+    --secondary: #1e293b;
+    --secondary-foreground: #cbd5e1;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+
+    --accent: #22c55e;
+    --accent-foreground: #0f172a;
+
+    --destructive: #ef4444;
+    --destructive-foreground: #0f172a;
+
+    --warning: #fbbf24;
+    --warning-foreground: #0f172a;
+    --success: #34d399;
+    --success-foreground: #0f172a;
+
+    --border: #334155;
+    --input: #1e293b;
+    --ring: #22c55e;
+
+    --chart-1: #60a5fa;
+    --chart-2: #34d399;
+    --chart-3: #fbbf24;
+    --chart-4: #a78bfa;
+    --chart-5: #f87171;
+
+    /* Role-specific colors — dark mode */
+    --role-merchant: #fbbf24;
+    --role-merchant-fg: #0f172a;
+    --role-delivery: #22d3ee;
+    --role-delivery-fg: #0f172a;
+    --role-customer: #d946ef;
+    --role-customer-fg: #ffffff;
+    --role-healthcare: #f472b6;
+    --role-healthcare-fg: #ffffff;
+    --role-travel: #60a5fa;
+    --role-travel-fg: #ffffff;
+
+    /* Sidebar — dark mode: slightly deeper navy */
+    --sidebar: #151b2b;
+    --sidebar-foreground: #e2e8f0;
+    --sidebar-primary: #22c55e;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #1e2a3d;
+    --sidebar-accent-foreground: #f1f5f9;
+    --sidebar-border: #253047;
+    --sidebar-ring: #22c55e;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .chat-bubble-in {
+    background-color: rgba(241, 245, 249, 0.3);
+    @apply text-foreground rounded-xl px-4 py-2 max-w-xs;
+  }
+
+  .chat-bubble-out {
+    @apply bg-primary text-primary-foreground rounded-xl px-4 py-2 max-w-xs;
+  }
+
+  .sidebar-nav-item {
+    @apply px-4 py-2 rounded-md text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-smooth;
+  }
+
+  .data-table {
+    @apply w-full text-sm border-collapse;
+  }
+
+  .shadow-card {
+    @apply shadow-[0_2px_4px_rgba(0,0,0,0.08)];
+  }
+
+  .shadow-elevated {
+    @apply shadow-[0_8px_16px_rgba(0,0,0,0.12)];
+  }
+
+  .shadow-subtle {
+    @apply shadow-[0_1px_3px_rgba(0,0,0,0.06)];
+  }
+
+  /* POS-specific utilities */
+  .pos-header {
+    @apply bg-card border-b border-border px-6 py-4 flex items-center justify-between;
+  }
+
+  .pos-order-card {
+    @apply bg-card border border-border rounded-lg p-4 hover:shadow-card transition-smooth cursor-pointer;
+  }
+
+  .pos-order-card-pending {
+    @apply bg-card border-l-4 border-l-warning;
+  }
+
+  .pos-order-card-confirmed {
+    @apply bg-card border-l-4 border-l-success;
+  }
+
+  .pos-qr-container {
+    @apply fixed bottom-4 right-4 bg-card border border-border rounded-lg p-6 shadow-elevated z-50;
+  }
+
+  .pos-timer {
+    @apply font-mono text-xl font-semibold tabular-nums;
+  }
+
+  .pos-timer-critical {
+    @apply text-destructive animate-qr-pulse;
+  }
+
+  /* Role-specific dashboard headers */
+  .role-header-merchant {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--role-merchant) 10%, transparent),
+      color-mix(in srgb, var(--role-merchant) 5%, transparent)
+    );
+    @apply border-b border-border;
+  }
+
+  .role-header-delivery {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--role-delivery) 10%, transparent),
+      color-mix(in srgb, var(--role-delivery) 5%, transparent)
+    );
+    @apply border-b border-border;
+  }
+
+  .role-header-customer {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--role-customer) 10%, transparent),
+      color-mix(in srgb, var(--role-customer) 5%, transparent)
+    );
+    @apply border-b border-border;
+  }
+
+  /* Status badges */
+  .badge-active {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
+    background-color: color-mix(in srgb, var(--success) 20%, transparent);
+    color: var(--success);
+  }
+
+  .badge-inactive {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
+    background-color: color-mix(in srgb, var(--muted) 30%, transparent);
+    color: var(--muted-foreground);
+  }
+
+  .badge-pending {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
+    background-color: color-mix(in srgb, var(--warning) 20%, transparent);
+    color: var(--warning);
+  }
+
+  /* Subscription lock indicator */
+  .subscription-lock {
+    @apply inline-flex items-center justify-center w-6 h-6 rounded-full;
+    background-color: color-mix(in srgb, var(--destructive) 15%, transparent);
+    color: var(--destructive);
+  }
+
+  .subscription-unlocked {
+    @apply inline-flex items-center justify-center w-6 h-6 rounded-full;
+    background-color: color-mix(in srgb, var(--success) 15%, transparent);
+    color: var(--success);
+  }
+
+  /* Stat card — consistent across dashboards */
+  .stat-card {
+    @apply bg-card border border-border rounded-lg p-4;
+  }
+
+  .stat-card-highlight {
+    @apply border-l-4;
+  }
+
+  .stat-card-merchant {
+    @apply stat-card stat-card-highlight;
+    border-left-color: var(--role-merchant);
+  }
+
+  .stat-card-delivery {
+    @apply stat-card stat-card-highlight;
+    border-left-color: var(--role-delivery);
+  }
+
+  .stat-card-customer {
+    @apply stat-card stat-card-highlight;
+    border-left-color: var(--role-customer);
+  }
+
+  /* Booking card for service types */
+  .booking-card {
+    @apply bg-card border border-border rounded-lg p-4 cursor-pointer transition-smooth hover:shadow-card;
+  }
+
+  .booking-card-healthcare {
+    @apply booking-card;
+    border-left: 4px solid var(--role-healthcare);
+  }
+
+  .booking-card-travel {
+    @apply booking-card;
+    border-left: 4px solid var(--role-travel);
+  }
+
+  /* Dashboard grid layout */
+  .dashboard-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .budget-warning {
+    @apply sticky top-0 z-40 border-b-2 border-warning px-4 py-2 text-foreground text-sm font-semibold flex items-center gap-2;
+    background-color: color-mix(in srgb, var(--warning) 10%, transparent);
+  }
+
+  .branch-switcher {
+    @apply inline-flex items-center gap-2 px-3 py-2 bg-muted rounded-md text-foreground transition-smooth;
+    &:hover {
+      filter: brightness(0.95);
+    }
+  }
+
+  .earnings-card {
+    @apply border rounded-lg p-4;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--success) 10%, transparent),
+      color-mix(in srgb, var(--success) 5%, transparent)
+    );
+    border-color: color-mix(in srgb, var(--success) 20%, transparent);
+  }
+
+  /* ─── Global Scrollbar Styles ─────────────────────────────────────────────── */
+  /* Firefox */
+  .overflow-y-auto,
+  .overflow-y-scroll,
+  .overflow-auto,
+  .overflow-scroll,
+  [class*="overflow-y-auto"],
+  [data-radix-scroll-area-viewport] {
+    scrollbar-width: thin;
+    scrollbar-color: #64748b #1e293b;
+  }
+
+  /* WebKit / Chromium / Safari */
+  .overflow-y-auto::-webkit-scrollbar,
+  .overflow-y-scroll::-webkit-scrollbar,
+  .overflow-auto::-webkit-scrollbar,
+  .overflow-scroll::-webkit-scrollbar,
+  [data-radix-scroll-area-viewport]::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .overflow-y-auto::-webkit-scrollbar-track,
+  .overflow-y-scroll::-webkit-scrollbar-track,
+  .overflow-auto::-webkit-scrollbar-track,
+  [data-radix-scroll-area-viewport]::-webkit-scrollbar-track {
+    background: #1e293b;
+    border-radius: 3px;
+  }
+  .overflow-y-auto::-webkit-scrollbar-thumb,
+  .overflow-y-scroll::-webkit-scrollbar-thumb,
+  .overflow-auto::-webkit-scrollbar-thumb,
+  [data-radix-scroll-area-viewport]::-webkit-scrollbar-thumb {
+    background: #64748b;
+    border-radius: 3px;
+  }
+  .overflow-y-auto::-webkit-scrollbar-thumb:hover,
+  .overflow-y-scroll::-webkit-scrollbar-thumb:hover,
+  .overflow-auto::-webkit-scrollbar-thumb:hover,
+  [data-radix-scroll-area-viewport]::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  /* Chat simulator window — prevent shrinking, always scroll internally */
+  .chat-messages-container {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    /* Ensures the div doesn't grow the parent — only scrolls */
+  }
+
+  /* Flow designer canvas — overflow visible for connections that extend to borders */
+  .flow-canvas-wrapper {
+    @apply overflow-hidden relative;
+    height: 100%;
+  }
+
+  /* Data table horizontal scroll */
+  .data-table-wrapper {
+    @apply overflow-x-auto;
+    scrollbar-width: thin;
+    scrollbar-color: #64748b #1e293b;
+  }
+  .data-table-wrapper::-webkit-scrollbar {
+    height: 5px;
+  }
+  .data-table-wrapper::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+  .data-table-wrapper::-webkit-scrollbar-thumb {
+    background: #64748b;
+    border-radius: 3px;
+  }
+}
+
+.employee-role-card {
+  @apply bg-card border border-border rounded-lg p-4 cursor-pointer transition-smooth hover:shadow-card border-l-4;
+  border-left-color: var(--role-merchant);
+}
+
+.inventory-table-row {
+  @apply hover:bg-muted transition-smooth border-b border-border;
+}
+
+.inventory-level-low {
+  @apply text-destructive font-semibold;
+  background-color: hsl(var(--destructive) / 0.1);
+}
+
+.inventory-level-normal {
+  @apply text-success font-semibold;
+  background-color: hsl(var(--success) / 0.1);
+}
+
+.inventory-level-overstock {
+  @apply text-warning font-semibold;
+  background-color: hsl(var(--warning) / 0.1);
+}
+
+.accounts-entry-row {
+  @apply flex items-center justify-between px-4 py-3 border-b border-border hover:bg-muted transition-smooth;
+}
+
+.expense-badge {
+  @apply inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-semibold text-destructive;
+  background-color: hsl(var(--destructive) / 0.1);
+}
+
+.income-badge {
+  @apply inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-semibold text-success;
+  background-color: hsl(var(--success) / 0.1);
+}

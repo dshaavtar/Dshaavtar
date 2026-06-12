@@ -1,0 +1,3365 @@
+// Version: 1.0.0
+type AccountEntryType__1072705522 =
+  {#expense; #income; #payable; #receivable};
+type AccountEntry__1060349209 =
+  {
+    amount : Float;
+    category : Text;
+    createdAt : Int;
+    description : Text;
+    entryDate : Text;
+    entryType : AccountEntryType__1072705522;
+    id : Text;
+    manufacturerId : Text;
+    referenceId : ?Text
+  };
+type AdminConfig__945118116 =
+  {baseUrl : Text; upiId : Text; upiName : Text; webhookUrl : Text};
+type AdminUPIProfile__488088616 = {name : Text; upiId : Text};
+type Advertisement__507272643 =
+  {
+    active : Bool;
+    adId : Text;
+    cityId : ?Text;
+    createdAt : Int;
+    description : Text;
+    targetRole : Text;
+    title : Text
+  };
+type AgentDeployment__869174510 =
+  {
+    channelsSynced : [Text];
+    deployedAt : Int;
+    deployedBy : Text;
+    fixesApplied : [Text];
+    flowsDeployed : [Text];
+    id : Text;
+    rollbackSnapshot : Text
+  };
+type AgentEntitySummary__248653638 =
+  {customersCreated : Nat; merchantsCreated : Nat; ordersCreated : Nat};
+type ApiKey__810710607 =
+  {
+    createdAt : Int;
+    id : Text;
+    isActive : Bool;
+    key : Text;
+    keyLabel : Text;
+    lastUsed : ?Int;
+    ownerId : Text;
+    usageCount : Nat
+  };
+type ApiUsageLog__1036991430 =
+  {endpoint : Text; keyId : Text; statusCode : Nat; timestamp : Int};
+type AppVersion__168850273 =
+  {
+    brandName : Text;
+    buildNumber : Nat;
+    createdAt : Int;
+    id : Text;
+    isActive : Bool;
+    platform : Text;
+    releaseDate : Int;
+    version : Text
+  };
+type AppointmentStatus__353213499 =
+  {#cancelled; #completed; #confirmed; #pending};
+type AssignedPartner__398294482 =
+  {name : Text; partnerId : Text; phone : Text; route : Text};
+type BillRecord__26613313 =
+  {
+    amount : Float;
+    billType : BillType__582092890;
+    createdAt : Int;
+    dueDate : ?Text;
+    id : Text;
+    isPaid : Bool;
+    manufacturerId : Text;
+    notes : Text;
+    partyName : Text;
+    pendingNote : ?Text;
+    pendingPayment : ?Bool
+  };
+type BillType__582092890 =
+  {#other; #purchase_bill; #rent; #sale_bill; #utility};
+type BlogReview__933789230 =
+  {
+    blogId : Text;
+    comment : Text;
+    createdAt : Int;
+    id : Text;
+    rating : Nat;
+    reviewerId : Text;
+    reviewerName : Text
+  };
+type Blog__757754926 =
+  {
+    authorId : Text;
+    authorName : Text;
+    category : Text;
+    content : Text;
+    createdAt : Int;
+    id : Text;
+    location : Text;
+    status : Text;
+    title : Text;
+    updatedAt : Int
+  };
+type BookingStatus__392540968 =
+  {#cancelled; #confirmed; #failed; #initiated; #pending; #refunded};
+type BookingStatus__827484410 =
+  {#cancelled; #completed; #confirmed; #pending};
+type BotLogV0__768057765 =
+  {
+    direction : Text;
+    errorDetail : Text;
+    flowTriggered : Text;
+    id : Text;
+    messageText : Text;
+    platform : Text;
+    senderId : Text;
+    status : Text;
+    timestamp : Int
+  };
+type BotLog__835066236 =
+  {
+    direction : Text;
+    errorDetail : Text;
+    flowTriggered : Text;
+    id : Text;
+    messageText : Text;
+    platform : Text;
+    rawPayload : ?Text;
+    senderId : Text;
+    status : Text;
+    timestamp : Int
+  };
+type Branch__97614000 =
+  {
+    address : Text;
+    deliveryRadius : Float;
+    isActive : Bool;
+    location : Location__116427714
+  };
+type BrandingConfig__539430476 =
+  {
+    brandName : Text;
+    createdAt : Int;
+    logoUrl : Text;
+    updatedAt : Int;
+    welcomeMessage : Text
+  };
+type BulkPricingTier__516100169 =
+  {maxQty : Nat; minQty : Nat; pricePerUnit : Float};
+type BulkRate__561252204 = {minQuantity : Nat; rate : Float};
+type BusBooking__856819503 =
+  {
+    arrivalTime : Text;
+    blockKey : ?Text;
+    createdAt : Nat;
+    customerId : Text;
+    departureTime : Text;
+    destination : Text;
+    environment : PaySprintEnvironment__966869172;
+    fare : Float;
+    id : Text;
+    journeyDate : Text;
+    operatorName : Text;
+    passengerEmail : Text;
+    passengerName : Text;
+    passengerPhone : Text;
+    paymentStatus : PaymentStatus__991236914;
+    pnr : ?Text;
+    seatNumbers : [Text];
+    source : Text;
+    status : BookingStatus__392540968;
+    ticketRef : ?Text;
+    transactionId : ?Text;
+    updatedAt : Nat
+  };
+type BuyerType__481511934 = {#customer; #distributor; #merchant};
+type ChatSimulatorSession__383760906 =
+  {
+    botOutput : Text;
+    createdEntityIds : [Text];
+    flowId : Text;
+    role : Text;
+    sessionId : Text;
+    stepNumber : Nat;
+    timestamp : Int;
+    userInput : Text
+  };
+type CityControlV0__342107252 =
+  {cityId : Text; cityName : Text; moduleToggles : [(Text, Bool)]};
+type CityControl__265579590 =
+  {
+    cityId : Text;
+    cityName : Text;
+    moduleToggles : [(Text, Bool)];
+    pincode : Text
+  };
+type CityV0__1029331595 =
+  {createdAt : Int; id : Text; isEnabled : Bool; name : Text};
+type City__629220226 =
+  {createdAt : Int; id : Text; isEnabled : Bool; name : Text; pincode : Text};
+type CommunityFoodOrder__498212327 =
+  {
+    buyerPhone : Text;
+    communityId : Text;
+    cost : Float;
+    createdAt : Int;
+    cuisineType : Text;
+    deliveryTime : Text;
+    dietary : DietaryType__657197046;
+    id : Text;
+    mealDescription : Text;
+    quantity : Nat;
+    sellerPhone : Text;
+    status : BookingStatus__827484410;
+    updatedAt : Int
+  };
+type CommunityMember__1053577188 =
+  {
+    address : Text;
+    apartmentName : Text;
+    city : Text;
+    id : Text;
+    location : Text;
+    name : Text;
+    phone : Text;
+    registeredAt : Int;
+    roles : [Text];
+    updatedAt : Int
+  };
+type CommunityParkingBooking__296710143 =
+  {
+    communityId : Text;
+    cost : Float;
+    createdAt : Int;
+    endDate : Text;
+    id : Text;
+    memberPhone : Text;
+    parkingType : ParkingType__391701394;
+    startDate : Text;
+    status : BookingStatus__827484410;
+    updatedAt : Int
+  };
+type CommunityRoomBooking__463795535 =
+  {
+    bookingDate : Text;
+    communityId : Text;
+    createdAt : Int;
+    description : Text;
+    facilityType : FacilityType__530908920;
+    id : Text;
+    memberPhone : Text;
+    status : BookingStatus__827484410;
+    timeSlot : Text;
+    updatedAt : Int
+  };
+type CommunityWorkOrder__557674165 =
+  {
+    communityId : Text;
+    createdAt : Int;
+    description : Text;
+    id : Text;
+    memberPhone : Text;
+    scheduledDate : Text;
+    serviceType : WorkServiceType__614715890;
+    status : BookingStatus__827484410;
+    updatedAt : Int
+  };
+type ComplaintStatus__512624442 = {#in_progress; #open; #resolved};
+type ContactRequestStatus__920868923 = {#approved; #declined; #pending};
+type ContactRequest__720193189 =
+  {
+    requestedAt : Int;
+    requesterId : Text;
+    requesterName : Text;
+    requesterPhone : Text;
+    status : ContactRequestStatus__920868923
+  };
+type ConversationMessageV0__165011673 =
+  {
+    content : Text;
+    id : Text;
+    messageType : Text;
+    sender : MessageSender__103089590;
+    timestamp : Int
+  };
+type ConversationMessage__790258751 =
+  {
+    content : Text;
+    id : Text;
+    messageType : Text;
+    sender : MessageSender__103089590;
+    timestamp : Int
+  };
+type ConversationSessionV0__116783102 =
+  {
+    currentState : OldConversationState__816715054;
+    language : Text;
+    lastActivity : Int;
+    messages : [ConversationMessageV0__165011673];
+    phoneNumber : Text;
+    stateData : Text;
+    userId : ?Text
+  };
+type ConversationSession__753322983 =
+  {
+    currentState : ConversationState__739648198;
+    language : Text;
+    lastActivity : Int;
+    messages : [ConversationMessage__790258751];
+    phoneNumber : Text;
+    stateData : Text;
+    userId : ?Text
+  };
+type ConversationState__739648198 =
+  {
+    #approveJobContact;
+    #approvePropertyContact;
+    #authConfirmPassdigit;
+    #authOtpSent;
+    #authOtpVerify;
+    #authPassdigit;
+    #authPassdigitWrong;
+    #authSessionLocked;
+    #authSetNewPassdigit;
+    #busBookingMenu;
+    #custConfirmPassdigit;
+    #custRegLocation;
+    #custRegName;
+    #custRegOtp;
+    #custSetPassdigit;
+    #customOrderConfirm;
+    #customOrderItem;
+    #customOrderTracking;
+    #customerLocation;
+    #customerLocationConfirm;
+    #customerMenu;
+    #deliveryActions;
+    #donationsMenu;
+    #dpAccept;
+    #dpAvailableOrders;
+    #dpCollectPayment;
+    #dpComplete;
+    #dpConfirmPassdigit;
+    #dpDeliveryInstructions;
+    #dpMenu;
+    #dpOrderDetail;
+    #dpOrders;
+    #dpPaymentConfirmed;
+    #dpPickupConfirmed;
+    #dpPickupInstructions;
+    #dpRegAadhaar;
+    #dpRegName;
+    #dpRegPan;
+    #dpRegRc;
+    #dpRegType;
+    #dpRegVehicle;
+    #dpSetPassdigit;
+    #dpVendorSettlement;
+    #eventMenu;
+    #eventPostDates;
+    #eventPostDesc;
+    #eventPostLocation;
+    #eventPostName;
+    #eventPostPaid;
+    #eventPostPrice;
+    #eventPostTickets;
+    #eventPublished;
+    #eventSearch;
+    #familyAddAddress;
+    #familyAddBloodGroup;
+    #familyAddCaste;
+    #familyAddEducation;
+    #familyAddGender;
+    #familyAddLocationPref;
+    #familyAddMatrimonyEligible;
+    #familyAddOccupation;
+    #familyAddPhone;
+    #familyAddRelationName;
+    #familyAddRelationship;
+    #familyAddSelfName;
+    #familyAddSelfSurname;
+    #familyMenu;
+    #familySaved;
+    #flightBookingMenu;
+    #freeRideCompleted;
+    #freeRideIncoming;
+    #freeRideOTPEntry;
+    #freeRideResults;
+    #freeRideSearch;
+    #freeRideSearchAgain;
+    #freeRideSearchDest;
+    #healthcareBooking;
+    #healthcareMenu;
+    #healthcareSearch;
+    #inquiryResult;
+    #inquirySent;
+    #jobBrowse;
+    #jobContactApproval;
+    #jobContactRequest;
+    #jobMenu;
+    #jobMyListings;
+    #jobMyListings2;
+    #jobPost;
+    #jobPostCategory;
+    #jobPostConfirm;
+    #jobPostDesc;
+    #jobPostDesc2;
+    #jobPostLocation;
+    #jobPostLocation2;
+    #jobPostSalary;
+    #jobPostSalaryMax;
+    #jobPostSalaryMin;
+    #jobPostTitle;
+    #jobPostTitle2;
+    #jobPublished;
+    #jobRequestContact;
+    #jobSearch;
+    #jobSearchResults;
+    #mainMenu;
+    #merchantAccept;
+    #merchantActions;
+    #merchantAddProductBulk;
+    #merchantAddProductCondition;
+    #merchantAddProductConfirm;
+    #merchantAddProductDesc;
+    #merchantAddProductDiscount;
+    #merchantAddProductImage;
+    #merchantAddProductImageLink;
+    #merchantAddProductRate;
+    #merchantAddProductTitle;
+    #merchantAddProductVideo;
+    #merchantCollectionPending;
+    #merchantComplete;
+    #merchantConfirmPassdigit;
+    #merchantFulfill;
+    #merchantMenu;
+    #merchantOrderDetail;
+    #merchantOrderList;
+    #merchantOrders;
+    #merchantRegAdvance;
+    #merchantRegBooking;
+    #merchantRegBranchAddr;
+    #merchantRegBranchMore;
+    #merchantRegBranchRadius;
+    #merchantRegCategory;
+    #merchantRegDeliveryType;
+    #merchantRegMultibranch;
+    #merchantRegName;
+    #merchantRegOutlet;
+    #merchantRegPayment;
+    #merchantRegRadius;
+    #merchantRegRental;
+    #merchantRegType;
+    #merchantReject;
+    #merchantSetPassdigit;
+    #merchantViewOrder;
+    #orderCart;
+    #orderCategory;
+    #orderConfirm;
+    #orderNotFound;
+    #orderPlaced;
+    #orderResults;
+    #orderSearch;
+    #orderSearch2;
+    #orderSearchFurther;
+    #orderSearchInput;
+    #orderTracking;
+    #otpVerify;
+    #payBillsMenu;
+    #professionalServicesMenu;
+    #professionalServicesSearch;
+    #promotionMenu;
+    #promotionPayment;
+    #promotionPendingApproval;
+    #promotionPlanSelect;
+    #promotionPostImageLink;
+    #promotionPostLocation;
+    #promotionPostReelLink;
+    #promotionPostTitle;
+    #propertyBrowse;
+    #propertyContactApproval;
+    #propertyContactRequest;
+    #propertyMenu;
+    #propertyMyListings;
+    #propertyPost;
+    #propertyPostCategory;
+    #propertyPostConfirm;
+    #propertyPostDesc;
+    #propertyPostDesc2;
+    #propertyPostLocation;
+    #propertyPostLocation2;
+    #propertyPostPrice;
+    #propertyPostPrice2;
+    #propertyPostType;
+    #propertyPostType2;
+    #propertyPublished;
+    #propertyRequestContact;
+    #propertySearch;
+    #propertySearchResults;
+    #registerCustomer;
+    #registerDeliveryPartner;
+    #registerMerchant;
+    #registerType;
+    #rideDeclined;
+    #roleSelect;
+    #sarthiFreeRideOTP;
+    #sarthiMenu;
+    #sarthiOrderDetail;
+    #sarthiOrders;
+    #sarthiPassengerOTPVerify;
+    #shuttleBookConfirm;
+    #shuttleBooked;
+    #shuttleMenu;
+    #shuttleResults;
+    #shuttleSearchDest;
+    #shuttleSearchSource;
+    #subscriptionPrompt;
+    #supplierOrderConfirm;
+    #supplierOrderDone;
+    #supplierOrderItem;
+    #supplierOrderList;
+    #supplierOrderNotes;
+    #supplierOrderQty;
+    #supplierOrderSupplier;
+    #supportConfirm;
+    #supportDescInput;
+    #supportMenu;
+    #toursMenu;
+    #toursSearch;
+    #trainBookingMenu;
+    #transportBooked;
+    #transportDest;
+    #transportEstimate;
+    #transportMenu;
+    #transportOrigin;
+    #transportTracking;
+    #transportVehicle;
+    #welcome
+  };
+type CourseApproval__1003357931 =
+  {
+    adminNotes : Text;
+    approvalDate : Int;
+    approverId : Text;
+    courseId : Text;
+    id : Text;
+    status : Text;
+    submittedDate : Int
+  };
+type CustomerBudget__736858052 =
+  {
+    currentMonthSpend : Float;
+    monthlyBudget : Float;
+    percentUsed : Float;
+    userId : Text
+  };
+type CustomerRating__198712384 = {#bad; #good; #neutral};
+type CustomerRating__2163124 =
+  {
+    comment : Text;
+    createdAt : Int;
+    customerId : Text;
+    customerName : Text;
+    id : Text;
+    orderId : Text;
+    ratedById : Text;
+    ratedByName : Text;
+    ratedByRole : Text;
+    rating : Nat
+  };
+type DailyLesson__796376713 =
+  {
+    completedDate : Int;
+    content : Text;
+    correctAnswer : Nat;
+    difficulty : Text;
+    generatedDate : Int;
+    id : Text;
+    isCompleted : Bool;
+    languagePair : Text;
+    quizChoices : [Text];
+    quizQuestion : Text;
+    streakDate : Int;
+    topic : Text;
+    userId : Text;
+    vocabulary : [(Text, Text)]
+  };
+type Data__80296667<K, V> =
+  {var count : Nat__1040412405; kvs : [var ?(K, V)]};
+type DeliveryAssignment__93884792 =
+  {
+    assignedPartners : [AssignedPartner__398294482];
+    city : Text;
+    createdAt : Int;
+    description : Text;
+    id : Text;
+    requestedCount : Nat;
+    requesterId : Text;
+    requesterType : Text;
+    status : Text
+  };
+type DeliveryPartnerShift__596309786 =
+  {
+    checkInTime : Int;
+    checkOutTime : ?Int;
+    earningsDuringShift : Float;
+    id : Text;
+    ordersCompleted : Nat;
+    partnerId : Text;
+    status : ShiftStatus__990503733
+  };
+type DeliveryPartnerV0__1005715399 =
+  {
+    aadhaarNo : Text;
+    aadhaarUrl : ?Text;
+    avgRating : Float;
+    blockedUntil : ?Int;
+    currentLocation : ?Location__116427714;
+    id : Text;
+    isOndcEnrolled : Bool;
+    isOnline : Bool;
+    isVerified : Bool;
+    kycStatus : KYCStatus__134896602;
+    name : Text;
+    otherPlatforms : [Text];
+    panNo : Text;
+    panUrl : ?Text;
+    ratePerKm : Float;
+    ratingCount : Nat;
+    rcBook : Text;
+    rcUrl : ?Text;
+    rejectionReason : ?Text;
+    selfieUrl : ?Text;
+    serviceType : ServiceType__882218224;
+    userId : Text;
+    vehicleType : VehicleType__936892096
+  };
+type DeliveryPartner__660659769 =
+  {
+    aadhaarNo : Text;
+    aadhaarUrl : ?Text;
+    avgRating : Float;
+    blockedUntil : ?Int;
+    currentLocation : ?Location__116427714;
+    id : Text;
+    isOndcEnrolled : Bool;
+    isOnline : Bool;
+    isVerified : Bool;
+    kycStatus : KYCStatus__134896602;
+    name : Text;
+    otherPlatforms : [Text];
+    panNo : Text;
+    panUrl : ?Text;
+    phone : Text;
+    ratePerKm : Float;
+    ratingCount : Nat;
+    rcBook : Text;
+    rcUrl : ?Text;
+    rejectionReason : ?Text;
+    selfieUrl : ?Text;
+    serviceType : ServiceType__882218224;
+    userId : Text;
+    vehicleType : VehicleType__936892096
+  };
+type DeliveryPaymentQR__152609815 =
+  {
+    amount : Float;
+    expiresAt : Int;
+    orderId : Text;
+    partnerId : Text;
+    qrData : Text;
+    token : Text
+  };
+type DeliveryRateCard__258580077 =
+  {
+    baseRate : Float;
+    id : Text;
+    isActive : Bool;
+    perKmRate : Float;
+    serviceType : ServiceType__882218224;
+    surgeMultiplier : Float;
+    vehicleType : VehicleType__936892096
+  };
+type DeliveryType__287430760 = {#delivery; #takeaway};
+type DietaryType__657197046 = {#nonveg; #veg; #vegan};
+type DistributorNetwork__594561433 =
+  {
+    assignedDeliveryPartnerName : ?Text;
+    assignedDeliveryPartnerPhone : ?Text;
+    city : Text;
+    createdAt : Int;
+    distributorCode : Text;
+    distributorName : Text;
+    distributorPhone : Text;
+    id : Text;
+    manufacturerId : Text;
+    marginEarned : Float;
+    marginPercent : Float;
+    pincode : Text;
+    routeDescription : Text;
+    schemeApplicable : Text;
+    status : Text;
+    totalOrders : Nat
+  };
+type DonationItem__213977646 =
+  {
+    category : Text;
+    contactPhone : Text;
+    createdAt : Int;
+    description : Text;
+    donorName : Text;
+    donorPhone : Text;
+    id : Text;
+    location : Text;
+    quantity : Text;
+    source : Text;
+    status : Text
+  };
+type DonationRequest__989426657 =
+  {
+    category : Text;
+    createdAt : Int;
+    description : Text;
+    id : Text;
+    location : Text;
+    quantityNeeded : Text;
+    requesterName : Text;
+    requesterPhone : Text;
+    source : Text;
+    status : Text
+  };
+type ElectionResult__949905224 =
+  {
+    candidateName : Text;
+    constituency : Text;
+    id : Text;
+    isLeading : Bool;
+    isWon : Bool;
+    partyName : Text;
+    source : Text;
+    state : Text;
+    timestamp : Int;
+    voteShare : Float;
+    votes : Nat
+  };
+type EmployeeAttendanceRecord__671926497 =
+  {
+    checkInTime : Int;
+    checkOutTime : ?Int;
+    date : Text;
+    employeeId : Text;
+    id : Text;
+    notes : Text
+  };
+type EmployeeAttendance__278832629 =
+  {
+    checkInTime : Int;
+    checkOutTime : ?Int;
+    date : Text;
+    employeeId : Text;
+    id : Text;
+    merchantId : Text;
+    notes : Text
+  };
+type EmployeeLeaveRequest__604684510 =
+  {
+    createdAt : Int;
+    employeeId : Text;
+    fromDate : Text;
+    id : Text;
+    leaveType : Text;
+    reason : Text;
+    status : EmployeeLeaveStatus__133900262;
+    toDate : Text
+  };
+type EmployeeLeaveStatus__133900262 = {#approved; #pending; #rejected};
+type EmployeeRole__1022843064 =
+  {#cashier; #delivery_coordinator; #store_manager};
+type EmployeeRole__796030316 = {#admin; #agent; #manager};
+type Employee__24739570 =
+  {
+    createdAt : Int;
+    email : Text;
+    id : Text;
+    isActive : Bool;
+    name : Text;
+    passwordHash : Text;
+    permissions : [Text];
+    phone : Text;
+    role : EmployeeRole__796030316
+  };
+type EntityLeads__1070439989 =
+  {
+    entityId : Text;
+    entityType : Text;
+    interested : [EntityView__47739511];
+    viewers : [EntityView__47739511]
+  };
+type EntityView__47739511 = {phone : Text; timestamp : Int};
+type EventStatus__50685716 = {#cancelled; #expired; #pending; #published};
+type Event__2712308 =
+  {
+    createdAt : Int;
+    description : Text;
+    distance : ?Float;
+    endDate : Text;
+    eventName : Text;
+    id : Text;
+    isPaid : Bool;
+    locationAddress : Text;
+    organizerName : Text;
+    organizerPhone : Text;
+    price : Float;
+    publishUntil : Int;
+    startDate : Text;
+    status : EventStatus__50685716;
+    ticketVenue : Text
+  };
+type ExecSession__601342709 =
+  {
+    currentStep : Nat;
+    flowId : Text;
+    sessionStarted : Int;
+    stepResults : [ScriptRunStep__917412314]
+  };
+type ExpiryReturnStatus__82380077 = {#approved; #pending; #rejected};
+type ExpiryReturn__1031296373 =
+  {
+    createdAt : Int;
+    id : Text;
+    manufacturerId : Text;
+    productId : Text;
+    quantity : Nat;
+    reason : Text;
+    returnedBy : Text;
+    returnedById : Text;
+    status : ExpiryReturnStatus__82380077
+  };
+type FacilityType__530908920 =
+  {#commonHall; #garden; #gym; #meetingRoom; #other};
+type FamilyInviteStatus__460893352 =
+  {#cancelled; #connected; #inactive; #pending};
+type FamilyMemberV0__281646567 =
+  {
+    age : ?Nat;
+    bloodGroup : ?Text;
+    caste : ?Text;
+    createdAt : Int;
+    education : ?Text;
+    id : Text;
+    inviteStatus : FamilyInviteStatus__460893352;
+    isMatrimonyEligible : Bool;
+    locationPreference : ?Text;
+    occupation : ?Text;
+    ownerName : Text;
+    ownerPhone : Text;
+    ownerSurname : Text;
+    relationAddress : Text;
+    relationName : Text;
+    relationPhone : Text;
+    relationship : Relationship__950024830
+  };
+type FamilyMember__278216033 =
+  {
+    age : ?Nat;
+    bloodGroup : ?Text;
+    caste : ?Text;
+    createdAt : Int;
+    education : ?Text;
+    gender : Text;
+    id : Text;
+    inviteStatus : FamilyInviteStatus__460893352;
+    isMatrimonyEligible : Bool;
+    locationPreference : ?Text;
+    occupation : ?Text;
+    ownerName : Text;
+    ownerPhone : Text;
+    ownerSurname : Text;
+    relationAddress : Text;
+    relationName : Text;
+    relationPhone : Text;
+    relationship : Relationship__950024830
+  };
+type FlightBooking__194536768 =
+  {
+    airline : Text;
+    bookingRef : ?Text;
+    cabinClass : Text;
+    createdAt : Nat;
+    customerId : Text;
+    destination : Text;
+    environment : PaySprintEnvironment__966869172;
+    fare : Float;
+    flightNumber : Text;
+    id : Text;
+    journeyDate : Text;
+    passengers : [PassengerDetail__1032141410];
+    paymentStatus : PaymentStatus__991236914;
+    pnr : ?Text;
+    source : Text;
+    status : BookingStatus__392540968;
+    transactionId : ?Text;
+    updatedAt : Nat
+  };
+type FlowAgentDiagnostic__43941095 =
+  {
+    diagnosticId : Text;
+    fixStatus : Text;
+    flowId : Text;
+    flowName : Text;
+    issue : Text;
+    proposedFix : Text;
+    severity : Text;
+    timestamp : Int
+  };
+type FlowAgentRun__4978449 =
+  {
+    completedAt : ?Int;
+    failedFlows : Nat;
+    fixesApplied : Nat;
+    flowsScoped : [Text];
+    id : Text;
+    issuesFound : Nat;
+    passedFlows : Nat;
+    startedAt : Int;
+    status : Text;
+    totalFlows : Nat;
+    triggeredBy : Text
+  };
+type FlowAgentSchedule__536507612 =
+  {intervalHours : Nat; isEnabled : Bool; lastRunAt : ?Int; nextRunAt : ?Int};
+type FlowDefinition__242189987 =
+  {
+    createdAt : Int;
+    environment : Text;
+    flowJson : Text;
+    id : Text;
+    name : Text;
+    updatedAt : Int;
+    version : Nat
+  };
+type FlowDiagnosticResult__526483073 =
+  {
+    approvalStatus : Text;
+    approvedAt : ?Int;
+    deployedAt : ?Int;
+    flowId : Text;
+    flowName : Text;
+    healthScore : Nat;
+    issues : [FlowIssue__176791526];
+    runId : Text;
+    status : Text;
+    stepResults : [StepDiagnostic__595768836];
+    suggestedFixes : [FlowFix__48371392];
+    testedAt : Int
+  };
+type FlowFix__48371392 =
+  {
+    adminOverride : ?Text;
+    afterConfig : Text;
+    applied : Bool;
+    approved : Bool;
+    beforeConfig : Text;
+    description : Text;
+    fixId : Text;
+    fixType : Text;
+    issueId : Text;
+    paramName : ?Text;
+    paramValue : ?Text
+  };
+type FlowIssue__176791526 =
+  {
+    affectedNode : Text;
+    affectedStep : Nat;
+    description : Text;
+    downstreamImpact : Text;
+    issueId : Text;
+    issueType : Text;
+    rootCause : Text;
+    severity : Text;
+    suggestedFix : Text
+  };
+type FlowSession__246652192 =
+  {
+    flowName : Text;
+    id : Text;
+    role : Text;
+    status : Text;
+    steps : [FlowStep__817464313];
+    timestamp : Int
+  };
+type FlowStep__817464313 =
+  {dataNote : Text; input : Text; response : Text; stepIndex : Nat};
+type FullWhatsAppConfig__274988720 =
+  {
+    apiKey : Text;
+    businessAccountId : Text;
+    isConnected : Bool;
+    isTestMode : Bool;
+    metaAppId : Text;
+    phoneNumberId : Text;
+    verifyToken : Text;
+    webhookUrl : Text
+  };
+type HealthcareAppointment__274828625 =
+  {
+    createdAt : Int;
+    customerPhone : Text;
+    date : Text;
+    id : Text;
+    notes : Text;
+    providerId : Text;
+    status : AppointmentStatus__353213499;
+    timeSlot : Text;
+    updatedAt : Int
+  };
+type HealthcareProvider__369018855 =
+  {
+    address : Text;
+    availability : [Text];
+    city : Text;
+    consultationFee : Float;
+    createdAt : Int;
+    id : Text;
+    name : Text;
+    phone : Text;
+    rating : Float;
+    specialization : Text;
+    updatedAt : Int
+  };
+type Internal__41346355<K, V> =
+  {children : [var ?Node__1000929467<K, V>]; data : Data__80296667<K, V>};
+type InventoryItem__165194428 =
+  {
+    batchCode : Text;
+    currentStock : Nat;
+    expiryDate : ?Text;
+    id : Text;
+    lastUpdated : Int;
+    manufacturerId : Text;
+    productId : Text;
+    productName : Text;
+    reorderLevel : Nat;
+    unit : Text
+  };
+type InventoryTransactionType__764256895 =
+  {#adjustment; #expiry_write_off; #purchase; #restock; #return_item; #sale};
+type InventoryTransaction__1017504060 =
+  {
+    createdAt : Int;
+    id : Text;
+    inventoryItemId : Text;
+    notes : Text;
+    quantity : Int;
+    referenceId : ?Text;
+    transactionType : InventoryTransactionType__764256895
+  };
+type JobCityFavorite__980164979 =
+  {
+    city : Text;
+    createdAt : Int;
+    employerPhone : Text;
+    id : Text;
+    userId : Text
+  };
+type JobLocation__266622050 =
+  {city : Text; createdAt : Int; id : Text; jobId : Text; pincode : ?Text};
+type JobType__884312765 = {#adhoc_daily; #adhoc_weekly; #oneoff; #permanent};
+type JobV0__149956040 =
+  {
+    category : Text;
+    description : Text;
+    endDate : Int;
+    id : Text;
+    isOpen : Bool;
+    leads : [ContactRequest__720193189];
+    location : Location__116427714;
+    posterId : Text;
+    publishDate : Int;
+    salaryMax : Float;
+    salaryMin : Float;
+    title : Text
+  };
+type Job__331238368 =
+  {
+    category : Text;
+    contactPhone : ?Text;
+    description : Text;
+    educationLevel : ?Text;
+    endDate : Int;
+    expiresAt : ?Int;
+    id : Text;
+    isAdhoc : Bool;
+    isOpen : Bool;
+    jobType : JobType__884312765;
+    leads : [ContactRequest__720193189];
+    location : Location__116427714;
+    posterId : Text;
+    pricePerDay : ?Float;
+    publishDate : Int;
+    salaryMax : Float;
+    salaryMin : Float;
+    title : Text
+  };
+type KYCDocuments__371235719 =
+  {
+    aadhaarImageUrl : ?Text;
+    aadhaarNumber : ?Text;
+    cancelledChequeUrl : ?Text;
+    gstImageUrl : ?Text;
+    gstNumber : ?Text;
+    outletPhotoUrl : ?Text;
+    panImageUrl : ?Text;
+    panNumber : ?Text;
+    personalQRUrl : ?Text;
+    verificationStatus : VerificationStatus__205286399
+  };
+type KYCStatus__134896602 = {#approved; #pending; #rejected};
+type LanguageCourse__429695596 =
+  {
+    createdDate : Int;
+    creatorPhone : Text;
+    description : Text;
+    enrollmentCount : Nat;
+    id : Text;
+    languagePair : Text;
+    lessons : [Text];
+    price : Nat;
+    status : Text;
+    title : Text
+  };
+type LeadStatus__776328022 = {#closed; #open; #responded};
+type Lead__587567084 =
+  {
+    category : Text;
+    createdAt : Int;
+    id : Text;
+    location : Location__116427714;
+    phone : Text;
+    searchQuery : Text;
+    status : LeadStatus__776328022
+  };
+type Leaf__712614010<K, V> = {data : Data__80296667<K, V>};
+type LeaveRequest__768487251 =
+  {
+    approverNote : Text;
+    createdAt : Int;
+    employeeId : Text;
+    endDate : Text;
+    id : Text;
+    merchantId : Text;
+    reason : Text;
+    startDate : Text;
+    status : LeaveStatus__197598642
+  };
+type LeaveStatus__197598642 = {#approved; #pending; #rejected};
+type LendingItem__579485053 =
+  {
+    borrowDate : Int;
+    borrowerPhone : Text;
+    charge : Float;
+    chargeDescription : Text;
+    createdAt : Int;
+    id : Text;
+    itemCategory : Text;
+    itemDescription : Text;
+    itemName : Text;
+    lastReminderSent : ?Int;
+    lenderPhone : Text;
+    reminderFrequency : Text;
+    returnDate : Int;
+    specificReminderDate : ?Int;
+    status : Text;
+    updatedAt : Int
+  };
+type LessonLike__177143619 =
+  {
+    id : Text;
+    lessonId : Text;
+    likeType : Text;
+    timestamp : Int;
+    userId : Text
+  };
+type LessonProgress__521376205 =
+  {
+    attemptCount : Nat;
+    bestScore : Nat;
+    completedDate : Int;
+    enrollmentId : Text;
+    id : Text;
+    isQuizAttempted : Bool;
+    isViewed : Bool;
+    lessonId : Text
+  };
+type Lesson__784344191 =
+  {
+    content : Text;
+    correctAnswer : Nat;
+    courseId : Text;
+    explanation : Text;
+    id : Text;
+    order : Nat;
+    quizChoices : [Text];
+    quizQuestion : Text;
+    title : Text;
+    vocabularyList : [(Text, Text, Text, Text, [Text])]
+  };
+type Location__116427714 = {address : Text; lat : Float; lng : Float};
+type ManualOrderItem__166787823 =
+  {brand : Text; itemName : Text; quantity : Nat};
+type ManufacturerComplaint__628799105 =
+  {
+    createdAt : Int;
+    description : Text;
+    filedBy : Text;
+    filedById : Text;
+    id : Text;
+    manufacturerId : Text;
+    status : ComplaintStatus__512624442;
+    subject : Text
+  };
+type ManufacturerEmployeeRole__797197664 =
+  {
+    #accounts;
+    #bills;
+    #complaints;
+    #expiry;
+    #general;
+    #inventory;
+    #purchase;
+    #restock;
+    #sale
+  };
+type ManufacturerEmployee__403210130 =
+  {
+    createdAt : Int;
+    id : Text;
+    isActive : Bool;
+    manufacturerId : Text;
+    name : Text;
+    phone : Text;
+    role : ManufacturerEmployeeRole__797197664
+  };
+type ManufacturerProduct__160987877 =
+  {
+    b2bCode : ?Text;
+    batchCode : ?Text;
+    batchNumber : Text;
+    bulkPricingTiers : [BulkPricingTier__516100169];
+    createdAt : Int;
+    expiryDate : ?Text;
+    hsnCode : ?Text;
+    id : Text;
+    isDiscontinued : Bool;
+    isReturnable : Bool;
+    manufactureDate : Int;
+    manufacturerId : Text;
+    originCity : Text;
+    priceToCustomer : Float;
+    priceToDistributor : Float;
+    productName : Text;
+    stockQty : Nat
+  };
+type ManufacturerRating__777096783 =
+  {
+    createdAt : Int;
+    id : Text;
+    manufacturerId : Text;
+    productId : Text;
+    ratedBy : Text;
+    rating : Nat;
+    review : Text
+  };
+type Manufacturer__655724885 =
+  {
+    businessName : Text;
+    createdAt : Int;
+    customerCareEmail : Text;
+    customerCarePhone : Text;
+    id : Text;
+    productCategories : [Text];
+    registeredCity : Text;
+    updatedAt : Int;
+    userId : Text
+  };
+type MarketSearchQueryV0__254018369 =
+  {
+    country : Text;
+    createdAt : Int;
+    id : Text;
+    recommendations : [TradeRecommendationV0__245244573];
+    results : [MarketSearchResult__262504388];
+    scriptName : Text;
+    searchedAt : Int;
+    updatedAt : Int
+  };
+type MarketSearchQuery__973482058 =
+  {
+    country : Text;
+    createdAt : Int;
+    id : Text;
+    matchedSymbols : [Text];
+    recommendations : [TradeRecommendation__718948764];
+    results : [MarketSearchResult__262504388];
+    scriptName : Text;
+    searchedAt : Int;
+    updatedAt : Int
+  };
+type MarketSearchResult__262504388 =
+  {
+    changePercent : Float;
+    createdAt : Int;
+    currency : Text;
+    currentPrice : Float;
+    exchangeName : Text;
+    instrumentType : Text;
+    lastUpdated : Int;
+    name : Text;
+    symbol : Text;
+    updatedAt : Int
+  };
+type MarketplaceItem__548924433 =
+  {
+    category : Text;
+    cityId : ?Text;
+    createdAt : Int;
+    createdBy : Text;
+    id : Text;
+    instagramPhotoLink : Text;
+    invoiceAvailable : Bool;
+    isActive : Bool;
+    listingType : Text;
+    price : Float;
+    title : Text;
+    yearOfManufacture : Nat
+  };
+type MatchScoreV0__363718882 =
+  {
+    awayScore : Text;
+    awayTeam : Text;
+    createdAt : Int;
+    fetchedAt : Int;
+    homeScore : Text;
+    homeTeam : Text;
+    id : Text;
+    matchTime : Text;
+    sport : Text;
+    status : Text;
+    updatedAt : Int
+  };
+type MatchScore__503160728 =
+  {
+    awayScore : Text;
+    awayTeam : Text;
+    createdAt : Int;
+    fetchedAt : Int;
+    homeScore : Text;
+    homeTeam : Text;
+    id : Text;
+    leagueName : Text;
+    matchTime : Text;
+    sport : Text;
+    status : Text;
+    updatedAt : Int
+  };
+type MenuOption__427306512 =
+  {
+    cityModuleKey : Text;
+    createdAt : Int;
+    flowId : Text;
+    id : Text;
+    isActive : Bool;
+    optionLabel : Text;
+    roles : [Text];
+    sortOrder : Nat;
+    updatedAt : Int
+  };
+type MerchantBranch__487629146 =
+  {
+    address : Text;
+    branchId : Text;
+    isActive : Bool;
+    name : Text;
+    upiId : Text
+  };
+type MerchantEmployee__910913363 =
+  {
+    createdAt : Int;
+    id : Text;
+    isActive : Bool;
+    merchantId : Text;
+    name : Text;
+    phone : Text;
+    role : EmployeeRole__1022843064
+  };
+type MerchantType__711968789 = {#inquiry; #order_};
+type MerchantV0__293000469 =
+  {
+    avgRating : Float;
+    blockedUntil : ?Int;
+    bookingAllowed : Bool;
+    boostedOrderCount : Nat;
+    branches : [Branch__97614000];
+    businessName : Text;
+    category : Text;
+    codAvailable : Bool;
+    customerCount : Nat;
+    deliveryRadius : Float;
+    deliveryType : DeliveryType__287430760;
+    id : Text;
+    isActive : Bool;
+    isOndcEnrolled : Bool;
+    isVerified : Bool;
+    kyc : KYCDocuments__371235719;
+    location : Location__116427714;
+    menuProductIds : [Text];
+    merchantType : MerchantType__711968789;
+    orderCount : Nat;
+    ratingCount : Nat;
+    rejectionReason : ?Text;
+    rentalAllowed : Bool;
+    userId : Text
+  };
+type Merchant__292195103 =
+  {
+    avgRating : Float;
+    blockedUntil : ?Int;
+    bookingAllowed : Bool;
+    boostedOrderCount : Nat;
+    branches : [Branch__97614000];
+    businessName : Text;
+    category : Text;
+    codAvailable : Bool;
+    customerCount : Nat;
+    deliveryRadius : Float;
+    deliveryType : DeliveryType__287430760;
+    id : Text;
+    isActive : Bool;
+    isOndcEnrolled : Bool;
+    isVerified : Bool;
+    kyc : KYCDocuments__371235719;
+    location : Location__116427714;
+    menuProductIds : [Text];
+    merchantType : MerchantType__711968789;
+    orderCount : Nat;
+    phone : Text;
+    ratingCount : Nat;
+    rejectionReason : ?Text;
+    rentalAllowed : Bool;
+    userId : Text
+  };
+type MessageSender__103089590 = {#bot; #user};
+type ModerationItem__744855333 =
+  {
+    checkedAt : Int;
+    entityId : Text;
+    entityType : Text;
+    remark : Text;
+    status : Text
+  };
+type Nat__1040412405 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__1000929467<K, V> =
+  {#internal : Internal__41346355<K, V>; #leaf : Leaf__712614010<K, V>};
+type NotificationStatus__428570224 = {#failed; #pending; #sent};
+type Notification__642731598 =
+  {
+    createdAt : Int;
+    id : Text;
+    message : Text;
+    notificationType : Text;
+    recipientPhone : Text;
+    sentAt : ?Int;
+    status : NotificationStatus__428570224;
+    userId : Text
+  };
+type OldConversationState__816715054 =
+  {
+    #approveJobContact;
+    #approvePropertyContact;
+    #authConfirmPassdigit;
+    #authOtpSent;
+    #authOtpVerify;
+    #authPassdigit;
+    #authPassdigitWrong;
+    #authSessionLocked;
+    #authSetNewPassdigit;
+    #custConfirmPassdigit;
+    #custRegLocation;
+    #custRegName;
+    #custRegOtp;
+    #custSetPassdigit;
+    #customOrderConfirm;
+    #customOrderItem;
+    #customOrderTracking;
+    #customerLocation;
+    #customerLocationConfirm;
+    #customerMenu;
+    #deliveryActions;
+    #donationsMenu;
+    #dpAccept;
+    #dpAvailableOrders;
+    #dpCollectPayment;
+    #dpComplete;
+    #dpConfirmPassdigit;
+    #dpDeliveryInstructions;
+    #dpMenu;
+    #dpOrderDetail;
+    #dpOrders;
+    #dpPaymentConfirmed;
+    #dpPickupConfirmed;
+    #dpPickupInstructions;
+    #dpRegAadhaar;
+    #dpRegName;
+    #dpRegPan;
+    #dpRegRc;
+    #dpRegType;
+    #dpRegVehicle;
+    #dpSetPassdigit;
+    #dpVendorSettlement;
+    #eventMenu;
+    #eventPostDates;
+    #eventPostDesc;
+    #eventPostLocation;
+    #eventPostName;
+    #eventPostPaid;
+    #eventPostPrice;
+    #eventPostTickets;
+    #eventPublished;
+    #eventSearch;
+    #familyAddAddress;
+    #familyAddBloodGroup;
+    #familyAddCaste;
+    #familyAddEducation;
+    #familyAddGender;
+    #familyAddLocationPref;
+    #familyAddMatrimonyEligible;
+    #familyAddOccupation;
+    #familyAddPhone;
+    #familyAddRelationName;
+    #familyAddRelationship;
+    #familyAddSelfName;
+    #familyAddSelfSurname;
+    #familyMenu;
+    #familySaved;
+    #freeRideCompleted;
+    #freeRideIncoming;
+    #freeRideOTPEntry;
+    #freeRideResults;
+    #freeRideSearch;
+    #freeRideSearchAgain;
+    #freeRideSearchDest;
+    #healthcareBooking;
+    #healthcareMenu;
+    #healthcareSearch;
+    #inquiryResult;
+    #inquirySent;
+    #jobBrowse;
+    #jobContactApproval;
+    #jobContactRequest;
+    #jobMenu;
+    #jobMyListings;
+    #jobMyListings2;
+    #jobPost;
+    #jobPostCategory;
+    #jobPostConfirm;
+    #jobPostDesc;
+    #jobPostDesc2;
+    #jobPostLocation;
+    #jobPostLocation2;
+    #jobPostSalary;
+    #jobPostSalaryMax;
+    #jobPostSalaryMin;
+    #jobPostTitle;
+    #jobPostTitle2;
+    #jobPublished;
+    #jobRequestContact;
+    #jobSearch;
+    #jobSearchResults;
+    #mainMenu;
+    #merchantAccept;
+    #merchantActions;
+    #merchantAddProductBulk;
+    #merchantAddProductCondition;
+    #merchantAddProductConfirm;
+    #merchantAddProductDesc;
+    #merchantAddProductDiscount;
+    #merchantAddProductImage;
+    #merchantAddProductImageLink;
+    #merchantAddProductRate;
+    #merchantAddProductTitle;
+    #merchantAddProductVideo;
+    #merchantCollectionPending;
+    #merchantComplete;
+    #merchantConfirmPassdigit;
+    #merchantFulfill;
+    #merchantMenu;
+    #merchantOrderDetail;
+    #merchantOrderList;
+    #merchantOrders;
+    #merchantRegAdvance;
+    #merchantRegBooking;
+    #merchantRegBranchAddr;
+    #merchantRegBranchMore;
+    #merchantRegBranchRadius;
+    #merchantRegCategory;
+    #merchantRegDeliveryType;
+    #merchantRegMultibranch;
+    #merchantRegName;
+    #merchantRegOutlet;
+    #merchantRegPayment;
+    #merchantRegRadius;
+    #merchantRegRental;
+    #merchantRegType;
+    #merchantReject;
+    #merchantSetPassdigit;
+    #merchantViewOrder;
+    #orderCart;
+    #orderCategory;
+    #orderConfirm;
+    #orderNotFound;
+    #orderPlaced;
+    #orderResults;
+    #orderSearch;
+    #orderSearch2;
+    #orderSearchFurther;
+    #orderSearchInput;
+    #orderTracking;
+    #otpVerify;
+    #professionalServicesMenu;
+    #professionalServicesSearch;
+    #promotionMenu;
+    #promotionPayment;
+    #promotionPendingApproval;
+    #promotionPlanSelect;
+    #promotionPostImageLink;
+    #promotionPostLocation;
+    #promotionPostReelLink;
+    #promotionPostTitle;
+    #propertyBrowse;
+    #propertyContactApproval;
+    #propertyContactRequest;
+    #propertyMenu;
+    #propertyMyListings;
+    #propertyPost;
+    #propertyPostCategory;
+    #propertyPostConfirm;
+    #propertyPostDesc;
+    #propertyPostDesc2;
+    #propertyPostLocation;
+    #propertyPostLocation2;
+    #propertyPostPrice;
+    #propertyPostPrice2;
+    #propertyPostType;
+    #propertyPostType2;
+    #propertyPublished;
+    #propertyRequestContact;
+    #propertySearch;
+    #propertySearchResults;
+    #registerCustomer;
+    #registerDeliveryPartner;
+    #registerMerchant;
+    #registerType;
+    #rideDeclined;
+    #roleSelect;
+    #sarthiFreeRideOTP;
+    #sarthiMenu;
+    #sarthiOrderDetail;
+    #sarthiOrders;
+    #sarthiPassengerOTPVerify;
+    #shuttleBookConfirm;
+    #shuttleBooked;
+    #shuttleMenu;
+    #shuttleResults;
+    #shuttleSearchDest;
+    #shuttleSearchSource;
+    #subscriptionPrompt;
+    #supplierOrderConfirm;
+    #supplierOrderDone;
+    #supplierOrderItem;
+    #supplierOrderList;
+    #supplierOrderNotes;
+    #supplierOrderQty;
+    #supplierOrderSupplier;
+    #supportConfirm;
+    #supportDescInput;
+    #supportMenu;
+    #toursMenu;
+    #toursSearch;
+    #transportBooked;
+    #transportDest;
+    #transportEstimate;
+    #transportMenu;
+    #transportOrigin;
+    #transportTracking;
+    #transportVehicle;
+    #welcome
+  };
+type OndcEnrollment__8521944 =
+  {
+    bankAccount : Text;
+    businessName : Text;
+    enrollmentStatus : VerificationStatus__205286399;
+    fssaiLicense : ?Text;
+    gstin : ?Text;
+    id : Text;
+    ifscCode : Text;
+    notes : ?Text;
+    reviewedAt : ?Int;
+    role : UserRole__110927300;
+    submittedAt : Int;
+    userId : Text
+  };
+type OrderItem__677846699 =
+  {
+    productId : Text;
+    productName : Text;
+    quantity : Nat;
+    totalRate : Float;
+    unitRate : Float
+  };
+type OrderPaymentQR__646706365 =
+  {
+    amount : Float;
+    expiresAt : Int;
+    orderId : Text;
+    qrData : Text;
+    token : Text
+  };
+type OrderStatusHistory__312626053 =
+  {
+    actor_ : Text;
+    note : ?Text;
+    status : OrderStatus__644516197;
+    timestamp : Int
+  };
+type OrderStatus__644516197 =
+  {
+    #accepted;
+    #assigned;
+    #cancelled;
+    #completed;
+    #delivered;
+    #expired;
+    #inTransit;
+    #new_;
+    #paymentCollected;
+    #pending;
+    #rejected;
+    #vendorSettled
+  };
+type Order__859278382 =
+  {
+    acceptedAt : ?Int;
+    assignedAt : ?Int;
+    cancelledAt : ?Int;
+    completedAt : ?Int;
+    createdAt : Int;
+    customerAddress : ?Location__116427714;
+    customerId : Text;
+    customerRating : ?Nat;
+    customerRatingValue : ?CustomerRating__198712384;
+    deliveredAt : ?Int;
+    deliveryCharge : Float;
+    deliveryPartnerId : ?Text;
+    dpAcceptedAt : ?Int;
+    dpRating : ?Nat;
+    id : Text;
+    isManualOrder : Bool;
+    items : [OrderItem__677846699];
+    manualItems : [ManualOrderItem__166787823];
+    merchantAcceptedAt : ?Int;
+    merchantBranch : ?Branch__97614000;
+    merchantId : Text;
+    merchantRating : ?Nat;
+    notes : ?Text;
+    ondcSource : Bool;
+    paymentCollectedAmount : Nat;
+    paymentCollectedAt : ?Int;
+    paymentMode : PaymentMode__992937653;
+    paymentStatus : PaymentStatus__872352863;
+    pickedUpAt : ?Int;
+    rejectionReason : ?Text;
+    searchImageUrl : ?Text;
+    searchQuery : ?Text;
+    status : OrderStatus__644516197;
+    statusHistory : [OrderStatusHistory__312626053];
+    surgeCharge : Float;
+    totalAmount : Float;
+    vendorSettledAt : ?Int;
+    vendorSettlementAmount : Nat
+  };
+type POSOTPRecord__727759626 =
+  {expiresAt : Int; otp : Text; phone : Text; role : Text; used : Bool};
+type POSOrderLine__553215121 =
+  {
+    productId : Text;
+    productName : Text;
+    quantity : Nat;
+    tier : Text;
+    unitPrice : Float
+  };
+type POSOrder__835675239 =
+  {
+    buyerName : Text;
+    buyerPhone : Text;
+    deliveryPartnerId : ?Text;
+    id : Text;
+    manufacturerId : Text;
+    products : [POSOrderLine__553215121];
+    source : Text;
+    status : Text;
+    timestamp : Int;
+    total : Float
+  };
+type ParkingType__391701394 = {#covered; #open};
+type PassengerDetail__1032141410 =
+  {
+    age : Nat;
+    email : Text;
+    gender : Text;
+    idNumber : Text;
+    idType : Text;
+    name : Text;
+    phone : Text
+  };
+type PaySprintAPILog__1136848 =
+  {
+    createdAt : Nat;
+    endpoint : Text;
+    environment : PaySprintEnvironment__966869172;
+    errorMessage : ?Text;
+    httpStatus : Nat;
+    id : Text;
+    isError : Bool;
+    latencyMs : Nat;
+    requestBody : Text;
+    responseBody : Text;
+    serviceType : PaySprintServiceType__1011223956
+  };
+type PaySprintCallback__217963029 =
+  {
+    amount : ?Float;
+    createdAt : Nat;
+    eventType : Text;
+    id : Text;
+    merchantCode : ?Text;
+    orderId : ?Text;
+    processedAt : Nat;
+    rawPayload : Text;
+    referenceId : Text;
+    serviceType : PaySprintServiceType__1011223956;
+    status : Text
+  };
+type PaySprintCredential__5666912 =
+  {
+    authorisedKey : Text;
+    baseUrl : Text;
+    createdAt : Nat;
+    environment : PaySprintEnvironment__966869172;
+    id : Text;
+    isActive : Bool;
+    lastTestResult : ?Text;
+    lastTestedAt : ?Nat;
+    partnerId : Text;
+    partnerKey : Text;
+    serviceType : PaySprintServiceType__1011223956;
+    updatedAt : Nat
+  };
+type PaySprintEnvironment__966869172 = {#live; #uat};
+type PaySprintServiceType__1011223956 =
+  {
+    #billPayment;
+    #bus;
+    #fastTag;
+    #flight;
+    #insurance;
+    #lpg;
+    #municipality;
+    #recharge;
+    #train
+  };
+type PaymentMode__992937653 = {#cod; #online; #qrCode};
+type PaymentStatusPurchase__497885123 = {#paid; #pending};
+type PaymentStatusSale__647488987 = {#paid; #partial; #pending};
+type PaymentStatus__872352863 = {#paid; #partialPaid; #pending; #refunded};
+type PaymentStatus__991236914 =
+  {#failed; #paid; #pending; #refunded; #unpaid};
+type PetrolExpense__1005715936 =
+  {
+    amount : Float;
+    createdAt : Int;
+    date : Text;
+    id : Text;
+    liters : Float;
+    notes : Text;
+    partnerId : Text
+  };
+type ProductLocationPrice__132633666 =
+  {
+    branchId : Text;
+    cityId : Text;
+    createdAt : Int;
+    id : Text;
+    price : Float;
+    productId : Text;
+    updatedAt : Int
+  };
+type ProductScanHistory__838390391 =
+  {
+    barcodeValue : Text;
+    deviceInfo : ?Text;
+    id : Text;
+    merchantId : Text;
+    productId : Text;
+    scanTime : Int
+  };
+type ProductV0__393623666 =
+  {
+    baseRate : Float;
+    bulkRates : [BulkRate__561252204];
+    description : Text;
+    id : Text;
+    imageUrls : [Text];
+    isActive : Bool;
+    isNew : Bool;
+    merchantId : Text;
+    specialDiscount : Float;
+    title : Text;
+    videoUrl : ?Text
+  };
+type Product__488252642 =
+  {
+    barcodeValue : ?Text;
+    baseRate : Float;
+    bulkRates : [BulkRate__561252204];
+    description : Text;
+    expiry : Text;
+    id : Text;
+    imageUrls : [Text];
+    isActive : Bool;
+    isNew : Bool;
+    merchantId : Text;
+    packing : Text;
+    qty : Nat;
+    specialDiscount : Float;
+    title : Text;
+    videoUrl : ?Text
+  };
+type ProfessionalService__40933308 =
+  {
+    address : Text;
+    areaRates : [(Text, Float)];
+    availability : [Text];
+    city : Text;
+    createdAt : Int;
+    id : Text;
+    merchantPhone : Text;
+    pricePerHour : Float;
+    rating : Float;
+    serviceType : Text;
+    specialization : Text;
+    updatedAt : Int
+  };
+type PromotionReach__500581970 =
+  {#reach100; #reach1000; #reach200; #reach2000; #reach500};
+type PromotionStatus__168370109 =
+  {
+    #active;
+    #approved;
+    #completed;
+    #pendingApproval;
+    #pendingPayment;
+    #rejected
+  };
+type Promotion__112066686 =
+  {
+    advertiserPhone : Text;
+    createdAt : Int;
+    expiresAt : Int;
+    id : Text;
+    imageLink : Text;
+    locationArea : Text;
+    locationCity : Text;
+    locationCountry : Text;
+    moderationFlags : [Text];
+    reachedCount : Nat;
+    reelLink : Text;
+    status : PromotionStatus__168370109;
+    subscriptionPlan : PromotionReach__500581970;
+    targetUserCount : Nat;
+    title : Text;
+    viewedCount : Nat
+  };
+type PropertyListingType__898622648 = {#buy; #lease; #rent; #sale};
+type Property__454145029 =
+  {
+    description : Text;
+    endDate : Int;
+    expectedPrice : Float;
+    id : Text;
+    isActive : Bool;
+    leads : [ContactRequest__720193189];
+    listingType : PropertyListingType__898622648;
+    location : Location__116427714;
+    posterId : Text;
+    publishDate : Int
+  };
+type PurchaseRecord__168446495 =
+  {
+    createdAt : Int;
+    id : Text;
+    invoiceNo : Text;
+    items : [(Text, Text, Nat, Float)];
+    manufacturerId : Text;
+    paymentStatus : PaymentStatusPurchase__497885123;
+    supplierId : ?Text;
+    supplierName : Text;
+    totalAmount : Float
+  };
+type RecipeIngredient__74617825 = {grams : Float; name : Text};
+type Recipe__121655032 =
+  {
+    benefits : Text;
+    createdAt : Int;
+    id : Text;
+    imageLink : Text;
+    ingredients : [RecipeIngredient__74617825];
+    ownerId : Text;
+    rating : Float;
+    ratingCount : Nat;
+    steps : [Text];
+    tips : Text;
+    title : Text;
+    updatedAt : Int;
+    videoLink : Text
+  };
+type Relationship__950024830 =
+  {
+    #brother;
+    #daughter;
+    #father;
+    #friend;
+    #husband;
+    #mother;
+    #relative;
+    #sister;
+    #son;
+    #wife
+  };
+type RestockOrder__12669907 =
+  {
+    createdAt : Int;
+    id : Text;
+    itemName : Text;
+    merchantId : Text;
+    merchantPhone : Text;
+    notes : Text;
+    quantity : Nat;
+    status : RestockStatus__563319748;
+    supplierName : Text;
+    updatedAt : Int
+  };
+type RestockStatus__563319748 = {#accepted; #cancelled; #delivered; #pending};
+type SMSConfig__1019006997 =
+  {
+    apiKey : Text;
+    authToken : Text;
+    fromNumber : Text;
+    id : Text;
+    isEnabled : Bool;
+    provider : Text;
+    providerBaseUrl : Text;
+    webhookUrl : Text
+  };
+type SaleRecord__130982952 =
+  {
+    buyerId : Text;
+    buyerType : BuyerType__481511934;
+    createdAt : Int;
+    id : Text;
+    invoiceNo : Text;
+    items : [(Text, Text, Nat, Float)];
+    manufacturerId : Text;
+    paymentStatus : PaymentStatusSale__647488987;
+    totalAmount : Float
+  };
+type SarthiOTPVerification__516555677 =
+  {
+    bookingId : Text;
+    createdAt : Int;
+    driverOTP : Text;
+    driverVerified : Bool;
+    id : Text;
+    passengerOTP : Text;
+    passengerVerified : Bool
+  };
+type SavedWord__185610802 =
+  {
+    ancientTranslation : Text;
+    examples : [Text];
+    id : Text;
+    ipa : Text;
+    language : Text;
+    savedDate : Int;
+    translation : Text;
+    userId : Text;
+    word : Text
+  };
+type ScriptEntityRecord__802467099 =
+  {entityData : Text; entityId : Text; entityType : Text};
+type ScriptExecutionResult__303433640 =
+  {
+    executionId : Text;
+    flowId : Text;
+    flowName : Text;
+    passedSteps : Nat;
+    stepResults : [StepResult__589312535];
+    timestamp : Int;
+    totalSteps : Nat
+  };
+type ScriptRunResult__482095422 =
+  {
+    failedSteps : Nat;
+    flowName : Text;
+    id : Text;
+    overallPass : Bool;
+    passedSteps : Nat;
+    runAt : Int;
+    steps : [ScriptRunStep__917412314];
+    totalSteps : Nat
+  };
+type ScriptRunStep__917412314 =
+  {
+    actualOutput : Text;
+    error : ?Text;
+    expectedOutput : Text;
+    input : Text;
+    passed : Bool;
+    stepIndex : Nat
+  };
+type ServiceBookingStatus__316788082 =
+  {#cancelled; #completed; #confirmed; #pending};
+type ServiceBooking__975827570 =
+  {
+    createdAt : Int;
+    customerPhone : Text;
+    date : Text;
+    duration : Nat;
+    id : Text;
+    notes : Text;
+    serviceId : Text;
+    status : ServiceBookingStatus__316788082;
+    timeSlot : Text;
+    totalPrice : Float;
+    updatedAt : Int
+  };
+type ServiceType__882218224 = {#delivery; #sarthi};
+type ShiftStatus__990503733 = {#active; #completed};
+type ShuttleBookingStatus__2691408 =
+  {#boarded; #cancelled; #completed; #confirmed};
+type ShuttleBooking__860252437 =
+  {
+    boardingStop : Text;
+    createdAt : Int;
+    dropStop : Text;
+    fare : Nat;
+    id : Text;
+    otp : Text;
+    passengerPhone : Text;
+    routeId : Text;
+    status : ShuttleBookingStatus__2691408
+  };
+type ShuttleRoute__839020469 =
+  {
+    arrivalTime : Text;
+    availableSeats : Nat;
+    createdAt : Int;
+    departureTime : Text;
+    destination : Text;
+    driverId : Text;
+    fare : Nat;
+    id : Text;
+    isActive : Bool;
+    operatorPhone : Text;
+    pricePerKm : Float;
+    routeName : Text;
+    serviceName : Text;
+    source : Text;
+    status : {#active; #inactive};
+    stopDetails : [ShuttleStop__1019275694];
+    stops : [Text];
+    vehicleNumber : Text;
+    vehicleType : VehicleType__936892096
+  };
+type ShuttleStop__1019275694 =
+  {
+    estimatedArrivalMinutes : Nat;
+    fareDescription : Text;
+    location : Text;
+    stopName : Text
+  };
+type StepDiagnostic__595768836 =
+  {
+    diagnosticMessage : Text;
+    executionMs : Nat;
+    inputExpected : Text;
+    inputReceived : Text;
+    issueType : ?Text;
+    nextNodeExpectedInput : Text;
+    nodeName : Text;
+    nodeType : Text;
+    outputExpected : Text;
+    outputProduced : Text;
+    prevNodeOutput : Text;
+    status : Text;
+    stepIndex : Nat
+  };
+type StepResult__589312535 =
+  {
+    createdEntityId : ?Text;
+    input : Text;
+    output : Text;
+    passed : Bool;
+    stepId : Text
+  };
+type SubscriptionAssignmentStatus__441774349 =
+  {#active; #blocked; #expired; #paused};
+type SubscriptionAssignment__1012986818 =
+  {
+    assignedAt : Int;
+    assignedUserId : Text;
+    id : Text;
+    lastOrderAt : ?Int;
+    merchantId : Text;
+    orderCap : Nat;
+    ordersUsed : Nat;
+    planId : Text;
+    status : SubscriptionAssignmentStatus__441774349
+  };
+type SubscriptionPlanType__783664516 =
+  {#category; #duration; #flat; #free_; #monthly; #percentage; #weekly};
+type SubscriptionPlan__635227581 =
+  {
+    applicableRoles : [UserRole__110927300];
+    authLimit : Nat;
+    categoryScope : ?Text;
+    durationDays : Nat;
+    features : [Text];
+    flatFee : ?Float;
+    id : Text;
+    inquiryLimit : Nat;
+    isActive : Bool;
+    marketingLimit : Nat;
+    maxTransactionAmount : ?Float;
+    messageType : Text;
+    minTransactionAmount : ?Float;
+    name : Text;
+    orderLimit : Nat;
+    percentageFee : ?Float;
+    planType : SubscriptionPlanType__783664516;
+    priceFlat : Float;
+    pricePercentage : Float;
+    qrCodeData : Text;
+    targetRole : UserRole__110927300;
+    utilityLimit : Nat
+  };
+type SupplierOrderStatus__875579820 =
+  {#cancelled; #confirmed; #pending; #received; #shipped};
+type SupplierOrder__612115071 =
+  {
+    createdAt : Int;
+    id : Text;
+    itemName : Text;
+    merchantId : Text;
+    notes : Text;
+    quantity : Text;
+    status : SupplierOrderStatus__875579820;
+    supplierContact : Text;
+    updatedAt : Int
+  };
+type SupportTicketCategory__363702764 =
+  {#behaviour_complaint; #other; #payment_stuck};
+type SupportTicketPriority__950251089 = {#high; #low; #medium};
+type SupportTicketStatus__454714194 =
+  {#assigned; #closed; #in_progress; #new_; #resolved};
+type SupportTicketV0__713157663 =
+  {
+    adminNote : Text;
+    category : SupportTicketCategory__363702764;
+    createdAt : Int;
+    description : Text;
+    fromPhone : Text;
+    fromRole : UserRole__110927300;
+    priority : SupportTicketPriority__950251089;
+    remarks : Text;
+    resolutionDeadline : Int;
+    resolvedAt : ?Int;
+    status : SupportTicketStatus__454714194;
+    ticketId : Text;
+    updatedAt : Int
+  };
+type SupportTicket__727010499 =
+  {
+    adminNote : Text;
+    category : SupportTicketCategory__363702764;
+    createdAt : Int;
+    description : Text;
+    fromPhone : Text;
+    fromRole : UserRole__110927300;
+    orderId : ?Text;
+    priority : SupportTicketPriority__950251089;
+    remarks : Text;
+    resolutionDeadline : Int;
+    resolvedAt : ?Int;
+    status : SupportTicketStatus__454714194;
+    ticketId : Text;
+    updatedAt : Int
+  };
+type TelegramConfig__20647598 =
+  {
+    alertChatId : Text;
+    botToken : Text;
+    botUsername : Text;
+    isEnabled : Bool;
+    webhookUrl : Text
+  };
+type TipRecord__1040854515 =
+  {
+    amount : Nat;
+    entityId : Text;
+    entityType : Text;
+    fromCustomerId : Text;
+    id : Text;
+    timestamp : Int;
+    toPartnerId : Text
+  };
+type TourBookingStatus__359123679 =
+  {#cancelled; #completed; #confirmed; #pending};
+type TourBooking__330465765 =
+  {
+    createdAt : Int;
+    customerPhone : Text;
+    date : Text;
+    destination : Text;
+    id : Text;
+    operatorId : Text;
+    passengerCount : Nat;
+    status : TourBookingStatus__359123679;
+    totalPrice : Float;
+    tourType : Text;
+    updatedAt : Int
+  };
+type TourOperator__148631913 =
+  {
+    city : Text;
+    createdAt : Int;
+    destinations : [Text];
+    duration : Text;
+    id : Text;
+    maxPassengers : Nat;
+    name : Text;
+    phone : Text;
+    pricePerPerson : Float;
+    rating : Float;
+    tourTypes : [Text];
+    updatedAt : Int
+  };
+type TradeRecommendationV0__245244573 =
+  {
+    action : Text;
+    confidence : Float;
+    createdAt : Int;
+    reasoning : Text;
+    stopLossPrice : Float;
+    symbol : Text;
+    targetPrice : Float;
+    updatedAt : Int
+  };
+type TradeRecommendation__718948764 =
+  {
+    accuracyPrediction : Text;
+    action : Text;
+    confidence : Float;
+    createdAt : Int;
+    reasoning : Text;
+    stopLossPrice : Float;
+    symbol : Text;
+    targetDate : Text;
+    targetPrice : Float;
+    updatedAt : Int
+  };
+type TrainBooking__436376792 =
+  {
+    classType : Text;
+    createdAt : Nat;
+    customerId : Text;
+    destination : Text;
+    environment : PaySprintEnvironment__966869172;
+    fare : Float;
+    id : Text;
+    journeyDate : Text;
+    passengers : [PassengerDetail__1032141410];
+    paymentStatus : PaymentStatus__991236914;
+    pnr : ?Text;
+    quota : Text;
+    source : Text;
+    status : BookingStatus__392540968;
+    trainName : Text;
+    trainNumber : Text;
+    transactionId : ?Text;
+    updatedAt : Nat
+  };
+type TransactionStatus__702164941 = {#failed; #pending; #refunded; #success};
+type TransportBooking__435148911 =
+  {
+    createdAt : Int;
+    customerContactNo : Text;
+    customerId : Text;
+    destination : Location__116427714;
+    estimatedCharge : Float;
+    id : Text;
+    origin : Location__116427714;
+    partnerContactNo : Text;
+    sarthiPartnerId : ?Text;
+    status : TransportStatus__279625674;
+    statusHistory : [OrderStatusHistory__312626053];
+    updatedAt : Int;
+    vehicleType : VehicleType__936892096
+  };
+type TransportStatus__279625674 =
+  {
+    #accepted;
+    #arrived;
+    #arrivedDestination;
+    #cancelled;
+    #completed;
+    #headingToPickup;
+    #onTheWay;
+    #paymentCollected;
+    #pending;
+    #rideStarted
+  };
+type UserEnrollment__469514177 =
+  {
+    completionDate : Int;
+    courseId : Text;
+    enrollmentDate : Int;
+    id : Text;
+    isCompleted : Bool;
+    lastViewedDate : Int;
+    progressPercent : Nat;
+    userId : Text
+  };
+type UserRole__110927300 =
+  {#admin; #customer; #deliveryPartner; #merchant; #sarthi};
+type UserSubscription__431801636 =
+  {
+    endDate : Int;
+    id : Text;
+    inquiriesUsed : Nat;
+    isActive : Bool;
+    ordersUsed : Nat;
+    planId : Text;
+    startDate : Int;
+    userId : Text
+  };
+type UserV0__287133417 =
+  {
+    address : ?Text;
+    conversationState : OldConversationState__816715054;
+    countryCode : Text;
+    countryName : Text;
+    currency : Text;
+    id : Text;
+    importBatchId : ?Text;
+    importedByMerchant : ?Text;
+    isActive : Bool;
+    location : ?Location__116427714;
+    name : Text;
+    otpCode : Text;
+    otpExpiry : Int;
+    otpVerified : Bool;
+    passdigit : Text;
+    passdigitAttempts : Nat;
+    phone : Text;
+    promotionalOptOut : Bool;
+    registrationDate : Int;
+    role : UserRole__110927300;
+    sessionLockExpiry : Int;
+    sessionLocked : Bool;
+    stateData : Text;
+    subscriptionPlanId : ?Text
+  };
+type User__31243832 =
+  {
+    address : ?Text;
+    conversationState : ConversationState__739648198;
+    countryCode : Text;
+    countryName : Text;
+    currency : Text;
+    gender : Text;
+    id : Text;
+    importBatchId : ?Text;
+    importedByMerchant : ?Text;
+    isActive : Bool;
+    location : ?Location__116427714;
+    name : Text;
+    otpCode : Text;
+    otpExpiry : Int;
+    otpVerified : Bool;
+    passdigit : Text;
+    passdigitAttempts : Nat;
+    phone : Text;
+    promotionalOptOut : Bool;
+    registrationDate : Int;
+    role : UserRole__110927300;
+    sessionLockExpiry : Int;
+    sessionLocked : Bool;
+    stateData : Text;
+    subscriptionPlanId : ?Text
+  };
+type UtilityTransaction__908820130 =
+  {
+    amount : Float;
+    billAmount : ?Float;
+    consumerNumber : Text;
+    createdAt : Nat;
+    customerId : Text;
+    environment : PaySprintEnvironment__966869172;
+    id : Text;
+    operatorCode : Text;
+    operatorName : Text;
+    receiptNumber : ?Text;
+    referenceId : Text;
+    serviceType : PaySprintServiceType__1011223956;
+    status : TransactionStatus__702164941;
+    transactionId : ?Text;
+    updatedAt : Nat
+  };
+type VehicleType__936892096 =
+  {#auto; #bike; #bus; #car; #scooter; #tempo; #truck; #van};
+type VerificationStatus__205286399 = {#pending; #rejected; #verified};
+type VisitorApprovalStatus__29071257 = {#approved; #denied; #pending};
+type VisitorCheckin__310042936 =
+  {
+    approvalStatus : VisitorApprovalStatus__29071257;
+    checkInTime : Int;
+    checkOutTime : ?Int;
+    communityId : Text;
+    communityMemberId : Text;
+    date : Text;
+    id : Text;
+    purpose : Text;
+    vehicleDetails : Text;
+    visitorName : Text;
+    visitorPhone : Text
+  };
+type WordDefinition__65331378 =
+  {
+    ancientTranslation : Text;
+    examples : [Text];
+    id : Text;
+    ipa : Text;
+    language : Text;
+    translations : [(Text, Text)];
+    word : Text
+  };
+type WorkServiceType__614715890 =
+  {#accounts; #cleaning; #electrician; #maintenance; #pestControl; #security};
+actor {
+  stable CANISTER_BUILD_ID : Text;
+  stable LIVE_BASE : Text;
+  stable MODULE_NAMES : [Text];
+  stable MODULE_ROLES : [Text];
+  stable UAT_BASE : Text;
+  stable adminClaimState : {var claimed : Bool};
+  stable adminConfigStore :
+    {
+      var root : Node__1000929467<Text, AdminConfig__945118116>;
+      var size : Nat__1040412405
+    };
+  stable adminPrincipalsStore :
+    {var root : Node__1000929467<Text, Bool>; var size : Nat__1040412405};
+  stable adminUPIStore :
+    {
+      var root : Node__1000929467<Text, AdminUPIProfile__488088616>;
+      var size : Nat__1040412405
+    };
+  stable advertisementsStore :
+    {
+      var root : Node__1000929467<Text, Advertisement__507272643>;
+      var size : Nat__1040412405
+    };
+  stable agentChannelSyncStore :
+    {var root : Node__1000929467<Text, Bool>; var size : Nat__1040412405};
+  stable agentDeploymentsStore :
+    {
+      var root : Node__1000929467<Text, AgentDeployment__869174510>;
+      var size : Nat__1040412405
+    };
+  stable agentEntitySummaryStore :
+    {
+      var root : Node__1000929467<Text, AgentEntitySummary__248653638>;
+      var size : Nat__1040412405
+    };
+  stable var agentRunCounter : Nat;
+  stable agentRunsStore :
+    {
+      var root : Node__1000929467<Text, FlowAgentRun__4978449>;
+      var size : Nat__1040412405
+    };
+  stable agentScheduleStore :
+    {
+      var root : Node__1000929467<Text, FlowAgentSchedule__536507612>;
+      var size : Nat__1040412405
+    };
+  stable apiKeysStore :
+    {
+      var root : Node__1000929467<Text, ApiKey__810710607>;
+      var size : Nat__1040412405
+    };
+  stable apiUsageStore :
+    {
+      var root : Node__1000929467<Text, ApiUsageLog__1036991430>;
+      var size : Nat__1040412405
+    };
+  stable appVersionsStore :
+    {
+      var root : Node__1000929467<Text, AppVersion__168850273>;
+      var size : Nat__1040412405
+    };
+  stable assignmentsStore :
+    {
+      var root : Node__1000929467<Text, SubscriptionAssignment__1012986818>;
+      var size : Nat__1040412405
+    };
+  stable blogReviewsById :
+    {
+      var root : Node__1000929467<Text, BlogReview__933789230>;
+      var size : Nat__1040412405
+    };
+  stable blogsById :
+    {
+      var root : Node__1000929467<Text, Blog__757754926>;
+      var size : Nat__1040412405
+    };
+  stable var botLogsStore :
+    {
+      var root : Node__1000929467<Text, BotLogV0__768057765>;
+      var size : Nat__1040412405
+    };
+  stable botLogsStoreCurrent :
+    {
+      var root : Node__1000929467<Text, BotLog__835066236>;
+      var size : Nat__1040412405
+    };
+  stable brandingStore :
+    {
+      var root : Node__1000929467<Text, BrandingConfig__539430476>;
+      var size : Nat__1040412405
+    };
+  stable busBookings :
+    {
+      var root : Node__1000929467<Text, BusBooking__856819503>;
+      var size : Nat__1040412405
+    };
+  stable chatSimulatorSessionsStore :
+    {
+      var root : Node__1000929467<Text, ChatSimulatorSession__383760906>;
+      var size : Nat__1040412405
+    };
+  stable var citiesById :
+    {
+      var root : Node__1000929467<Text, CityV0__1029331595>;
+      var size : Nat__1040412405
+    };
+  stable citiesByIdCurrent :
+    {
+      var root : Node__1000929467<Text, City__629220226>;
+      var size : Nat__1040412405
+    };
+  stable var cityControlsById :
+    {
+      var root : Node__1000929467<Text, CityControlV0__342107252>;
+      var size : Nat__1040412405
+    };
+  stable cityControlsByIdCurrent :
+    {
+      var root : Node__1000929467<Text, CityControl__265579590>;
+      var size : Nat__1040412405
+    };
+  stable communityFoodStore :
+    {
+      var root : Node__1000929467<Text, CommunityFoodOrder__498212327>;
+      var size : Nat__1040412405
+    };
+  stable communityIdState : {var nextId : Nat};
+  stable communityMembersStore :
+    {
+      var root : Node__1000929467<Text, CommunityMember__1053577188>;
+      var size : Nat__1040412405
+    };
+  stable communityParkingStore :
+    {
+      var root : Node__1000929467<Text, CommunityParkingBooking__296710143>;
+      var size : Nat__1040412405
+    };
+  stable communityRoomStore :
+    {
+      var root : Node__1000929467<Text, CommunityRoomBooking__463795535>;
+      var size : Nat__1040412405
+    };
+  stable communityWorkStore :
+    {
+      var root : Node__1000929467<Text, CommunityWorkOrder__557674165>;
+      var size : Nat__1040412405
+    };
+  stable courseApprovalsMap :
+    {
+      var root : Node__1000929467<Text, CourseApproval__1003357931>;
+      var size : Nat__1040412405
+    };
+  stable coursesMap :
+    {
+      var root : Node__1000929467<Text, LanguageCourse__429695596>;
+      var size : Nat__1040412405
+    };
+  stable customOrderPendingStore :
+    {var root : Node__1000929467<Text, Int>; var size : Nat__1040412405};
+  stable customerBudgetStore :
+    {
+      var root : Node__1000929467<Text, CustomerBudget__736858052>;
+      var size : Nat__1040412405
+    };
+  stable customerRatingsById :
+    {
+      var root : Node__1000929467<Text, CustomerRating__2163124>;
+      var size : Nat__1040412405
+    };
+  stable dailyLessonsMap :
+    {
+      var root : Node__1000929467<Text, DailyLesson__796376713>;
+      var size : Nat__1040412405
+    };
+  stable deliveryAssignIdState : {var nextId : Nat};
+  stable deliveryAssignmentsStore :
+    {
+      var root : Node__1000929467<Text, DeliveryAssignment__93884792>;
+      var size : Nat__1040412405
+    };
+  stable deliveryQRStore :
+    {
+      var root : Node__1000929467<Text, DeliveryPaymentQR__152609815>;
+      var size : Nat__1040412405
+    };
+  stable deliveryShiftsMap :
+    {
+      var root : Node__1000929467<Text, DeliveryPartnerShift__596309786>;
+      var size : Nat__1040412405
+    };
+  stable var deployCounter : Nat;
+  stable distributorNetworkById :
+    {
+      var root : Node__1000929467<Text, DistributorNetwork__594561433>;
+      var size : Nat__1040412405
+    };
+  stable donationRequestsStore :
+    {
+      var root : Node__1000929467<Text, DonationRequest__989426657>;
+      var size : Nat__1040412405
+    };
+  stable donationsStore :
+    {
+      var root : Node__1000929467<Text, DonationItem__213977646>;
+      var size : Nat__1040412405
+    };
+  stable var dpById :
+    {
+      var root : Node__1000929467<Text, DeliveryPartnerV0__1005715399>;
+      var size : Nat__1040412405
+    };
+  stable dpByIdNew :
+    {
+      var root : Node__1000929467<Text, DeliveryPartner__660659769>;
+      var size : Nat__1040412405
+    };
+  stable var dpByUserId :
+    {
+      var root : Node__1000929467<Text, DeliveryPartnerV0__1005715399>;
+      var size : Nat__1040412405
+    };
+  stable dpByUserIdNew :
+    {
+      var root : Node__1000929467<Text, DeliveryPartner__660659769>;
+      var size : Nat__1040412405
+    };
+  stable electionResultsStore :
+    {
+      var root : Node__1000929467<Text, ElectionResult__949905224>;
+      var size : Nat__1040412405
+    };
+  stable empAttendanceStore :
+    {
+      var root : Node__1000929467<Text, EmployeeAttendance__278832629>;
+      var size : Nat__1040412405
+    };
+  stable empIdState : {var nextId : Nat};
+  stable employeesStore :
+    {
+      var root : Node__1000929467<Text, Employee__24739570>;
+      var size : Nat__1040412405
+    };
+  stable enrollmentsMap :
+    {
+      var root : Node__1000929467<Text, UserEnrollment__469514177>;
+      var size : Nat__1040412405
+    };
+  stable entityLeadsStore :
+    {
+      var root : Node__1000929467<Text, EntityLeads__1070439989>;
+      var size : Nat__1040412405
+    };
+  stable entityRecordsFromRuns :
+    {
+      var root : Node__1000929467<Text, [ScriptEntityRecord__802467099]>;
+      var size : Nat__1040412405
+    };
+  stable eventsStore :
+    {
+      var root : Node__1000929467<Text, Event__2712308>;
+      var size : Nat__1040412405
+    };
+  stable executionSessions :
+    {
+      var root : Node__1000929467<Text, ExecSession__601342709>;
+      var size : Nat__1040412405
+    };
+  stable expiryReturnsById :
+    {
+      var root : Node__1000929467<Text, ExpiryReturn__1031296373>;
+      var size : Nat__1040412405
+    };
+  stable var familyStore :
+    {
+      var root : Node__1000929467<Text, FamilyMemberV0__281646567>;
+      var size : Nat__1040412405
+    };
+  stable familyStoreNew :
+    {
+      var root : Node__1000929467<Text, FamilyMember__278216033>;
+      var size : Nat__1040412405
+    };
+  stable var fixCounter : Nat;
+  stable flightBookings :
+    {
+      var root : Node__1000929467<Text, FlightBooking__194536768>;
+      var size : Nat__1040412405
+    };
+  stable flowAgentDiagnosticsStore :
+    {
+      var root : Node__1000929467<Text, FlowAgentDiagnostic__43941095>;
+      var size : Nat__1040412405
+    };
+  stable flowDiagnosticsStore :
+    {
+      var root : Node__1000929467<Text, FlowDiagnosticResult__526483073>;
+      var size : Nat__1040412405
+    };
+  stable flowSessionsById :
+    {
+      var root : Node__1000929467<Text, FlowSession__246652192>;
+      var size : Nat__1040412405
+    };
+  stable flowsStore :
+    {
+      var root : Node__1000929467<Text, FlowDefinition__242189987>;
+      var size : Nat__1040412405
+    };
+  stable var haCounter : Nat;
+  stable healthcareApptStore :
+    {
+      var root : Node__1000929467<Text, HealthcareAppointment__274828625>;
+      var size : Nat__1040412405
+    };
+  stable healthcareProviderStore :
+    {
+      var root : Node__1000929467<Text, HealthcareProvider__369018855>;
+      var size : Nat__1040412405
+    };
+  stable var hpCounter : Nat;
+  stable var issueCounter : Nat;
+  stable jobCityFavoritesStore :
+    {
+      var root : Node__1000929467<Text, JobCityFavorite__980164979>;
+      var size : Nat__1040412405
+    };
+  stable jobLocationsById :
+    {
+      var root : Node__1000929467<Text, JobLocation__266622050>;
+      var size : Nat__1040412405
+    };
+  stable var jobsStore :
+    {
+      var root : Node__1000929467<Text, JobV0__149956040>;
+      var size : Nat__1040412405
+    };
+  stable jobsStoreCurrent :
+    {
+      var root : Node__1000929467<Text, Job__331238368>;
+      var size : Nat__1040412405
+    };
+  stable leadsStore :
+    {
+      var root : Node__1000929467<Text, Lead__587567084>;
+      var size : Nat__1040412405
+    };
+  stable leaveRequestsStore :
+    {
+      var root : Node__1000929467<Text, LeaveRequest__768487251>;
+      var size : Nat__1040412405
+    };
+  stable lendingItemsStore :
+    {
+      var root : Node__1000929467<Text, LendingItem__579485053>;
+      var size : Nat__1040412405
+    };
+  stable lessonLikesMap :
+    {
+      var root : Node__1000929467<Text, LessonLike__177143619>;
+      var size : Nat__1040412405
+    };
+  stable lessonProgressMap :
+    {
+      var root : Node__1000929467<Text, LessonProgress__521376205>;
+      var size : Nat__1040412405
+    };
+  stable lessonsMap :
+    {
+      var root : Node__1000929467<Text, Lesson__784344191>;
+      var size : Nat__1040412405
+    };
+  stable manufacturersById :
+    {
+      var root : Node__1000929467<Text, Manufacturer__655724885>;
+      var size : Nat__1040412405
+    };
+  stable manufacturersByUserId :
+    {
+      var root : Node__1000929467<Text, Manufacturer__655724885>;
+      var size : Nat__1040412405
+    };
+  stable var marketSearchesStore :
+    {
+      var root : Node__1000929467<Text, MarketSearchQueryV0__254018369>;
+      var size : Nat__1040412405
+    };
+  stable marketSearchesStoreCurrent :
+    {
+      var root : Node__1000929467<Text, MarketSearchQuery__973482058>;
+      var size : Nat__1040412405
+    };
+  stable marketplaceItemsById :
+    {
+      var root : Node__1000929467<Text, MarketplaceItem__548924433>;
+      var size : Nat__1040412405
+    };
+  stable var matchScoresStore :
+    {
+      var root : Node__1000929467<Text, MatchScoreV0__363718882>;
+      var size : Nat__1040412405
+    };
+  stable matchScoresStoreCurrent :
+    {
+      var root : Node__1000929467<Text, MatchScore__503160728>;
+      var size : Nat__1040412405
+    };
+  stable menuOptionsStore :
+    {
+      var root : Node__1000929467<Text, MenuOption__427306512>;
+      var size : Nat__1040412405
+    };
+  stable menuWebhookUpdateLog :
+    {
+      var blockIndex : Nat__1040412405;
+      var blocks : [var [var ?Text]];
+      var elementIndex : Nat__1040412405
+    };
+  stable merchantBranchStore :
+    {
+      var root : Node__1000929467<Text, [MerchantBranch__487629146]>;
+      var size : Nat__1040412405
+    };
+  stable merchantEmployeesStore :
+    {
+      var root : Node__1000929467<Text, MerchantEmployee__910913363>;
+      var size : Nat__1040412405
+    };
+  stable var merchantsById :
+    {
+      var root : Node__1000929467<Text, MerchantV0__293000469>;
+      var size : Nat__1040412405
+    };
+  stable merchantsByIdNew :
+    {
+      var root : Node__1000929467<Text, Merchant__292195103>;
+      var size : Nat__1040412405
+    };
+  stable var merchantsByUserId :
+    {
+      var root : Node__1000929467<Text, MerchantV0__293000469>;
+      var size : Nat__1040412405
+    };
+  stable merchantsByUserIdNew :
+    {
+      var root : Node__1000929467<Text, Merchant__292195103>;
+      var size : Nat__1040412405
+    };
+  stable mfgAccountEntriesById :
+    {
+      var root : Node__1000929467<Text, AccountEntry__1060349209>;
+      var size : Nat__1040412405
+    };
+  stable mfgAttendanceById :
+    {
+      var root : Node__1000929467<Text, EmployeeAttendanceRecord__671926497>;
+      var size : Nat__1040412405
+    };
+  stable mfgBillRecordsById :
+    {
+      var root : Node__1000929467<Text, BillRecord__26613313>;
+      var size : Nat__1040412405
+    };
+  stable mfgComplaintsById :
+    {
+      var root : Node__1000929467<Text, ManufacturerComplaint__628799105>;
+      var size : Nat__1040412405
+    };
+  stable mfgEmpIdState : {var nextId : Nat};
+  stable mfgEmployeesById :
+    {
+      var root : Node__1000929467<Text, ManufacturerEmployee__403210130>;
+      var size : Nat__1040412405
+    };
+  stable mfgIdState : {var nextMfgId : Nat};
+  stable mfgInventoryItemsById :
+    {
+      var root : Node__1000929467<Text, InventoryItem__165194428>;
+      var size : Nat__1040412405
+    };
+  stable mfgInventoryTxnsById :
+    {
+      var root : Node__1000929467<Text, InventoryTransaction__1017504060>;
+      var size : Nat__1040412405
+    };
+  stable mfgLeaveRequestsById :
+    {
+      var root : Node__1000929467<Text, EmployeeLeaveRequest__604684510>;
+      var size : Nat__1040412405
+    };
+  stable mfgProductsById :
+    {
+      var root : Node__1000929467<Text, ManufacturerProduct__160987877>;
+      var size : Nat__1040412405
+    };
+  stable mfgPurchaseRecordsById :
+    {
+      var root : Node__1000929467<Text, PurchaseRecord__168446495>;
+      var size : Nat__1040412405
+    };
+  stable mfgRatingsById :
+    {
+      var root : Node__1000929467<Text, ManufacturerRating__777096783>;
+      var size : Nat__1040412405
+    };
+  stable mfgSaleRecordsById :
+    {
+      var root : Node__1000929467<Text, SaleRecord__130982952>;
+      var size : Nat__1040412405
+    };
+  stable moderationStore :
+    {
+      var root : Node__1000929467<Text, ModerationItem__744855333>;
+      var size : Nat__1040412405
+    };
+  stable moduleRoleStore :
+    {var root : Node__1000929467<Text, Bool>; var size : Nat__1040412405};
+  stable moduleTogglesStore :
+    {var root : Node__1000929467<Text, Bool>; var size : Nat__1040412405};
+  stable var nextBotLogId : Nat;
+  stable var nextBusId : Nat;
+  stable var nextCbId : Nat;
+  stable var nextCredId : Nat;
+  stable var nextDonationId : Nat;
+  stable var nextElectionId : Nat;
+  stable var nextFlightId : Nat;
+  stable var nextFlowId : Nat;
+  stable var nextLogId : Nat;
+  stable var nextMatchScoreId : Nat;
+  stable var nextSearchId : Nat;
+  stable var nextTrainId : Nat;
+  stable var nextUtilId : Nat;
+  stable notifStore :
+    {
+      var root : Node__1000929467<Text, Notification__642731598>;
+      var size : Nat__1040412405
+    };
+  stable ondcStore :
+    {
+      var root : Node__1000929467<Text, OndcEnrollment__8521944>;
+      var size : Nat__1040412405
+    };
+  stable orderQRStore :
+    {
+      var root : Node__1000929467<Text, OrderPaymentQR__646706365>;
+      var size : Nat__1040412405
+    };
+  stable ordersById :
+    {
+      var root : Node__1000929467<Text, Order__859278382>;
+      var size : Nat__1040412405
+    };
+  stable paysprintAPILogs :
+    {
+      var root : Node__1000929467<Text, PaySprintAPILog__1136848>;
+      var size : Nat__1040412405
+    };
+  stable paysprintCallbacks :
+    {
+      var root : Node__1000929467<Text, PaySprintCallback__217963029>;
+      var size : Nat__1040412405
+    };
+  stable paysprintCredentials :
+    {
+      var root : Node__1000929467<Text, PaySprintCredential__5666912>;
+      var size : Nat__1040412405
+    };
+  stable petrolExpenseStore :
+    {
+      var root : Node__1000929467<Text, PetrolExpense__1005715936>;
+      var size : Nat__1040412405
+    };
+  stable var pipelineEnvironment : Text;
+  stable plansStore :
+    {
+      var root : Node__1000929467<Text, SubscriptionPlan__635227581>;
+      var size : Nat__1040412405
+    };
+  stable var pollingEnabled : Bool;
+  stable posOTPStore :
+    {
+      var root : Node__1000929467<Text, POSOTPRecord__727759626>;
+      var size : Nat__1040412405
+    };
+  stable posOrdersById :
+    {
+      var root : Node__1000929467<Text, POSOrder__835675239>;
+      var size : Nat__1040412405
+    };
+  stable productLocationPricesStore :
+    {
+      var root : Node__1000929467<Text, ProductLocationPrice__132633666>;
+      var size : Nat__1040412405
+    };
+  stable var productsById :
+    {
+      var root : Node__1000929467<Text, ProductV0__393623666>;
+      var size : Nat__1040412405
+    };
+  stable productsByIdCurrent :
+    {
+      var root : Node__1000929467<Text, Product__488252642>;
+      var size : Nat__1040412405
+    };
+  stable professionalSvcStore :
+    {
+      var root : Node__1000929467<Text, ProfessionalService__40933308>;
+      var size : Nat__1040412405
+    };
+  stable promotionsStore :
+    {
+      var root : Node__1000929467<Text, Promotion__112066686>;
+      var size : Nat__1040412405
+    };
+  stable propertiesStore :
+    {
+      var root : Node__1000929467<Text, Property__454145029>;
+      var size : Nat__1040412405
+    };
+  stable var psCounter : Nat;
+  stable rateCardByVehicle :
+    {var root : Node__1000929467<Text, Text>; var size : Nat__1040412405};
+  stable rateCardStore :
+    {
+      var root : Node__1000929467<Text, DeliveryRateCard__258580077>;
+      var size : Nat__1040412405
+    };
+  stable recipesStore :
+    {
+      var root : Node__1000929467<Text, Recipe__121655032>;
+      var size : Nat__1040412405
+    };
+  stable restockOrdersStore :
+    {
+      var root : Node__1000929467<Text, RestockOrder__12669907>;
+      var size : Nat__1040412405
+    };
+  stable sarthiOtpStore :
+    {
+      var root : Node__1000929467<Text, SarthiOTPVerification__516555677>;
+      var size : Nat__1040412405
+    };
+  stable savedWordsMap :
+    {
+      var root : Node__1000929467<Text, SavedWord__185610802>;
+      var size : Nat__1040412405
+    };
+  stable var sbCounter : Nat;
+  stable scanHistoryStore :
+    {
+      var root : Node__1000929467<Text, ProductScanHistory__838390391>;
+      var size : Nat__1040412405
+    };
+  stable scriptExecutionResultsStore :
+    {
+      var root : Node__1000929467<Text, ScriptExecutionResult__303433640>;
+      var size : Nat__1040412405
+    };
+  stable var scriptRunIdCounter : Nat;
+  stable scriptRunResultsStore :
+    {
+      var root : Node__1000929467<Text, ScriptRunResult__482095422>;
+      var size : Nat__1040412405
+    };
+  stable var scriptStepIdCounter : Nat;
+  stable serviceBookingStore :
+    {
+      var root : Node__1000929467<Text, ServiceBooking__975827570>;
+      var size : Nat__1040412405
+    };
+  stable var sessionsStore :
+    {
+      var root : Node__1000929467<Text, ConversationSessionV0__116783102>;
+      var size : Nat__1040412405
+    };
+  stable sessionsStoreNew :
+    {
+      var root : Node__1000929467<Text, ConversationSession__753322983>;
+      var size : Nat__1040412405
+    };
+  stable shuttleBookingsStore :
+    {
+      var root : Node__1000929467<Text, ShuttleBooking__860252437>;
+      var size : Nat__1040412405
+    };
+  stable shuttleRoutesStore :
+    {
+      var root : Node__1000929467<Text, ShuttleRoute__839020469>;
+      var size : Nat__1040412405
+    };
+  stable smsConfigStore :
+    {
+      var root : Node__1000929467<Text, SMSConfig__1019006997>;
+      var size : Nat__1040412405
+    };
+  stable subscriptionsStore :
+    {
+      var root : Node__1000929467<Text, UserSubscription__431801636>;
+      var size : Nat__1040412405
+    };
+  stable supplierOrdersStore :
+    {
+      var root : Node__1000929467<Text, SupplierOrder__612115071>;
+      var size : Nat__1040412405
+    };
+  stable var supportTicketsStore :
+    {
+      var root : Node__1000929467<Text, SupportTicketV0__713157663>;
+      var size : Nat__1040412405
+    };
+  stable supportTicketsStoreCurrent :
+    {
+      var root : Node__1000929467<Text, SupportTicket__727010499>;
+      var size : Nat__1040412405
+    };
+  stable var tbCounter : Nat;
+  stable telegramConfigStore :
+    {
+      var root : Node__1000929467<Text, TelegramConfig__20647598>;
+      var size : Nat__1040412405
+    };
+  stable var telegramUpdateOffset : Int;
+  stable testOrderIds :
+    {var root : Node__1000929467<Text, Bool>; var size : Nat__1040412405};
+  stable tipsStore :
+    {
+      var root : Node__1000929467<Text, TipRecord__1040854515>;
+      var size : Nat__1040412405
+    };
+  stable var toCounter : Nat;
+  stable tourBookingStore :
+    {
+      var root : Node__1000929467<Text, TourBooking__330465765>;
+      var size : Nat__1040412405
+    };
+  stable tourOperatorStore :
+    {
+      var root : Node__1000929467<Text, TourOperator__148631913>;
+      var size : Nat__1040412405
+    };
+  stable trainBookings :
+    {
+      var root : Node__1000929467<Text, TrainBooking__436376792>;
+      var size : Nat__1040412405
+    };
+  stable transportStore :
+    {
+      var root : Node__1000929467<Text, TransportBooking__435148911>;
+      var size : Nat__1040412405
+    };
+  stable var usersById :
+    {
+      var root : Node__1000929467<Text, UserV0__287133417>;
+      var size : Nat__1040412405
+    };
+  stable usersByIdNew :
+    {
+      var root : Node__1000929467<Text, User__31243832>;
+      var size : Nat__1040412405
+    };
+  stable var usersByPhone :
+    {
+      var root : Node__1000929467<Text, UserV0__287133417>;
+      var size : Nat__1040412405
+    };
+  stable usersByPhoneNew :
+    {
+      var root : Node__1000929467<Text, User__31243832>;
+      var size : Nat__1040412405
+    };
+  stable utilityTransactions :
+    {
+      var root : Node__1000929467<Text, UtilityTransaction__908820130>;
+      var size : Nat__1040412405
+    };
+  stable visitorCheckinsStore :
+    {
+      var root : Node__1000929467<Text, VisitorCheckin__310042936>;
+      var size : Nat__1040412405
+    };
+  stable whatsAppConfigStore :
+    {
+      var root : Node__1000929467<Text, FullWhatsAppConfig__274988720>;
+      var size : Nat__1040412405
+    };
+  stable wordDefinitionsMap :
+    {
+      var root : Node__1000929467<Text, WordDefinition__65331378>;
+      var size : Nat__1040412405
+    }
+};

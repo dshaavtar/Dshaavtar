@@ -1,0 +1,26 @@
+{
+  "overview": "LocalBazar Kart is a comprehensive multi-surface commerce and services platform supporting shopping, jobs, healthcare, travel, professional services, manufacturer flows, and 75+ chatbot-driven workflows accessible via WhatsApp, Telegram, SMS, and a web admin dashboard.",
+  "features": [
+    "Single unified flow registry with 75+ flows across all roles",
+    "Menu repository synced to flow registry for customer, merchant, delivery partner, and manufacturer menus",
+    "Multi-role chat simulator with session persistence and scrollable flow list",
+    "Script executor with step-by-step execution and entity save",
+    "Flow agent diagnostics with save and history",
+    "Manufacturer registration, product management, distributor network, and billing",
+    "Customer flows: healthcare, travel, professional services, manufactured products, fun learning, bus/train/flight booking, recharge, bill payments, old items marketplace",
+    "Admin sidebar with advertisement and recipe management links",
+    "Complete PDF project documentation with all flows, forms, data tables, and scripts"
+  ],
+  "category": "marketplace",
+  "tags": [
+    "commerce",
+    "chatbot",
+    "multi-role",
+    "manufacturer",
+    "marketplace",
+    "india",
+    "whatsapp",
+    "telegram"
+  ],
+  "last_updated": "2026-06-09T10:44:42.340Z"
+}
